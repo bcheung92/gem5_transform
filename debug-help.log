@@ -1,0 +1,221 @@
+Base Flags:
+    AMBA: None
+    Activity: None
+    AddrRanges: None
+    Annotate: State machine annotation debugging
+    AnnotateQ: State machine annotation queue debugging
+    AnnotateVerbose: Dump all state machine annotation details
+    Arm: None
+    BaseXBar: None
+    Branch: None
+    Bridge: None
+    CCRegs: None
+    Cache: None
+    CachePort: None
+    CacheRepl: None
+    CacheTags: None
+    Checker: None
+    Checkpoint: None
+    ClockDomain: None
+    CoherentXBar: None
+    CommMonitor: None
+    Commit: None
+    CommitRate: None
+    Config: None
+    Context: None
+    DMA: None
+    DMACopyEngine: None
+    DRAM: None
+    DRAMPower: None
+    DRAMSim2: None
+    DRAMState: None
+    DVFS: None
+    DebugPrintf: None
+    Decode: None
+    Decoder: Instructions returned by the predecoder
+    DirectedTest: None
+    DiskImageRead: None
+    DiskImageWrite: None
+    Drain: None
+    DynInst: None
+    EnergyCtrl: None
+    Ethernet: None
+    EthernetCksum: None
+    EthernetDMA: None
+    EthernetData: None
+    EthernetDesc: None
+    EthernetEEPROM: None
+    EthernetIntr: None
+    EthernetPIO: None
+    EthernetSM: None
+    Event: None
+    ExecAsid: Format: Include ASID in trace
+    ExecCPSeq: Format: Instruction sequence number
+    ExecEffAddr: Format: Include effective address
+    ExecEnable: Filter: Enable exec tracing (no tracing without this)
+    ExecFaulting: Trace faulting instructions
+    ExecFetchSeq: Format: Fetch sequence number
+    ExecFlags: Format: Include instruction flags in trace
+    ExecKernel: Filter: Trace kernel mode instructions
+    ExecMacro: Filter: Include macroops
+    ExecMicro: Filter: Include microops
+    ExecOpClass: Format: Include operand class
+    ExecRegDelta: None
+    ExecResult: Format: Include results from execution
+    ExecSpeculative: Format: Include a miss-/speculation flag (-/+)
+    ExecSymbol: Format: Try to include symbol names
+    ExecThread: Format: Include thread ID in trace
+    ExecTicks: Format: Include tick count
+    ExecUser: Filter: Trace user mode instructions
+    Fault: None
+    Faults: Trace Exceptions, interrupts, svc/swi
+    Fetch: None
+    FloatRegs: None
+    Flow: None
+    FreeList: None
+    GDBAcc: Remote debugger accesses
+    GDBExtra: Dump extra information on reads and writes
+    GDBMisc: Breakpoints, traps, watchpoints, etc.
+    GDBRead: Reads to the remote address space
+    GDBRecv: Messages received from the remote application
+    GDBSend: Messages sent to the remote application
+    GDBWrite: Writes to the remote address space
+    GIC: None
+    HDLcd: None
+    HWPrefetch: None
+    IEW: None
+    IPI: None
+    IPR: None
+    IQ: None
+    IdeCtrl: None
+    IdeDisk: None
+    IntRegs: None
+    Intel8254Timer: None
+    Interrupt: None
+    IntrControl: None
+    IsaFake: None
+    LLSC: None
+    LSQ: None
+    LSQUnit: None
+    Loader: None
+    MC146818: None
+    MMU: None
+    MemDepUnit: None
+    MemTest: None
+    MemoryAccess: None
+    MinorCPU: Minor CPU-level events
+    MinorExecute: Minor Execute stage
+    MinorInterrupt: Minor interrupt handling
+    MinorMem: Minor memory accesses
+    MinorScoreboard: Minor Execute register scoreboard
+    MinorTiming: Extra timing for instructions
+    MinorTrace: MinorTrace cycle-by-cycle state trace
+    MiscRegs: None
+    NetworkTest: None
+    NoncoherentXBar: None
+    O3CPU: None
+    O3PipeView: None
+    PCEvent: None
+    PCIDEV: None
+    PL111: None
+    PacketQueue: None
+    PciConfigAll: None
+    Pl050: None
+    Printf: None
+    ProbeVerbose: None
+    ProtocolTrace: None
+    PseudoInst: None
+    Quiesce: None
+    ROB: None
+    RVCTRL: None
+    Rename: None
+    RubyCache: None
+    RubyCacheTrace: None
+    RubyDma: None
+    RubyGenerated: None
+    RubyMemory: None
+    RubyNetwork: None
+    RubyPort: None
+    RubyPrefetcher: None
+    RubyQueue: None
+    RubyResourceStalls: None
+    RubySequencer: None
+    RubySlicc: None
+    RubyStats: None
+    RubySystem: None
+    RubyTest: None
+    RubyTester: None
+    SQL: SQL queries sent to the server
+    Scoreboard: None
+    SimpleCPU: None
+    SimpleDisk: None
+    SimpleDiskData: None
+    SimpleTrace: None
+    SnoopFilter: None
+    Stack: None
+    StatEvents: Statistics event tracking
+    StoreSet: None
+    SyscallVerbose: None
+    TLB: None
+    TLBVerbose: None
+    Terminal: None
+    TerminalVerbose: None
+    Thread: None
+    TimeSync: None
+    Timer: None
+    TrafficGen: None
+    Uart: None
+    VGIC: None
+    VIO: VirtIO base functionality
+    VIO9P: General 9p over VirtIO debugging
+    VIO9PData: Dump data in VirtIO 9p connections
+    VIOBlock: VirtIO block device
+    VIOConsole: VirtIO console device
+    VIOPci: VirtIO PCI transport
+    VNC: None
+    VoltageDomain: None
+    VtoPhys: None
+    WorkItems: None
+    Writeback: None
+
+Compound Flags:
+    AnnotateAll: All Annotation flags
+        Annotate, AnnotateQ, AnnotateVerbose
+    DiskImageAll: None
+        DiskImageRead, DiskImageWrite
+    EthernetAll: None
+        Ethernet, EthernetCksum, EthernetDMA, EthernetData, EthernetDesc, 
+        EthernetEEPROM, EthernetIntr, EthernetPIO, EthernetSM
+    EthernetNoData: None
+        Ethernet, EthernetCksum, EthernetDesc, EthernetIntr, EthernetPIO, 
+        EthernetSM
+    Exec: None
+        ExecEffAddr, ExecEnable, ExecFaulting, ExecKernel, ExecMicro, 
+        ExecOpClass, ExecResult, ExecSymbol, ExecThread, ExecTicks, ExecUser
+    ExecAll: None
+        ExecAsid, ExecCPSeq, ExecEffAddr, ExecEnable, ExecFaulting, 
+        ExecFetchSeq, ExecFlags, ExecKernel, ExecMacro, ExecMicro, 
+        ExecOpClass, ExecRegDelta, ExecResult, ExecSpeculative, ExecSymbol, 
+        ExecThread, ExecTicks, ExecUser
+    ExecNoTicks: None
+        ExecEffAddr, ExecEnable, ExecFaulting, ExecKernel, ExecMicro, 
+        ExecOpClass, ExecResult, ExecThread, ExecUser
+    GDBAll: All Remote debugging flags
+        GDBAcc, GDBExtra, GDBMisc, GDBRead, GDBRecv, GDBSend, GDBWrite
+    IdeAll: None
+        IdeCtrl, IdeDisk
+    Minor: None
+        MinorCPU, MinorExecute, MinorInterrupt, MinorMem, MinorScoreboard
+    O3CPUAll: None
+        Activity, Commit, Decode, DynInst, Fetch, FreeList, IEW, IQ, LSQ, 
+        LSQUnit, MemDepUnit, O3CPU, ROB, Rename, Scoreboard, StoreSet, 
+        Writeback
+    Registers: None
+        CCRegs, FloatRegs, IntRegs, MiscRegs
+    Ruby: None
+        RubyCache, RubyCacheTrace, RubyDma, RubyGenerated, RubyMemory, 
+        RubyNetwork, RubyPort, RubyPrefetcher, RubyQueue, RubySequencer, 
+        RubySlicc, RubySystem, RubyTester
+    XBar: None
+        BaseXBar, CoherentXBar, NoncoherentXBar, SnoopFilter
+

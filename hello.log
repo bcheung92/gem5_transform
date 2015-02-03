@@ -1,0 +1,31 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Feb  2 2015 13:49:09
+gem5 started Feb  2 2015 13:49:29
+gem5 executing on bigbird
+command line: ./build/ARM/gem5.opt --debug-flags=Drain ./configs/example/se.py -c tests/test-progs/hello/bin/arm/linux/hello --cpu-type=detailed --caches
+Global frequency set at 1000000000000 ticks per second
+      0: system.cpu.isa: ISA system set to: 0 0x44c4000
+0: system.remote_gdb.listener: listening for remote gdb #0 on port 7005
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+warn: CP14 unimplemented crn[14], opc1[7], crm[15], opc2[7]
+Hello world!
+*****TRANSFORM going to call drain()
+13270500: system.cpu: Draining...
+13270500: system.cpu: Main CPU structures not drained.
+13270500: system.cpu: Fetch not drained.
+13270500: system.cpu: Rename not drained.
+13270500: system.cpu.iew.lsq: Not drained, LQ not empty.
+13270500: system.cpu: IEW not drained.
+13270500: system.cpu: Commit not drained.
+13270500: system.cpu: CPU not drained
+*****TRANSFORM DONE : going to call drain()
+13273500: system.cpu.commit: Draining: 0:(0x8da4=>0x8da8).(0=>1)
+13273500: system.cpu.fetch: 0: Thread drained.
+*****TRANSFORM calling make_rob_half
+*****TRANSFORM make_rob_half original size = 192new rob size = 96
+13275000: system.cpu: Resuming...
+13275000: system.cpu: Activating thread: 0
+Exiting @ tick 13285000 because target called exit()

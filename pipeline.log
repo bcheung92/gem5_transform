@@ -1,0 +1,19 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Feb  2 2015 14:13:13
+gem5 started Feb  2 2015 14:55:11
+gem5 executing on bigbird
+command line: ./build/ARM/gem5.opt --outdir=m5out_tmp --debug-flags=O3PipeView --debug-start=13270000 --debug-file=trace.out configs/example/se.py -c tests/test-progs/hello/bin/arm/linux/hello --num-cpus=1 --caches -I 10000000000 --cpu-type=detailed
+Global frequency set at 1000000000000 ticks per second
+0: system.remote_gdb.listener: listening for remote gdb #0 on port 7007
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+warn: CP14 unimplemented crn[14], opc1[7], crm[15], opc2[7]
+Hello world!
+*****TRANSFORM going to call drain()
+*****TRANSFORM DONE : going to call drain()
+*****TRANSFORM calling make_rob_half
+*****TRANSFORM make_rob_half original size = 192new rob size = 96
+*****TRANSFORM update_rob_threads  tid 0 old maxEntries:192 new maxEntries:96
+Exiting @ tick 13285000 because target called exit()

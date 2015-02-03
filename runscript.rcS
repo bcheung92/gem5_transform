@@ -1,0 +1,6 @@
+#!/system/bin/sh
+# File to run the blackscholes benchmark
+ls
+echo "Hello LOKESH!"
+echo "Done :D"
+/sbin/m5 exit

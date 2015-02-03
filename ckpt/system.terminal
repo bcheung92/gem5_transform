@@ -1,0 +1,205 @@
+Booting Linux on physical CPU 0x0
+Initializing cgroup subsys cpuset
+Linux version 3.13.0-rc2-00001-ga75e551-dirty (ljindal@bigbird) (gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) ) #1 SMP PREEMPT Sat Oct 11 14:14:48 CDT 2014
+Kernel was built at commit id 'a75e551'
+CPU: ARMv7 Processor [410fc0f0] revision 0 (ARMv7), cr=10c53c7d
+CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+Machine model: V2P-CA15
+bootconsole [earlycon0] enabled
+Memory policy: Data cache writealloc
+kdebugv2m: Following are test values to confirm proper working
+kdebugv2m: Ranges 42000000 0 
+kdebugv2m: Regs 30000000 1000000 
+kdebugv2m: Virtual-Reg f0000000 
+kdebugv2m: pci node addr_cells 3 
+kdebugv2m: pci node size_cells 2 
+kdebugv2m: motherboard addr_cells 2 
+On node 0 totalpages: 131072
+free_area_init_node: node 0, pgdat 806485c0, node_mem_map 806a7000
+  Normal zone: 1024 pages used for memmap
+  Normal zone: 0 pages reserved
+  Normal zone: 131072 pages, LIFO batch:31
+sched_clock: 32 bits at 24MHz, resolution 41ns, wraps every 178956969942ns
+PERCPU: Embedded 8 pages/cpu @80aaf000 s12160 r8192 d12416 u32768
+pcpu-alloc: s12160 r8192 d12416 u32768 alloc=8*4096
+pcpu-alloc: [0] 0 
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 130048
+Kernel command line: earlyprintk=pl011,0x1c090000 console=ttyAMA0 lpj=19988480 norandmaps rw loglevel=8 mem=512MB root=/dev/sda1 init=/init 
+PID hash table entries: 2048 (order: 1, 8192 bytes)
+Dentry cache hash table entries: 65536 (order: 6, 262144 bytes)
+Inode-cache hash table entries: 32768 (order: 5, 131072 bytes)
+Memory: 496512K/524288K available (4469K kernel code, 236K rwdata, 1420K rodata, 287K init, 358K bss, 27776K reserved, 0K highmem)
+Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+    vmalloc : 0xa0800000 - 0xff000000   (1512 MB)
+    lowmem  : 0x80000000 - 0xa0000000   ( 512 MB)
+    pkmap   : 0x7fe00000 - 0x80000000   (   2 MB)
+    modules : 0x7f000000 - 0x7fe00000   (  14 MB)
+      .text : 0x80008000 - 0x805c8a04   (5891 kB)
+      .init : 0x805c9000 - 0x80610f80   ( 288 kB)
+      .data : 0x80612000 - 0x8064d16c   ( 237 kB)
+       .bss : 0x8064d16c - 0x806a6c90   ( 359 kB)
+SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+Preemptible hierarchical RCU implementation.
+	RCU restricting CPUs from NR_CPUS=8 to nr_cpu_ids=1.
+NR_IRQS:16 nr_irqs:16 16
+Architected cp15 timer(s) running at 25.16MHz (phys).
+sched_clock: 56 bits at 25MHz, resolution 39ns, wraps every 2730666655744ns
+Switching to timer-based delay loop
+Console: colour dummy device 80x30
+Calibrating delay loop (skipped) preset value.. 3997.69 BogoMIPS (lpj=19988480)
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+CPU0: update cpu_power 1024
+CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+Setting up static identity map for 0x8043d8d0 - 0x8043d904
+Brought up 1 CPUs
+SMP: Total of 1 processors activated.
+CPU: All CPU(s) started in SVC mode.
+VFP support v0.3: implementor 41 architecture 4 part 30 variant a rev 0
+NET: Registered protocol family 16
+DMA: preallocated 256 KiB pool for atomic coherent allocations
+of_amba_device_create(): amba_device_add() failed (-19) for /smb/motherboard/iofpga@3,00000000/sysctl@020000
+of_amba_device_create(): amba_device_add() failed (-19) for /smb/motherboard/iofpga@3,00000000/aaci@040000
+of_amba_device_create(): amba_device_add() failed (-19) for /smb/motherboard/iofpga@3,00000000/mmci@050000
+of_amba_device_create(): amba_device_add() failed (-19) for /smb/motherboard/iofpga@3,00000000/uart@0a0000
+of_amba_device_create(): amba_device_add() failed (-19) for /smb/motherboard/iofpga@3,00000000/uart@0b0000
+of_amba_device_create(): amba_device_add() failed (-19) for /smb/motherboard/iofpga@3,00000000/uart@0c0000
+of_amba_device_create(): amba_device_add() failed (-19) for /smb/motherboard/iofpga@3,00000000/wdt@0f0000
+hw-breakpoint: Debug register access (0xee113e93) caused undefined instruction on CPU 0
+hw-breakpoint: Debug register access (0xee013e90) caused undefined instruction on CPU 0
+hw-breakpoint: Debug register access (0xee003e17) caused undefined instruction on CPU 0
+hw-breakpoint: CPU 0 failed to disable vector catch
+Serial: AMBA PL011 UART driver
+1c090000.uart: ttyAMA0 at MMIO 0x1c090000 (irq = 37, base_baud = 0) is a PL011 rev3
+console [ttyAMA0] enabled
+console [ttyAMA0] enabled
+bootconsole [earlycon0] disabled
+bootconsole [earlycon0] disabled
+PCI host bridge to bus 0000:00
+pci_bus 0000:00: root bus resource [io  0x0000-0xffffffff]
+pci_bus 0000:00: root bus resource [mem 0x00000000-0xffffffff]
+pci_bus 0000:00: root bus resource [bus 00-ff]
+pci 0000:00:00.0: [8086:1075] type 00 class 0x020000
+pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x0001ffff]
+pci 0000:00:00.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+pci 0000:00:01.0: [8086:7111] type 00 class 0x010185
+pci 0000:00:01.0: reg 0x10: [io  0x0000-0x0007]
+pci 0000:00:01.0: reg 0x14: [io  0x0000-0x0003]
+pci 0000:00:01.0: reg 0x18: [io  0x0000-0x0007]
+pci 0000:00:01.0: reg 0x1c: [io  0x0000-0x0003]
+pci 0000:00:01.0: reg 0x20: [io  0x0000-0x000f]
+pci 0000:00:01.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+PCI: bus0: Fast back to back transfers disabled
+pci 0000:00:00.0: BAR 0: assigned [mem 0x40000000-0x4001ffff]
+pci 0000:00:00.0: BAR 6: assigned [mem 0x40020000-0x400207ff pref]
+pci 0000:00:01.0: BAR 6: assigned [mem 0x40020800-0x40020fff pref]
+pci 0000:00:01.0: BAR 4: assigned [io  0x2f000000-0x2f00000f]
+pci 0000:00:01.0: BAR 0: assigned [io  0x2f000010-0x2f000017]
+pci 0000:00:01.0: BAR 2: assigned [io  0x2f000018-0x2f00001f]
+pci 0000:00:01.0: BAR 1: assigned [io  0x2f000020-0x2f000023]
+pci 0000:00:01.0: BAR 3: assigned [io  0x2f000024-0x2f000027]
+pci_bus 0000:00: resource 4 [io  0x0000-0xffffffff]
+pci_bus 0000:00: resource 5 [mem 0x00000000-0xffffffff]
+PCI map irq: slot 0, pin 1, devslot 0, irq: 68
+PCI map irq: slot 1, pin 2, devslot 1, irq: 69
+bio: create slab <bio-0> at 0
+vgaarb: loaded
+SCSI subsystem initialized
+libata version 3.00 loaded.
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+Advanced Linux Sound Architecture Driver Initialized.
+Switched to clocksource arch_sys_counter
+NET: Registered protocol family 2
+TCP established hash table entries: 4096 (order: 2, 16384 bytes)
+TCP bind hash table entries: 4096 (order: 3, 32768 bytes)
+TCP: Hash tables configured (established 4096 bind 4096)
+TCP: reno registered
+UDP hash table entries: 256 (order: 1, 8192 bytes)
+UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+PCI: CLS 64 bytes, default 64
+hw perfevents: enabled with ARMv7_Cortex_A15 PMU driver, 1 counters available
+jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+msgmni has been set to 969
+io scheduler noop registered (default)
+hdlcd 2b000000.hdlcd: HDLCD: found ARM HDLCD version r0p0
+fbcvt: 1920x1080@60: CVT Name - 2.073M9-R
+hdlcd 2b000000.hdlcd: using 1920x1080-16@60 mode
+Console: switching to colour frame buffer device 240x67
+brd: module loaded
+loop: module loaded
+ata_piix 0000:00:01.0: version 2.13
+PCI: enabling device 0000:00:01.0 (0040 -> 0041)
+scsi0 : ata_piix
+scsi1 : ata_piix
+ata1: PATA max UDMA/33 cmd 0x2f000010 ctl 0x2f000020 bmdma 0x2f000000 irq 69
+ata2: PATA max UDMA/33 cmd 0x2f000018 ctl 0x2f000024 bmdma 0x2f000008 irq 69
+smsc911x: Driver version 2008-10-21
+smsc911x 1a000000.ethernet (unregistered net_device): couldn't get clock -2
+nxp-isp1760 1b000000.usb: NXP ISP1760 USB Host Controller
+nxp-isp1760 1b000000.usb: new USB bus registered, assigned bus number 1
+nxp-isp1760 1b000000.usb: Scratch test failed.
+nxp-isp1760 1b000000.usb: can't setup: -19
+nxp-isp1760 1b000000.usb: USB bus 1 deregistered
+usbcore: registered new interface driver usb-storage
+mousedev: PS/2 mouse device common for all mice
+rtc-pl031 1c170000.rtc: rtc core: registered pl031 as rtc0
+gem5-energy-ctrl loaded at f8080000
+cpu cpu0: mc_cpufreq_init: CPU 0 initialized
+arm_gem5_mc: mc_cpufreq_register: Registered platform driver: gem5-mc
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+ashmem: initialized
+logger: created 256K log 'log_main'
+logger: created 256K log 'log_events'
+logger: created 256K log 'log_radio'
+logger: created 256K log 'log_system'
+oprofile: using timer interrupt.
+TCP: cubic registered
+NET: Registered protocol family 17
+rtc-pl031 1c170000.rtc: setting system clock to 2009-01-01 12:00:00 UTC (1230811200)
+ALSA device list:
+  No soundcards found.
+ ata1.00: ATA-7: M5 IDE Disk, , max UDMA/66
+ata1.00: 2096640 sectors, multi 0: LBA 
+ata1.00: configured for UDMA/33
+scsi 0:0:0:0: Direct-Access     ATA      M5 IDE Disk      n/a  PQ: 0 ANSI: 5
+sd 0:0:0:0: [sda] 2096640 512-byte logical blocks: (1.07 GB/1023 MiB)
+sd 0:0:0:0: [sda] Write Protect is off
+sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+sd 0:0:0:0: [sda] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+ sda: sda1
+sd 0:0:0:0: Attached scsi generic sg0 type 0
+sd 0:0:0:0: [sda] Attached SCSI disk
+input: AT Raw Set 2 keyboard as /devices/smb.14/motherboard.15/iofpga.17/1c060000.kmi/serio0/input/input0
+input: touchkitPS/2 eGalax Touchscreen as /devices/smb.14/motherboard.15/iofpga.17/1c070000.kmi/serio1/input/input2
+EXT2-fs (sda1): warning: mounting unchecked fs, running e2fsck is recommended
+VFS: Mounted root (ext2 filesystem) on device 8:1.
+Freeing unused kernel memory: 284K (805c9000 - 80610000)
+ init: cannot open '/initlogo.rle'
+init: cannot find '/system/etc/install-recovery.sh', disabling 'flash_recovery'
+init: using deprecated syntax for specifying property 'persist.sys.usb.config', use ${name} instead
+init: using deprecated syntax for specifying property 'sys.usb.config', use ${name} instead
+init: using deprecated syntax for specifying property 'sys.usb.config', use ${name} instead
+random: servicemanager urandom read with 18 bits of entropy available
+ /system/bin/sh: No controlling tty: open /dev/tty: No such device or address
+/system/bin/sh: warning: won't have full job control
+root@android:/ # random: nonblocking pool is initialized
+warning: `zygote' uses 32-bit capabilities (legacy support in use)
+er.ServerThread (1011): /proc/996/oom_adj is deprecated, please use /proc/996/oom_score_adj instead.
+lowmemorykiller: lowmem_shrink: convert oom_adj to oom_score_adj:
+lowmemorykiller: oom_adj 0 => oom_score_adj 0
+lowmemorykiller: oom_adj 1 => oom_score_adj 58
+lowmemorykiller: oom_adj 2 => oom_score_adj 117
+lowmemorykiller: oom_adj 4 => oom_score_adj 235
+lowmemorykiller: oom_adj 9 => oom_score_adj 529
+lowmemorykiller: oom_adj 15 => oom_score_adj 1000

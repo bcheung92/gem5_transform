@@ -1,0 +1,369 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Jan 30 2015 13:54:16
+gem5 started Jan 30 2015 14:03:42
+gem5 executing on iris-3
+command line: /research/ljindal/gem5.oct18.new/build/ARM/gem5.opt --debug-flags=EnergyCtrl,DVFS /research/ljindal/gem5.oct18.new/configs/example/1.4GHzfs.py.multicore --machine-type VExpress_EMM --kernel vmlinux.ondemand95.real --num-cpus=1 --cpu-type=arm_detailed --dtb-filename vexpress-v2p-ca15-tc1-gem5_dvfs_1cpus.dtb --caches --l1d_size=32kB --l1i_size=32kB --l1i_assoc=2 --l1d_assoc=2 --l2cache --l2_size=1MB --l2_assoc=16 --disk-image=ARMv7a-ICS-Android.SMP.Asimbench-v3.img --script=/research/ljindal/gem5.oct18.new/asimbench/arm_ckpt_asim.rcS
+Global frequency set at 1000000000000 ticks per second
+info: kernel located at: /research/ljindal/gem5.oct18.new/binaries/vmlinux.ondemand95.real
+Listening for system connection on port 5900
+Listening for system connection on port 3456
+      0: system.cpu.isa: ISA system set to: 0x49f9680 0x49f9680
+0: system.remote_gdb.listener: listening for remote gdb #0 on port 7000
+info: Using bootloader at address 0x10
+info: Using kernel entry physical address at 0x80008000
+info: Loading DTB file: /research/ljindal/gem5.oct18.new/binaries/vexpress-v2p-ca15-tc1-gem5_dvfs_1cpus.dtb at address 0x88000000
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+warn: Not doing anything for miscreg ACTLR
+warn: Not doing anything for write of miscreg ACTLR
+warn: The clidr register always reports 0 caches.
+warn: clidr LoUIS field of 0b001 to match current ARM implementations.
+warn: The csselr register isn't implemented.
+warn: 	instruction 'mcr dccmvau' unimplemented
+warn: 	instruction 'mcr icimvau' unimplemented
+warn: 	instruction 'mcr bpiallis' unimplemented
+warn: 	instruction 'mcr icialluis' unimplemented
+warn: 	instruction 'mcr dccimvac' unimplemented
+warn: Tried to read RealView I/O at offset 0x60 that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+info: Read CNTFREQ_EL0 frequency
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+warn: CP14 unimplemented crn[1], opc1[0], crm[1], opc2[4]
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+warn: Not doing anything for read to miscreg pmcr
+warn: Not doing anything for write to miscreg pmcr
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: SCReg: Writing 0x8416740 to dcc0:site1:pos0:fn1:dev5
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+359723421000: system.realview.energy_ctrl: dvfs handler enabled
+359723691000: system.realview.energy_ctrl: reading number of domains 1
+359724074000: system.realview.energy_ctrl: writing domain id index:0
+359724300000: system.realview.energy_ctrl: reading domain id at index 0 as 0
+359724708000: system.realview.energy_ctrl: writing domain id:0
+359724934000: system.realview.energy_ctrl: reading domain id:0
+359725201000: system.realview.energy_ctrl: reading num of perf level:13
+359725819000: system.realview.energy_ctrl: writing perf level to read opp at: 0
+359726045000: system.realview.energy_ctrl: reading freq 1400560 KHz at perf level: 0
+359726307000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 0
+359726598000: system.realview.energy_ctrl: writing perf level to read opp at: 1
+359726824000: system.realview.energy_ctrl: reading freq 1300390 KHz at perf level: 1
+359727086000: system.dvfs_handler: DVFS: Request for perf-level 1 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359727086000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 1
+359727377000: system.realview.energy_ctrl: writing perf level to read opp at: 2
+359727603000: system.realview.energy_ctrl: reading freq 1200480 KHz at perf level: 2
+359727865000: system.dvfs_handler: DVFS: Request for perf-level 2 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359727865000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 2
+359728156000: system.realview.energy_ctrl: writing perf level to read opp at: 3
+359728382000: system.realview.energy_ctrl: reading freq 1100110 KHz at perf level: 3
+359728644000: system.dvfs_handler: DVFS: Request for perf-level 3 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359728644000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 3
+359728935000: system.realview.energy_ctrl: writing perf level to read opp at: 4
+359729161000: system.realview.energy_ctrl: reading freq 1000000 KHz at perf level: 4
+359729423000: system.dvfs_handler: DVFS: Request for perf-level 4 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359729423000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 4
+359729714000: system.realview.energy_ctrl: writing perf level to read opp at: 5
+359729940000: system.realview.energy_ctrl: reading freq 900090 KHz at perf level: 5
+359730202000: system.dvfs_handler: DVFS: Request for perf-level 5 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359730202000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 5
+359730493000: system.realview.energy_ctrl: writing perf level to read opp at: 6
+359730719000: system.realview.energy_ctrl: reading freq 800000 KHz at perf level: 6
+359730981000: system.dvfs_handler: DVFS: Request for perf-level 6 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359730981000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 6
+359731272000: system.realview.energy_ctrl: writing perf level to read opp at: 7
+359731499000: system.realview.energy_ctrl: reading freq 699790 KHz at perf level: 7
+359731761000: system.dvfs_handler: DVFS: Request for perf-level 7 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359731761000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 7
+359732052000: system.realview.energy_ctrl: writing perf level to read opp at: 8
+359732279000: system.realview.energy_ctrl: reading freq 599880 KHz at perf level: 8
+359732541000: system.dvfs_handler: DVFS: Request for perf-level 8 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359732541000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 8
+359732832000: system.realview.energy_ctrl: writing perf level to read opp at: 9
+359733058000: system.realview.energy_ctrl: reading freq 500000 KHz at perf level: 9
+359733320000: system.dvfs_handler: DVFS: Request for perf-level 9 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359733320000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 9
+359733611000: system.realview.energy_ctrl: writing perf level to read opp at: 10
+359733837000: system.realview.energy_ctrl: reading freq 400000 KHz at perf level: 10
+359734099000: system.dvfs_handler: DVFS: Request for perf-level 10 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359734099000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 10
+359734390000: system.realview.energy_ctrl: writing perf level to read opp at: 11
+359734616000: system.realview.energy_ctrl: reading freq 300030 KHz at perf level: 11
+359734878000: system.dvfs_handler: DVFS: Request for perf-level 11 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359734878000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 11
+359735169000: system.realview.energy_ctrl: writing perf level to read opp at: 12
+359735395000: system.realview.energy_ctrl: reading freq 200000 KHz at perf level: 12
+359735657000: system.dvfs_handler: DVFS: Request for perf-level 12 for single-point voltage domain system.cpu_voltage_domain.  Returning voltage at level 0: 1.00 V
+359735657000: system.realview.energy_ctrl: reading voltage 1000000 u-volt at perf level: 12
+360189637000: system.realview.energy_ctrl: reading dvfs handler trans latency 100000 ns
+360190515000: system.realview.energy_ctrl: writing domain id:0
+360190742000: system.realview.energy_ctrl: reading domain 0 perf level: 0
+360220330000: system.realview.energy_ctrl: writing domain id:0
+360220557000: system.realview.energy_ctrl: reading domain 0 perf level: 0
+499464428000: system.realview.energy_ctrl: writing domain id:0
+499464655000: system.realview.energy_ctrl: reading domain 0 perf level: 0
+499466976000: system.realview.energy_ctrl: writing domain id:0
+499467202000: system.realview.energy_ctrl: reading domain 0 perf level: 0
+499468239000: system.realview.energy_ctrl: writing domain id:0
+499468504000: system.dvfs_handler: DVFS: setPerfLevel domain 0 -> 12
+499468504000: system.dvfs_handler: DVFS: Update for perf event scheduled for 499568504000
+499468504000: system.realview.energy_ctrl: writing domain 0 perf level: 12
+499468730000: system.realview.energy_ctrl: reading ack:0
+499471214000: system.realview.energy_ctrl: reading ack:0
+499473522000: system.realview.energy_ctrl: reading ack:0
+499475822000: system.realview.energy_ctrl: reading ack:0
+499478122000: system.realview.energy_ctrl: reading ack:0
+499480422000: system.realview.energy_ctrl: reading ack:0
+499482722000: system.realview.energy_ctrl: reading ack:0
+499484992000: system.realview.energy_ctrl: reading ack:0
+499487292000: system.realview.energy_ctrl: reading ack:0
+499489561000: system.realview.energy_ctrl: reading ack:0
+499491861000: system.realview.energy_ctrl: reading ack:0
+499494130000: system.realview.energy_ctrl: reading ack:0
+499496430000: system.realview.energy_ctrl: reading ack:0
+499498700000: system.realview.energy_ctrl: reading ack:0
+499501000000: system.realview.energy_ctrl: reading ack:0
+499503269000: system.realview.energy_ctrl: reading ack:0
+499505569000: system.realview.energy_ctrl: reading ack:0
+499507838000: system.realview.energy_ctrl: reading ack:0
+499510107000: system.realview.energy_ctrl: reading ack:0
+499512407000: system.realview.energy_ctrl: reading ack:0
+499514676000: system.realview.energy_ctrl: reading ack:0
+499516976000: system.realview.energy_ctrl: reading ack:0
+499519245000: system.realview.energy_ctrl: reading ack:0
+499521545000: system.realview.energy_ctrl: reading ack:0
+499523815000: system.realview.energy_ctrl: reading ack:0
+499526115000: system.realview.energy_ctrl: reading ack:0
+499528384000: system.realview.energy_ctrl: reading ack:0
+499530684000: system.realview.energy_ctrl: reading ack:0
+499532953000: system.realview.energy_ctrl: reading ack:0
+499535253000: system.realview.energy_ctrl: reading ack:0
+499537522000: system.realview.energy_ctrl: reading ack:0
+499539822000: system.realview.energy_ctrl: reading ack:0
+499542092000: system.realview.energy_ctrl: reading ack:0
+499544392000: system.realview.energy_ctrl: reading ack:0
+499546661000: system.realview.energy_ctrl: reading ack:0
+499548961000: system.realview.energy_ctrl: reading ack:0
+499551230000: system.realview.energy_ctrl: reading ack:0
+499553499000: system.realview.energy_ctrl: reading ack:0
+499555799000: system.realview.energy_ctrl: reading ack:0
+499558068000: system.realview.energy_ctrl: reading ack:0
+499560368000: system.realview.energy_ctrl: reading ack:0
+499562638000: system.realview.energy_ctrl: reading ack:0
+499564938000: system.realview.energy_ctrl: reading ack:0
+499567207000: system.realview.energy_ctrl: reading ack:0
+499569850000: system.realview.energy_ctrl: reading ack:1
+499571455000: system.realview.energy_ctrl: writing domain id:0
+499571835000: system.realview.energy_ctrl: reading domain 0 perf level: 12
+warn: 	instruction 'mcr bpiall' unimplemented
+warn: 	instruction 'mcr dcisw' unimplemented
+2800240250000: system.realview.energy_ctrl: writing domain id:0
+2800240630000: system.realview.energy_ctrl: reading domain 0 perf level: 12
+2800253275000: system.realview.energy_ctrl: writing domain id:0
+2800253655000: system.realview.energy_ctrl: reading domain 0 perf level: 12
+2800258085000: system.realview.energy_ctrl: writing domain id:0
+2800258805000: system.dvfs_handler: DVFS: setPerfLevel domain 0 -> 6
+2800258805000: system.dvfs_handler: DVFS: Update for perf event scheduled for 2800358805000
+2800258805000: system.realview.energy_ctrl: writing domain 0 perf level: 6
+2800259185000: system.realview.energy_ctrl: reading ack:0
+2800262985000: system.realview.energy_ctrl: reading ack:0
+2800266165000: system.realview.energy_ctrl: reading ack:0
+2800269070000: system.realview.energy_ctrl: reading ack:0
+2800271975000: system.realview.energy_ctrl: reading ack:0
+2800274880000: system.realview.energy_ctrl: reading ack:0
+2800278005000: system.realview.energy_ctrl: reading ack:0
+2800280910000: system.realview.energy_ctrl: reading ack:0
+2800283815000: system.realview.energy_ctrl: reading ack:0
+2800286720000: system.realview.energy_ctrl: reading ack:0
+2800289845000: system.realview.energy_ctrl: reading ack:0
+2800292750000: system.realview.energy_ctrl: reading ack:0
+2800295655000: system.realview.energy_ctrl: reading ack:0
+2800298560000: system.realview.energy_ctrl: reading ack:0
+2800301685000: system.realview.energy_ctrl: reading ack:0
+2800304590000: system.realview.energy_ctrl: reading ack:0
+2800307495000: system.realview.energy_ctrl: reading ack:0
+2800310400000: system.realview.energy_ctrl: reading ack:0
+2800313305000: system.realview.energy_ctrl: reading ack:0
+2800316430000: system.realview.energy_ctrl: reading ack:0
+2800319335000: system.realview.energy_ctrl: reading ack:0
+2800322240000: system.realview.energy_ctrl: reading ack:0
+2800325145000: system.realview.energy_ctrl: reading ack:0
+2800328270000: system.realview.energy_ctrl: reading ack:0
+2800331175000: system.realview.energy_ctrl: reading ack:0
+2800334080000: system.realview.energy_ctrl: reading ack:0
+2800336985000: system.realview.energy_ctrl: reading ack:0
+2800340110000: system.realview.energy_ctrl: reading ack:0
+2800343015000: system.realview.energy_ctrl: reading ack:0
+2800345920000: system.realview.energy_ctrl: reading ack:0
+2800348825000: system.realview.energy_ctrl: reading ack:0
+2800351730000: system.realview.energy_ctrl: reading ack:0
+2800354855000: system.realview.energy_ctrl: reading ack:0
+2800357760000: system.realview.energy_ctrl: reading ack:0
+2800360525000: system.realview.energy_ctrl: reading ack:1
+2800361077000: system.realview.energy_ctrl: writing domain id:0
+2800361322000: system.realview.energy_ctrl: reading domain 0 perf level: 6
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+2959335318000: system.realview.energy_ctrl: writing domain id:0
+2959335563000: system.realview.energy_ctrl: reading domain 0 perf level: 6
+2959338807000: system.realview.energy_ctrl: writing domain id:0
+2959339052000: system.realview.energy_ctrl: reading domain 0 perf level: 6
+2959340283000: system.realview.energy_ctrl: writing domain id:0
+2959340660000: system.dvfs_handler: DVFS: setPerfLevel domain 0 -> 10
+2959340660000: system.dvfs_handler: DVFS: Update for perf event scheduled for 2959440660000
+2959340660000: system.realview.energy_ctrl: writing domain 0 perf level: 10
+2959340905000: system.realview.energy_ctrl: reading ack:0
+2959343626000: system.realview.energy_ctrl: reading ack:0
+2959346010000: system.realview.energy_ctrl: reading ack:0
+2959348380000: system.realview.energy_ctrl: reading ack:0
+2959350750000: system.realview.energy_ctrl: reading ack:0
+2959353120000: system.realview.energy_ctrl: reading ack:0
+2959355490000: system.realview.energy_ctrl: reading ack:0
+2959357860000: system.realview.energy_ctrl: reading ack:0
+2959360230000: system.realview.energy_ctrl: reading ack:0
+2959362600000: system.realview.energy_ctrl: reading ack:0
+2959364970000: system.realview.energy_ctrl: reading ack:0
+2959367340000: system.realview.energy_ctrl: reading ack:0
+2959369710000: system.realview.energy_ctrl: reading ack:0
+2959372080000: system.realview.energy_ctrl: reading ack:0
+2959374450000: system.realview.energy_ctrl: reading ack:0
+2959376820000: system.realview.energy_ctrl: reading ack:0
+2959379190000: system.realview.energy_ctrl: reading ack:0
+2959381560000: system.realview.energy_ctrl: reading ack:0
+2959383930000: system.realview.energy_ctrl: reading ack:0
+2959386300000: system.realview.energy_ctrl: reading ack:0
+2959388670000: system.realview.energy_ctrl: reading ack:0
+2959391040000: system.realview.energy_ctrl: reading ack:0
+2959393410000: system.realview.energy_ctrl: reading ack:0
+2959395780000: system.realview.energy_ctrl: reading ack:0
+2959398150000: system.realview.energy_ctrl: reading ack:0
+2959400520000: system.realview.energy_ctrl: reading ack:0
+2959402890000: system.realview.energy_ctrl: reading ack:0
+2959405260000: system.realview.energy_ctrl: reading ack:0
+2959407630000: system.realview.energy_ctrl: reading ack:0
+2959410000000: system.realview.energy_ctrl: reading ack:0
+2959412370000: system.realview.energy_ctrl: reading ack:0
+2959414740000: system.realview.energy_ctrl: reading ack:0
+2959417110000: system.realview.energy_ctrl: reading ack:0
+2959419480000: system.realview.energy_ctrl: reading ack:0
+2959421850000: system.realview.energy_ctrl: reading ack:0
+2959424220000: system.realview.energy_ctrl: reading ack:0
+2959426590000: system.realview.energy_ctrl: reading ack:0
+2959428960000: system.realview.energy_ctrl: reading ack:0
+2959431330000: system.realview.energy_ctrl: reading ack:0
+2959433700000: system.realview.energy_ctrl: reading ack:0
+2959436070000: system.realview.energy_ctrl: reading ack:0
+2959438440000: system.realview.energy_ctrl: reading ack:0
+2959440908000: system.realview.energy_ctrl: reading ack:1
+2959441811000: system.realview.energy_ctrl: writing domain id:0
+2959442101000: system.realview.energy_ctrl: reading domain 0 perf level: 10
+3059359161000: system.realview.energy_ctrl: writing domain id:0
+3059359451000: system.realview.energy_ctrl: reading domain 0 perf level: 10
+3059363286000: system.realview.energy_ctrl: writing domain id:0
+3059363576000: system.realview.energy_ctrl: reading domain 0 perf level: 10
+3059365376000: system.realview.energy_ctrl: writing domain id:0
+3059365768000: system.dvfs_handler: DVFS: setPerfLevel domain 0 -> 12
+3059365768000: system.dvfs_handler: DVFS: Update for perf event scheduled for 3059465768000
+3059365768000: system.realview.energy_ctrl: writing domain 0 perf level: 12
+3059366058000: system.realview.energy_ctrl: reading ack:0
+3059368833000: system.realview.energy_ctrl: reading ack:0
+3059371463000: system.realview.energy_ctrl: reading ack:0
+3059374066000: system.realview.energy_ctrl: reading ack:0
+3059376668000: system.realview.energy_ctrl: reading ack:0
+3059379271000: system.realview.energy_ctrl: reading ack:0
+3059381873000: system.realview.energy_ctrl: reading ack:0
+3059384476000: system.realview.energy_ctrl: reading ack:0
+3059387078000: system.realview.energy_ctrl: reading ack:0
+3059389681000: system.realview.energy_ctrl: reading ack:0
+3059392283000: system.realview.energy_ctrl: reading ack:0
+3059394886000: system.realview.energy_ctrl: reading ack:0
+3059397488000: system.realview.energy_ctrl: reading ack:0
+3059400091000: system.realview.energy_ctrl: reading ack:0
+3059402693000: system.realview.energy_ctrl: reading ack:0
+3059405296000: system.realview.energy_ctrl: reading ack:0
+3059407898000: system.realview.energy_ctrl: reading ack:0
+3059410501000: system.realview.energy_ctrl: reading ack:0
+3059413103000: system.realview.energy_ctrl: reading ack:0
+3059415706000: system.realview.energy_ctrl: reading ack:0
+3059418308000: system.realview.energy_ctrl: reading ack:0
+3059420911000: system.realview.energy_ctrl: reading ack:0
+3059423513000: system.realview.energy_ctrl: reading ack:0
+3059426116000: system.realview.energy_ctrl: reading ack:0
+3059428718000: system.realview.energy_ctrl: reading ack:0
+3059431321000: system.realview.energy_ctrl: reading ack:0
+3059433923000: system.realview.energy_ctrl: reading ack:0
+3059436526000: system.realview.energy_ctrl: reading ack:0
+3059439128000: system.realview.energy_ctrl: reading ack:0
+3059441731000: system.realview.energy_ctrl: reading ack:0
+3059444333000: system.realview.energy_ctrl: reading ack:0
+3059446936000: system.realview.energy_ctrl: reading ack:0
+3059449538000: system.realview.energy_ctrl: reading ack:0
+3059452141000: system.realview.energy_ctrl: reading ack:0
+3059454743000: system.realview.energy_ctrl: reading ack:0
+3059457346000: system.realview.energy_ctrl: reading ack:0
+3059459948000: system.realview.energy_ctrl: reading ack:0
+3059462551000: system.realview.energy_ctrl: reading ack:0
+3059465153000: system.realview.energy_ctrl: reading ack:0
+3059467971000: system.realview.energy_ctrl: reading ack:1
+3059469496000: system.realview.energy_ctrl: writing domain id:0
+3059469876000: system.realview.energy_ctrl: reading domain 0 perf level: 12
+3159900126000: system.realview.energy_ctrl: writing domain id:0
+3159900506000: system.realview.energy_ctrl: reading domain 0 perf level: 12
+3159911396000: system.realview.energy_ctrl: writing domain id:0
+3159911776000: system.realview.energy_ctrl: reading domain 0 perf level: 12
+3159915986000: system.realview.energy_ctrl: writing domain id:0
+3159916636000: system.dvfs_handler: DVFS: setPerfLevel domain 0 -> 0
+3159916636000: system.dvfs_handler: DVFS: Update for perf event scheduled for 3160016636000
+3159916636000: system.realview.energy_ctrl: writing domain 0 perf level: 0
+3159917016000: system.realview.energy_ctrl: reading ack:0
+3159920481000: system.realview.energy_ctrl: reading ack:0
+3159923606000: system.realview.energy_ctrl: reading ack:0
+3159926676000: system.realview.energy_ctrl: reading ack:0
+3159929746000: system.realview.energy_ctrl: reading ack:0
+3159932816000: system.realview.energy_ctrl: reading ack:0
+3159935886000: system.realview.energy_ctrl: reading ack:0
+3159938956000: system.realview.energy_ctrl: reading ack:0
+3159942026000: system.realview.energy_ctrl: reading ack:0
+3159945096000: system.realview.energy_ctrl: reading ack:0
+3159948166000: system.realview.energy_ctrl: reading ack:0
+3159951236000: system.realview.energy_ctrl: reading ack:0
+3159954306000: system.realview.energy_ctrl: reading ack:0
+3159957376000: system.realview.energy_ctrl: reading ack:0
+3159960446000: system.realview.energy_ctrl: reading ack:0
+3159963516000: system.realview.energy_ctrl: reading ack:0
+3159966586000: system.realview.energy_ctrl: reading ack:0
+3159969656000: system.realview.energy_ctrl: reading ack:0
+3159972726000: system.realview.energy_ctrl: reading ack:0
+3159975796000: system.realview.energy_ctrl: reading ack:0
+3159978866000: system.realview.energy_ctrl: reading ack:0
+3159981936000: system.realview.energy_ctrl: reading ack:0
+3159985006000: system.realview.energy_ctrl: reading ack:0
+3159988076000: system.realview.energy_ctrl: reading ack:0
+3159991146000: system.realview.energy_ctrl: reading ack:0
+3159994216000: system.realview.energy_ctrl: reading ack:0
+3159997286000: system.realview.energy_ctrl: reading ack:0
+3160000356000: system.realview.energy_ctrl: reading ack:0
+3160003426000: system.realview.energy_ctrl: reading ack:0
+3160006496000: system.realview.energy_ctrl: reading ack:0
+3160009566000: system.realview.energy_ctrl: reading ack:0
+3160012636000: system.realview.energy_ctrl: reading ack:0
+3160015706000: system.realview.energy_ctrl: reading ack:0
+3160018462000: system.realview.energy_ctrl: reading ack:1
+3160018864000: system.realview.energy_ctrl: writing domain id:0
+3160019091000: system.realview.energy_ctrl: reading domain 0 perf level: 0
+warn: CP14 unimplemented crn[14], opc1[7], crm[15], opc2[7]
+warn: CP14 unimplemented crn[11], opc1[3], crm[5], opc2[2]
