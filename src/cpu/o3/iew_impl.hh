@@ -110,6 +110,8 @@ DefaultIEW<Impl>::DefaultIEW(O3CPU *_cpu, DerivO3CPUParams *params)
     updateLSQNextCycle = false;
 
     skidBufferMax = (renameToIEWDelay + 1) * params->renameWidth;
+
+	LSQisScaled = false;//lokeshjindal15
 }
 
 template <class Impl>
@@ -1639,4 +1641,13 @@ DefaultIEW<Impl>::checkMisprediction(DynInstPtr &inst)
     }
 }
 
+template <class Impl>
+void
+DefaultIEW<Impl>::scale_LSQ(unsigned tf_scale_factor_LSQ)
+{
+	ldstQueue.scale_entire_lsq(tf_scale_factor_LSQ);
+	ldstQueue.update_lsq_units(tf_scale_factor_LSQ);
+	ldstQueue.resetEntries();
+}
+		
 #endif//__CPU_O3_IEW_IMPL_IMPL_HH__

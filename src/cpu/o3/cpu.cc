@@ -128,6 +128,23 @@ FullO3CPU<Impl>::DcachePort::recvRetry()
 }
 
 template <class Impl>
+void
+FullO3CPU<Impl>::DcachePort::scale_LSQ(unsigned tf_scale_factor_LSQ)//lokeshjindal15
+{
+	lsq->scale_entire_lsq(2);
+	lsq->update_lsq_units(2);
+	lsq->resetEntries();
+}
+
+template <class Impl>
+bool
+FullO3CPU<Impl>::DcachePort::isLSQempty()//lokeshjindal15
+{
+	return lsq->isEmpty();
+}
+
+
+template <class Impl>
 FullO3CPU<Impl>::TickEvent::TickEvent(FullO3CPU<Impl> *c)
     : Event(CPU_Tick_Pri), cpu(c)
 {
@@ -563,7 +580,81 @@ FullO3CPU<Impl>::tick()
     }
 
 	//lokeshjindal15 try changing ROB size on the fly
-	if (curTick() > 13270000 && (rob.halved == false))
+	//if (curTick() > 13270000 && ((rob.halved == false) || (iew.LSQisScaled == false)))
+	//{
+	//	std::cout << "#";
+	//	static int start_drain = 0;
+	//	if (!start_drain)
+	//	{
+	//	start_drain = 1;
+	//	std::cout << "*****TRANSFORM going to call drain()" << endl;
+	//	Stats::dump();
+	//	Stats::reset();
+	//	drain(drainManager);
+	//	std::cout << "*****TRANSFORM DONE with drain()" << endl;
+	//	}
+	//	
+	//	if (rob.isEmpty() && (rob.halved == false))
+	//	{
+	//		if (rob.isEmpty())
+	//		{
+	//			std::cout << "*****TRANSFORM calling make_rob_half" << endl;
+	//			rob.make_rob_half();
+	//			rob.update_rob_threads();
+	//			rob.resetState();
+	//			rob.halved = true;
+	//		}
+	//		else
+	//		{
+	//			std::cout << "Waiting for ROB to become empty" << endl;
+	//		}
+	//	}
+
+	//											//assert(lsq->isEmpty());
+	//											//assert(dcachePort.isLSQempty());
+	//											//if (lsq->isEmpty())
+	//											//if(dcachePort.isLSQempty())
+	//											//if(iew.ldstQueue.isEmpty())
+	//	
+	//	if (iew.LSQisScaled == false)
+	//	{
+	//		if(iew.ldstQueue.hasStoresToWB() && rob.isEmpty())
+	//		//if(iew.ldstQueue.thread[0].hasStoresToWB() && rob.isEmpty())
+	//		{
+	//			std::cout << "!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!!!!!TRANSFORM LSQ is not empty! (has stores to WB numStoresToWB:" << iew.ldstQueue.numStoresToWB(0) << ") when ROB is empty" << endl;//TODO FIXME crate wrapper to call numStoresToWB on per thread bases
+	//		}
+	//											//while(dcachePort.isLSQempty());
+	//											//while(iew.ldstQueue.isEmpty());
+	//		//if(!iew.ldstQueue.thread[0].hasStoresToWB())//wait for LSQ to become empty
+	//		std::cout << "CHECK numStoresToWB = " << iew.ldstQueue.numStoresToWB(0) << " isDrained() = *" << isDrained() << "*" << endl;
+	//		//if(iew.ldstQueue.thread[0].numStoresToWB() == 0)//wait for LSQ to become empty
+	//		if(!iew.ldstQueue.hasStoresToWB())//wait for LSQ to become empty
+	//		{
+	//			std::cout << "DONE Waiting for LSQ to become empty!"<< endl;
+	//			std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
+	//											//dcachePort.lsq->scale_entire_lsq(2);
+	//											//dcachePort.lsq->update_lsq_units(2);
+	//											//dcachePort.lsq->resetEntries();
+	//											//dcachePort.scale_LSQ(2);
+	//			iew.scale_LSQ(2);
+	//			iew.LSQisScaled = true;
+	//			std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
+	//		}
+	//		else
+	//		{
+	//			std::cout << "*****Waiting for LSQ to hold no storestoWB numStoresToWB = " << iew.ldstQueue.numStoresToWB(0) << " isDrained() = *" << isDrained() << "*" << endl;
+	//		}
+	//	}	
+	//	//fetch.start_drain = false;
+	//	if ((rob.halved == true) && (iew.LSQisScaled == true))
+	//	{
+	//		std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
+	//		drainResume();
+	//		Stats::dump();
+	//		Stats::reset();
+	//	}
+	//}   
+	if (curTick() > 13270000 && ((rob.halved == false) || (iew.LSQisScaled == false)))
 	{
 		static int start_drain = 0;
 		if (!start_drain)
@@ -573,22 +664,33 @@ FullO3CPU<Impl>::tick()
 		Stats::dump();
 		Stats::reset();
 		drain(drainManager);
-		std::cout << "*****TRANSFORM DONE : going to call drain()" << endl;
+		std::cout << "*****TRANSFORM DONE with drain()" << endl;
 		}
-		if (rob.isEmpty())
+		
+		if (isDrained())
 		{
-		std::cout << "*****TRANSFORM calling make_rob_half" << endl;
-		rob.make_rob_half();
-		rob.update_rob_threads();
-		rob.resetState();
-		rob.halved = true;
-		fetch.start_drain = false;
-		drainResume();
-		Stats::dump();
-		Stats::reset();
+			assert(rob.isEmpty());//my ROB should be empty
+			assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
+	
+			std::cout << "*****TRANSFORM calling make_rob_half" << endl;
+			rob.make_rob_half();
+			rob.update_rob_threads();
+			rob.resetState();
+			rob.halved = true;
+			std::cout << "*****TRANSFORM DONE calling make_rob_half" << endl;
+		
+			std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
+			iew.scale_LSQ(2);
+			iew.LSQisScaled = true;
+			std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
+			
+			std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
+			drainResume();
+			Stats::dump();
+			Stats::reset();
+			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
-	}   
-
+	} 
 
     if (!tickEvent.scheduled()) {
         if (_status == SwitchedOut) {

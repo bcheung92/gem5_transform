@@ -219,7 +219,7 @@ LSQ<Impl>::resetEntries()
 
         while (threads != end) {
             ThreadID tid = *threads++;
-
+		std::cout << "*****TRANSFORM LSQ<Impl>::resetEntries tid:" << tid << " Calling resizeEntries" << endl;
             resizeEntries(maxEntries, tid);
         }
     }
@@ -672,6 +672,28 @@ LSQ<Impl>::dumpInsts() const
 
         thread[tid].dumpInsts();
     }
+}
+
+template <class Impl>
+void
+LSQ<Impl>::scale_entire_lsq(unsigned tf_scale_factor_entire)//lokeshjindal15
+{
+	std::cout << "*****TRANSFORM scale_entire_lsq : Old LQEntries:" << LQEntries << " Old SQEntries:" << SQEntries;
+	LQEntries /= tf_scale_factor_entire;
+	SQEntries /= tf_scale_factor_entire;	
+	std::cout << " New LQEntries:" << LQEntries << " New SQEntries:" << SQEntries << endl;
+}
+
+template <class Impl>
+void
+LSQ<Impl>::update_lsq_units(unsigned tf_scale_factor_entire)//lokeshjindal15
+{
+	std::cout << "*****TRANSFORM update_lsq_units : ";
+    for (ThreadID tid = 0; tid < numThreads; tid++) {
+	std::cout << " TID: " << tid << " scale_lsq_unit " << endl;
+        thread[tid].scale_lsq_unit(tf_scale_factor_entire);
+    }
+	
 }
 
 #endif//__CPU_O3_LSQ_IMPL_HH__

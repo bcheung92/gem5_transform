@@ -157,12 +157,12 @@
                         "uid": 100, 
                         "pid": 100, 
                         "cxx_class": "LiveProcess", 
-                        "executable": "/research/ljindal/445.gobmk", 
+                        "executable": "tests/test-progs/hello/bin/arm/linux/hello", 
                         "system": "system", 
                         "gid": 100, 
                         "eventq_index": 0, 
                         "env": [], 
-                        "input": "/research/ljindal/nicklas4.tst", 
+                        "input": "cin", 
                         "ppid": 99, 
                         "type": "LiveProcess", 
                         "cwd": "/users/ljindal/gem5.oct18.new.exp", 
@@ -172,15 +172,12 @@
                         "max_stack_size": 67108864, 
                         "name": "workload", 
                         "cmd": [
-                            "/research/ljindal/445.gobmk", 
-                            "--quiet", 
-                            "--mode", 
-                            "gtp"
+                            "tests/test-progs/hello/bin/arm/linux/hello"
                         ], 
-                        "errout": "445.gobmk.stderr", 
+                        "errout": "cerr", 
                         "useArchPT": false, 
                         "egid": 100, 
-                        "output": "445.gobmk.stdout"
+                        "output": "cout"
                     }
                 ], 
                 "name": "cpu", 
@@ -697,7 +694,7 @@
                 "smtLSQPolicy": "Partitioned", 
                 "fetchBufferSize": 64, 
                 "simpoint_start_insts": [], 
-                "max_insts_any_thread": 10000000000, 
+                "max_insts_any_thread": 0, 
                 "smtROBThreshold": 100, 
                 "numIQEntries": 64, 
                 "branchPred": {

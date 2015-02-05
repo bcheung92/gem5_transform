@@ -308,9 +308,11 @@ class LSQ {
     /** The LSQ policy for SMT mode. */
     LSQPolicy lsqPolicy;
 
+public: //lokeshjindal TODO FIXME should be private
     /** The LSQ units for individual threads. */
     LSQUnit *thread;
 
+protected: //TODO FIXME once thread above is made protected, remove this 
     /** List of Active Threads in System. */
     std::list<ThreadID> *activeThreads;
 
@@ -327,6 +329,13 @@ class LSQ {
 
     /** Number of Threads. */
     ThreadID numThreads;
+
+public:
+	//Function to scale the entire LSQ
+	void scale_entire_lsq(unsigned tf_scale_factor_entire);
+	//Function to update all LSQunits per thread lokeshjindal15
+	void update_lsq_units(unsigned tf_scale_factor_entire);
+
 };
 
 template <class Impl>

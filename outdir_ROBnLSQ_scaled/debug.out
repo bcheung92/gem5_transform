@@ -1,0 +1,213 @@
+      0: system.cpu.isa: ISA system set to: 0 0x5f55000
+13270500: system.cpu: Draining...
+13270500: system.cpu: Main CPU structures not drained.
+13270500: system.cpu: Fetch not drained.
+13270500: system.cpu: Decode not drained.
+13270500: system.cpu: Rename not drained.
+13270500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13270500: system.cpu: IEW not drained.
+13270500: system.cpu: CPU not drained
+13270500: system.cpu: Main CPU structures not drained.
+13270500: system.cpu: Fetch not drained.
+13270500: system.cpu: Decode not drained.
+13270500: system.cpu: Rename not drained.
+13270500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13270500: system.cpu: IEW not drained.
+13271000: system.cpu: Main CPU structures not drained.
+13271000: system.cpu: Fetch not drained.
+13271000: system.cpu: Decode not drained.
+13271000: system.cpu: Rename not drained.
+13271000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13271000: system.cpu: IEW not drained.
+13271500: system.cpu: Main CPU structures not drained.
+13271500: system.cpu: Fetch not drained.
+13271500: system.cpu: Decode not drained.
+13271500: system.cpu: Rename not drained.
+13271500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13271500: system.cpu: IEW not drained.
+13272000: system.cpu: Main CPU structures not drained.
+13272000: system.cpu: Fetch not drained.
+13272000: system.cpu: Decode not drained.
+13272000: system.cpu: Rename not drained.
+13272000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13272000: system.cpu: IEW not drained.
+13272500: system.cpu: Main CPU structures not drained.
+13272500: system.cpu: Fetch not drained.
+13272500: system.cpu: Decode not drained.
+13272500: system.cpu: Rename not drained.
+13272500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13272500: system.cpu: IEW not drained.
+13273000: system.cpu: Main CPU structures not drained.
+13273000: system.cpu: Fetch not drained.
+13273000: system.cpu: Decode not drained.
+13273000: system.cpu: Rename not drained.
+13273000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13273000: system.cpu: IEW not drained.
+13273500: system.cpu: Main CPU structures not drained.
+13273500: system.cpu: Fetch not drained.
+13273500: system.cpu: Decode not drained.
+13273500: system.cpu: Rename not drained.
+13273500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13273500: system.cpu: IEW not drained.
+13274000: system.cpu: Main CPU structures not drained.
+13274000: system.cpu: Fetch not drained.
+13274000: system.cpu: Decode not drained.
+13274000: system.cpu: Rename not drained.
+13274000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13274000: system.cpu: IEW not drained.
+13274500: system.cpu: Main CPU structures not drained.
+13274500: system.cpu: Fetch not drained.
+13274500: system.cpu: Decode not drained.
+13274500: system.cpu: Rename not drained.
+13274500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13274500: system.cpu: IEW not drained.
+13275000: system.cpu: Main CPU structures not drained.
+13275000: system.cpu: Fetch not drained.
+13275000: system.cpu: Decode not drained.
+13275000: system.cpu: Rename not drained.
+13275000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13275000: system.cpu: IEW not drained.
+13275500: system.cpu: Main CPU structures not drained.
+13275500: system.cpu: Fetch not drained.
+13275500: system.cpu: Decode not drained.
+13275500: system.cpu: Rename not drained.
+13275500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13275500: system.cpu: IEW not drained.
+13275500: system.cpu: Commit not drained.
+13276000: system.cpu: Main CPU structures not drained.
+13276000: system.cpu: Fetch not drained.
+13276000: system.cpu: Rename not drained.
+13276000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13276000: system.cpu: IEW not drained.
+13276000: system.cpu: Commit not drained.
+13276500: system.cpu: Main CPU structures not drained.
+13276500: system.cpu: Fetch not drained.
+13276500: system.cpu: Rename not drained.
+13276500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13276500: system.cpu: IEW not drained.
+13276500: system.cpu: Commit not drained.
+13277000: system.cpu: Main CPU structures not drained.
+13277000: system.cpu: Fetch not drained.
+13277000: system.cpu: Rename not drained.
+13277000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13277000: system.cpu: IEW not drained.
+13277000: system.cpu: Commit not drained.
+13277500: system.cpu.commit: Draining: 0:(0xba5d4=>0xba5d8).(0=>1)
+13277500: system.cpu.fetch: 0: Thread drained.
+13277500: system.cpu: Main CPU structures not drained.
+13277500: system.cpu: Fetch not drained.
+13277500: system.cpu: Rename not drained.
+13277500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13277500: system.cpu: IEW not drained.
+13277500: system.cpu: Commit not drained.
+13278000: system.cpu: Main CPU structures not drained.
+13278000: system.cpu: Fetch not drained.
+13278000: system.cpu: Rename not drained.
+13278000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13278000: system.cpu: IEW not drained.
+13278000: system.cpu: Commit not drained.
+13278500: system.cpu: Main CPU structures not drained.
+13278500: system.cpu: Fetch not drained.
+13278500: system.cpu: Rename not drained.
+13278500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13278500: system.cpu: IEW not drained.
+13278500: system.cpu: Commit not drained.
+13279000: system.cpu: Main CPU structures not drained.
+13279000: system.cpu: Rename not drained.
+13279000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13279000: system.cpu: IEW not drained.
+13279000: system.cpu: Commit not drained.
+13279500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13279500: system.cpu: IEW not drained.
+13280000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13280000: system.cpu: IEW not drained.
+13280500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13280500: system.cpu: IEW not drained.
+13281000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13281000: system.cpu: IEW not drained.
+13281500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13281500: system.cpu: IEW not drained.
+13282000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13282000: system.cpu: IEW not drained.
+13282500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13282500: system.cpu: IEW not drained.
+13283000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13283000: system.cpu: IEW not drained.
+13283500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13283500: system.cpu: IEW not drained.
+13284000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13284000: system.cpu: IEW not drained.
+13284500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13284500: system.cpu: IEW not drained.
+13285000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13285000: system.cpu: IEW not drained.
+13285500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13285500: system.cpu: IEW not drained.
+13286000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13286000: system.cpu: IEW not drained.
+13303500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13303500: system.cpu: IEW not drained.
+13304000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13304000: system.cpu: IEW not drained.
+13304500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13304500: system.cpu: IEW not drained.
+13305000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13305000: system.cpu: IEW not drained.
+13305500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13305500: system.cpu: IEW not drained.
+13306000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13306000: system.cpu: IEW not drained.
+13306500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13306500: system.cpu: IEW not drained.
+13307000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13307000: system.cpu: IEW not drained.
+13307500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13307500: system.cpu: IEW not drained.
+13308000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13308000: system.cpu: IEW not drained.
+13308500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13308500: system.cpu: IEW not drained.
+13310500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13310500: system.cpu: IEW not drained.
+13311000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13311000: system.cpu: IEW not drained.
+13311500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13311500: system.cpu: IEW not drained.
+13312000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13312000: system.cpu: IEW not drained.
+13312500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13312500: system.cpu: IEW not drained.
+13313000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13313000: system.cpu: IEW not drained.
+13313500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13313500: system.cpu: IEW not drained.
+13314000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13314000: system.cpu: IEW not drained.
+13314500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13314500: system.cpu: IEW not drained.
+13315000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13315000: system.cpu: IEW not drained.
+13315500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13315500: system.cpu: IEW not drained.
+13316000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13316000: system.cpu: IEW not drained.
+13316500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13316500: system.cpu: IEW not drained.
+13317000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13317000: system.cpu: IEW not drained.
+13317500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13317500: system.cpu: IEW not drained.
+13318000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13318000: system.cpu: IEW not drained.
+13318500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13318500: system.cpu: IEW not drained.
+13319000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13319000: system.cpu: IEW not drained.
+13319500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13319500: system.cpu: IEW not drained.
+13320000: system.cpu.iew.lsq: Not drained, SQ not empty.
+13320000: system.cpu: IEW not drained.
+13320500: system.cpu.iew.lsq: Not drained, SQ not empty.
+13320500: system.cpu: IEW not drained.
+13322500: system.cpu: Resuming...
+13322500: system.cpu: Activating thread: 0

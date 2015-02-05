@@ -546,6 +546,11 @@ class LSQUnit {
 
     /** Returns whether or not the LSQ unit is stalled. */
     bool isStalled()  { return stalled; }
+
+public:
+	//Function to scale the LSQunit on the fly lokeshjindal15
+	void scale_lsq_unit(unsigned tf_scale_factor);
+
 };
 
 template <class Impl>

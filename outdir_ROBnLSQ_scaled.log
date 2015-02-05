@@ -1,0 +1,51 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Feb  4 2015 19:39:21
+gem5 started Feb  4 2015 19:51:05
+gem5 executing on bigbird
+command line: ./build/ARM/gem5.opt --debug-flags=Drain --debug-file=debug.out --outdir=outdir_ROBnLSQ_scaled configs/example/se.py --cmd=/research/ljindal/445.gobmk --options=--quiet --mode gtp --input=/research/ljindal/nicklas4.tst --output=445.gobmk.stdout --errout=445.gobmk.stderr --num-cpus=1 --caches -I 10000000000 --cpu-type=detailed
+Global frequency set at 1000000000000 ticks per second
+0: system.remote_gdb.listener: listening for remote gdb #0 on port 7002
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+warn: CP14 unimplemented crn[0], opc1[6], crm[3], opc2[4]
+warn: CP14 unimplemented crn[8], opc1[2], crm[9], opc2[4]
+*****TRANSFORM going to call drain()
+*****TRANSFORM DONE with drain()
+*****TRANSFORM calling make_rob_half
+*****TRANSFORM make_rob_half original size = 192new rob size = 96
+*****TRANSFORM update_rob_threads  tid 0 old maxEntries:192 new maxEntries:96
+*****TRANSFORM DONE calling make_rob_half
+*****TRANSFORM calling functions to scale LSQ
+*****TRANSFORM scale_entire_lsq : Old LQEntries:32 Old SQEntries:32 New LQEntries:16 New SQEntries:16
+*****TRANSFORM update_lsq_units :  TID: 0 scale_lsq_unit 
+*****TRANSFROM scale_lsq_unit : Old LQEntries:33 Old SQEntries:33
+ New LQEntries:17 New SQEntries:17
+*****TRANSFORM LSQ<Impl>::resetEntries tid:0 Calling resizeEntries
+****TRANSFORM LSQUnit<Impl>::resizeLQ : Old LQEntries:17 New LQEntries:17
+****TRANSFORM LSQUnit<Impl>::resizeSQ : Old SQEntries:17 New SQEntries:17
+*****TRANSFORM DONE calling functions to scale LSQ
+****TRANSFORM DRAINRESUME going to call drainResume
+****TRANSFORM DONE Core should resume now!
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+Exiting @ tick 72725941500 because target called exit()

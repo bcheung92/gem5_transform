@@ -169,6 +169,11 @@ class FullO3CPU : public BaseO3CPU
             : MasterPort(_cpu->name() + ".dcache_port", _cpu), lsq(_lsq)
         { }
 
+	//Function to scale the LSQ of Dcacheport lokeshjindal15 DEPRECATED
+	void scale_LSQ(unsigned tf_scale_factor_LSQ);
+	//Function to scheck if LSQ of Dcacheport is empty lokeshjindal15 DEPRECATED
+	bool isLSQempty();
+
       protected:
 
         /** Timing version of receive.  Handles writing back and

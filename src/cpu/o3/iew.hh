@@ -481,6 +481,13 @@ class DefaultIEW
     Stats::Formula wbFanout;
     /** Number of instructions per cycle delayed in writing back . */
     Stats::Formula wbPenalizedRate;
+
+public:
+
+	//Function to scale the LSQ of IEW lokeshjindal15
+	void scale_LSQ(unsigned tf_scale_factor_LSQ);
+	//Variable to keep track of whther LSQ has been scaled or not lokeshjindal15 
+	bool LSQisScaled;
 };
 
 #endif // __CPU_O3_IEW_HH__
