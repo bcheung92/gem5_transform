@@ -95,6 +95,11 @@ class PhysRegFile
 
     /** Total number of physical registers. */
     unsigned totalNumRegs;
+    
+    //new varibales to store the old values lokeshjindal15
+    unsigned old_baseFloatRegIndex;
+    unsigned old_baseCCRegIndex;
+    unsigned old_totalNumRegs;
 
   public:
     /**
@@ -123,9 +128,24 @@ class PhysRegFile
     /** @return the number of condition-code physical registers. */
     unsigned numCCPhysRegs() const
     { return totalNumRegs - baseCCRegIndex; }
-
+    
     /** @return the total number of physical registers. */
     unsigned totalNumPhysRegs() const { return totalNumRegs; }
+
+    /** @return the number of integer physical registers. */
+    unsigned old_numIntPhysRegs() const { return old_baseFloatRegIndex; }
+
+    /** @return the number of floating-point physical registers. */
+    unsigned old_numFloatPhysRegs() const
+    { return old_baseCCRegIndex - old_baseFloatRegIndex; }
+
+    /** @return the number of condition-code physical registers. */
+    unsigned old_numCCPhysRegs() const
+    { return old_totalNumRegs - old_baseCCRegIndex; }
+
+
+    /** @return the total number of physical registers. */
+    unsigned old_totalNumPhysRegs() const { return old_totalNumRegs; }
 
     /**
      * @return true if the specified physical register index
@@ -262,6 +282,9 @@ class PhysRegFile
 
         ccRegFile[reg_offset] = val;
     }
+
+	//scale the regfile structures lokeshjindal15
+	void scale_regfile (unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor, UnifiedFreeList *freeLis);
 };
 
 

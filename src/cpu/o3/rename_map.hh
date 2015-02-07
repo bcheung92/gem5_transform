@@ -134,6 +134,14 @@ class SimpleRenameMap
 
     /** Return the number of free entries on the associated free list. */
     unsigned numFreeEntries() const { return freeList->numFreeRegs(); }
+	
+	//Function to print the mapping lokeshjindal15
+	void simple_print_mapping(unsigned);
+	//Function to rename an arc register for restricinng purpose lokeshjindal15
+	//difference from normal rename : since it is creating a new mapping it should add prev phyreg to free list and also copy the data to new phy reg
+    	 RenameInfo restrict_rename(RegIndex arch_reg);
+    	//compact function to update mapping of a map 
+	void compact_regmapping(PhysRegIndex subvalue);
 };
 
 
@@ -204,6 +212,29 @@ class UnifiedRenameMap
         assert(regFile->isIntPhysReg(info.first));
         return info;
     }
+    
+    RenameInfo restrict_renameInt(RegIndex rel_arch_reg)//lokeshjindal15
+    {
+        RenameInfo info = intMap.restrict_rename(rel_arch_reg);
+        assert(regFile->isIntPhysReg(info.first));
+        return info;
+    }
+    
+    RenameInfo restrict_renameFloat(RegIndex rel_arch_reg)//lokeshjindal15
+    {
+        RenameInfo info = floatMap.restrict_rename(rel_arch_reg);
+        assert(regFile->isFloatPhysReg(info.first));
+        return info;
+    }
+
+    RenameInfo restrict_renameCC(RegIndex rel_arch_reg)//lokeshjindal15
+    {
+        RenameInfo info = ccMap.restrict_rename(rel_arch_reg);
+        assert(regFile->isCCPhysReg(info.first));
+        return info;
+    }
+
+
 
     /**
      * Perform rename() on a floating-point register, given a relative
@@ -346,6 +377,25 @@ class UnifiedRenameMap
     {
         return std::min(intMap.numFreeEntries(), floatMap.numFreeEntries());
     }
+	
+	//Function to print the rename mapping
+	void unified_print_mapping();
+	//Function to restrict the intreg mapping lokeshjindal15
+	void restrict_intreg_mapping(unsigned tf_regfile_scale_factor);
+	//Function to restrict the floatreg mapping lokeshjindal15
+	void restrict_floatreg_mapping(unsigned tf_regfile_scale_factor);
+	//Function to restrict the ccreg mapping lokeshjindal15
+	void restrict_ccreg_mapping(unsigned tf_regfile_scale_factor);
+	//Function to restrict the int/float/cc reg mapping
+	void restrict_archreg_mapping(unsigned tf_regfile_scale_factor)
+	{
+		restrict_intreg_mapping(tf_regfile_scale_factor);
+		//restrict_floatreg_mapping(tf_regfile_scale_factor);//TODO FIXME enable this once debugged the issue of number of arch registers vs phy regs
+		restrict_ccreg_mapping(tf_regfile_scale_factor);
+	}
+
+	//compacting functions to update the mapping after regfile scaling
+	void compact_regmapping();
 };
 
 #endif //__CPU_O3_RENAME_MAP_HH__

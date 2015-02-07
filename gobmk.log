@@ -1,11 +1,14 @@
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Feb  4 2015 19:39:21
-gem5 started Feb  4 2015 19:39:38
+gem5 compiled Feb  6 2015 01:17:48
+gem5 started Feb  6 2015 01:18:06
 gem5 executing on bigbird
-command line: ./build/ARM/gem5.opt --debug-flags=Drain,LSQ,LSQUnit,IEW,Cache --debug-file=debug.out configs/example/se.py --cmd=/research/ljindal/445.gobmk --options=--quiet --mode gtp --input=/research/ljindal/nicklas4.tst --output=445.gobmk.stdout --errout=445.gobmk.stderr --num-cpus=1 --caches -I 10000000000 --cpu-type=detailed
+command line: ./build/ARM/gem5.opt configs/example/se.py --cmd=/research/ljindal/445.gobmk --options=--quiet --mode gtp --input=/research/ljindal/nicklas4.tst --output=445.gobmk.stdout --errout=445.gobmk.stderr --num-cpus=1 --caches -I 10000000000 --cpu-type=detailed
 Global frequency set at 1000000000000 ticks per second
+      0: system.cpu.isa: ISA system set to: 0 0x4ed8000
+*****TRANSFORM totalNumRegs = 256+256+1280
+*********TRANSFORM REG_IDX after init is 1792
 0: system.remote_gdb.listener: listening for remote gdb #0 on port 7002
 **** REAL SIMULATION ****
 info: Entering event queue @ 0.  Starting simulation...
@@ -13,18 +16,5242 @@ warn: CP14 unimplemented crn[0], opc1[6], crm[3], opc2[4]
 warn: CP14 unimplemented crn[8], opc1[2], crm[9], opc2[4]
 *****TRANSFORM going to call drain()
 *****TRANSFORM DONE with drain()
-*****TRANSFORM calling make_rob_half
-*****TRANSFORM make_rob_half original size = 192new rob size = 96
-*****TRANSFORM update_rob_threads  tid 0 old maxEntries:192 new maxEntries:96
-*****TRANSFORM DONE calling make_rob_half
-*****TRANSFORM calling functions to scale LSQ
-*****TRANSFORM scale_entire_lsq : Old LQEntries:32 Old SQEntries:32 New LQEntries:16 New SQEntries:16
-*****TRANSFORM update_lsq_units :  TID: 0 scale_lsq_unit 
-*****TRANSFROM scale_lsq_unit : Old LQEntries:33 Old SQEntries:33
- New LQEntries:17 New SQEntries:17
-*****TRANSFORM LSQ<Impl>::resetEntries tid:0 Calling resizeEntries
-****TRANSFORM LSQUnit<Impl>::resizeLQ : Old LQEntries:17 New LQEntries:17
-****TRANSFORM LSQUnit<Impl>::resizeSQ : Old SQEntries:17 New SQEntries:17
-*****TRANSFORM DONE calling functions to scale LSQ
-****TRANSFORM DRAINRESUME going to call drainResume
-****TRANSFORM DONE Core should resume now!
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:200
+Archreg:2 Physreg:127
+Archreg:3 Physreg:148
+Archreg:4 Physreg:253
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:206
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:235
+Archreg:14 Physreg:201
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:191
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:200 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+REJECTING new phy:223old phy:200
+ACCEPTING new phy:68old phy:223
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:148 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+REJECTING new phy:157old phy:148
+ACCEPTING new phy:0old phy:157
+restrict_intreg_mapping: REMAPPING phy:253 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+ACCEPTING new phy:90old phy:253
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:206 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+ACCEPTING new phy:105old phy:206
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:235 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+REJECTING new phy:220old phy:235
+REJECTING new phy:229old phy:220
+ACCEPTING new phy:69old phy:229
+restrict_intreg_mapping: REMAPPING phy:201 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+REJECTING new phy:149old phy:201
+REJECTING new phy:178old phy:149
+REJECTING new phy:205old phy:178
+ACCEPTING new phy:106old phy:205
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:191 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+ACCEPTING new phy:74old phy:191
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517
+restrict_intreg_mapping: Skipping phy:66 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:68 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:127 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:0 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:90 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:123 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:48 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:98 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:78 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:105 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:7 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:107 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:69 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:106 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:128 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:17 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:60 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:74 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():256 with tf_regfile_scale_factor:2
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+*****TRANSFORM simple print mappings! max_regs:43
+Archreg:0 Physreg:66
+Archreg:1 Physreg:68
+Archreg:2 Physreg:127
+Archreg:3 Physreg:0
+Archreg:4 Physreg:90
+Archreg:5 Physreg:123
+Archreg:6 Physreg:48
+Archreg:7 Physreg:98
+Archreg:8 Physreg:78
+Archreg:9 Physreg:105
+Archreg:10 Physreg:53
+Archreg:11 Physreg:7
+Archreg:12 Physreg:107
+Archreg:13 Physreg:69
+Archreg:14 Physreg:106
+Archreg:15 Physreg:128
+Archreg:16 Physreg:16
+Archreg:17 Physreg:17
+Archreg:18 Physreg:18
+Archreg:19 Physreg:19
+Archreg:20 Physreg:20
+Archreg:21 Physreg:21
+Archreg:22 Physreg:22
+Archreg:23 Physreg:23
+Archreg:24 Physreg:24
+Archreg:25 Physreg:25
+Archreg:26 Physreg:26
+Archreg:27 Physreg:27
+Archreg:28 Physreg:28
+Archreg:29 Physreg:29
+Archreg:30 Physreg:30
+Archreg:31 Physreg:31
+Archreg:32 Physreg:32
+Archreg:33 Physreg:33
+Archreg:34 Physreg:34
+Archreg:35 Physreg:60
+Archreg:36 Physreg:74
+Archreg:37 Physreg:37
+Archreg:38 Physreg:38
+Archreg:39 Physreg:39
+Archreg:40 Physreg:40
+Archreg:41 Physreg:41
+Archreg:42 Physreg:42
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+*****TRANSFORM simple print mappings! max_regs:160
+Archreg:0 Physreg:256
+Archreg:1 Physreg:257
+Archreg:2 Physreg:258
+Archreg:3 Physreg:259
+Archreg:4 Physreg:260
+Archreg:5 Physreg:261
+Archreg:6 Physreg:262
+Archreg:7 Physreg:263
+Archreg:8 Physreg:264
+Archreg:9 Physreg:265
+Archreg:10 Physreg:266
+Archreg:11 Physreg:267
+Archreg:12 Physreg:268
+Archreg:13 Physreg:269
+Archreg:14 Physreg:270
+Archreg:15 Physreg:271
+Archreg:16 Physreg:272
+Archreg:17 Physreg:273
+Archreg:18 Physreg:274
+Archreg:19 Physreg:275
+Archreg:20 Physreg:276
+Archreg:21 Physreg:277
+Archreg:22 Physreg:278
+Archreg:23 Physreg:279
+Archreg:24 Physreg:280
+Archreg:25 Physreg:281
+Archreg:26 Physreg:282
+Archreg:27 Physreg:283
+Archreg:28 Physreg:284
+Archreg:29 Physreg:285
+Archreg:30 Physreg:286
+Archreg:31 Physreg:287
+Archreg:32 Physreg:288
+Archreg:33 Physreg:289
+Archreg:34 Physreg:290
+Archreg:35 Physreg:291
+Archreg:36 Physreg:292
+Archreg:37 Physreg:293
+Archreg:38 Physreg:294
+Archreg:39 Physreg:295
+Archreg:40 Physreg:296
+Archreg:41 Physreg:297
+Archreg:42 Physreg:298
+Archreg:43 Physreg:299
+Archreg:44 Physreg:300
+Archreg:45 Physreg:301
+Archreg:46 Physreg:302
+Archreg:47 Physreg:303
+Archreg:48 Physreg:304
+Archreg:49 Physreg:305
+Archreg:50 Physreg:306
+Archreg:51 Physreg:307
+Archreg:52 Physreg:308
+Archreg:53 Physreg:309
+Archreg:54 Physreg:310
+Archreg:55 Physreg:311
+Archreg:56 Physreg:312
+Archreg:57 Physreg:313
+Archreg:58 Physreg:314
+Archreg:59 Physreg:315
+Archreg:60 Physreg:316
+Archreg:61 Physreg:317
+Archreg:62 Physreg:318
+Archreg:63 Physreg:319
+Archreg:64 Physreg:320
+Archreg:65 Physreg:321
+Archreg:66 Physreg:322
+Archreg:67 Physreg:323
+Archreg:68 Physreg:324
+Archreg:69 Physreg:325
+Archreg:70 Physreg:326
+Archreg:71 Physreg:327
+Archreg:72 Physreg:328
+Archreg:73 Physreg:329
+Archreg:74 Physreg:330
+Archreg:75 Physreg:331
+Archreg:76 Physreg:332
+Archreg:77 Physreg:333
+Archreg:78 Physreg:334
+Archreg:79 Physreg:335
+Archreg:80 Physreg:336
+Archreg:81 Physreg:337
+Archreg:82 Physreg:338
+Archreg:83 Physreg:339
+Archreg:84 Physreg:340
+Archreg:85 Physreg:341
+Archreg:86 Physreg:342
+Archreg:87 Physreg:343
+Archreg:88 Physreg:344
+Archreg:89 Physreg:345
+Archreg:90 Physreg:346
+Archreg:91 Physreg:347
+Archreg:92 Physreg:348
+Archreg:93 Physreg:349
+Archreg:94 Physreg:350
+Archreg:95 Physreg:351
+Archreg:96 Physreg:352
+Archreg:97 Physreg:353
+Archreg:98 Physreg:354
+Archreg:99 Physreg:355
+Archreg:100 Physreg:356
+Archreg:101 Physreg:357
+Archreg:102 Physreg:358
+Archreg:103 Physreg:359
+Archreg:104 Physreg:360
+Archreg:105 Physreg:361
+Archreg:106 Physreg:362
+Archreg:107 Physreg:363
+Archreg:108 Physreg:364
+Archreg:109 Physreg:365
+Archreg:110 Physreg:366
+Archreg:111 Physreg:367
+Archreg:112 Physreg:368
+Archreg:113 Physreg:369
+Archreg:114 Physreg:370
+Archreg:115 Physreg:371
+Archreg:116 Physreg:372
+Archreg:117 Physreg:373
+Archreg:118 Physreg:374
+Archreg:119 Physreg:375
+Archreg:120 Physreg:376
+Archreg:121 Physreg:377
+Archreg:122 Physreg:378
+Archreg:123 Physreg:379
+Archreg:124 Physreg:380
+Archreg:125 Physreg:381
+Archreg:126 Physreg:382
+Archreg:127 Physreg:383
+Archreg:128 Physreg:384
+Archreg:129 Physreg:385
+Archreg:130 Physreg:386
+Archreg:131 Physreg:387
+Archreg:132 Physreg:388
+Archreg:133 Physreg:389
+Archreg:134 Physreg:390
+Archreg:135 Physreg:391
+Archreg:136 Physreg:392
+Archreg:137 Physreg:393
+Archreg:138 Physreg:394
+Archreg:139 Physreg:395
+Archreg:140 Physreg:396
+Archreg:141 Physreg:397
+Archreg:142 Physreg:398
+Archreg:143 Physreg:399
+Archreg:144 Physreg:400
+Archreg:145 Physreg:401
+Archreg:146 Physreg:402
+Archreg:147 Physreg:403
+Archreg:148 Physreg:404
+Archreg:149 Physreg:405
+Archreg:150 Physreg:406
+Archreg:151 Physreg:407
+Archreg:152 Physreg:408
+Archreg:153 Physreg:409
+Archreg:154 Physreg:410
+Archreg:155 Physreg:411
+Archreg:156 Physreg:412
+Archreg:157 Physreg:413
+Archreg:158 Physreg:414
+Archreg:159 Physreg:415
+*****CC REG mappings total TheISA::NumCCRegs:6
+*****TRANSFORM simple print mappings! max_regs:6
+Archreg:0 Physreg:617
+Archreg:1 Physreg:616
+Archreg:2 Physreg:643
+Archreg:3 Physreg:515
+Archreg:4 Physreg:851
+Archreg:5 Physreg:517

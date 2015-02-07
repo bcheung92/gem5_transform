@@ -76,6 +76,9 @@ class SimpleFreeList
 
     /** True iff there are free registers on the list. */
     bool hasFreeRegs() const { return !freeRegs.empty(); }
+
+	//return a pointer to the freeRegs queue //lokeshjindal15
+	std::queue<PhysRegIndex> * getfreeRegs(){ return &freeRegs;}
 };
 
 
@@ -135,6 +138,12 @@ class UnifiedFreeList
 
     /** Gives the name of the freelist. */
     std::string name() const { return _name; };
+
+    /** Returns a pointer to the integer free list *///lokeshjindal15
+    SimpleFreeList *getIntList() { return &intList; }
+    
+    /** Returns a pointer to the float free list *///lokeshjindal15
+    SimpleFreeList *getFloatList() { return &floatList; }
 
     /** Returns a pointer to the condition-code free list */
     SimpleFreeList *getCCList() { return &ccList; }

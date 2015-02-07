@@ -84,6 +84,65 @@ SimpleRenameMap::rename(RegIndex arch_reg)
 }
 
 
+SimpleRenameMap::RenameInfo
+SimpleRenameMap::restrict_rename(RegIndex arch_reg)//lokeshjindal15
+{
+    PhysRegIndex renamed_reg;
+
+    // Record the current physical register that is renamed to the
+    // requested architected register.
+    PhysRegIndex prev_reg = map[arch_reg];
+
+    // If it's not referencing the zero register, then rename the
+    // register.
+    if (arch_reg != zeroReg) {
+    	std::cout << "before numFreeRegs:" << freeList->numFreeRegs() << std::endl;
+        renamed_reg = freeList->getReg();
+
+	//uint64_t value = readIntReg(prev_reg);
+	
+        map[arch_reg] = renamed_reg;
+	freeList->addReg(prev_reg);
+    	std::cout << "after numFreeRegs:" << freeList->numFreeRegs() << std::endl;
+    } else {
+        // Otherwise return the zero register so nothing bad happens.
+        assert(prev_reg == zeroReg);
+        renamed_reg = zeroReg;
+    }
+    DPRINTF(Rename, "Renamed reg %d to physical reg %d old mapping was %d\n",
+            arch_reg, renamed_reg, prev_reg);
+
+    return RenameInfo(renamed_reg, prev_reg);
+}
+void
+SimpleRenameMap::simple_print_mapping(unsigned max_regs)
+{
+	std::cout << "*****TRANSFORM simple print mappings! max_regs:" << max_regs << std::endl;
+	auto iter = map.begin();
+	RegIndex i =0;
+	while ((iter != map.end()) && (i < max_regs))
+	{
+		std::cout << "Archreg:" << i << " Physreg:" << map[i] << " lookup:" << lookup(i) << endl;
+		iter++;
+		i++;
+	}
+	assert(i == max_regs);
+}
+
+void
+SimpleRenameMap::compact_regmapping(PhysRegIndex subvalue)
+{
+	assert(subvalue > 0);
+	auto iter = map.begin();
+	RegIndex i =0;
+	while (iter != map.end())
+	{
+		map[i] -= subvalue;
+		iter++;
+		i++;
+	}
+}
+			
 /**** UnifiedRenameMap methods ****/
 
 void
@@ -178,4 +237,148 @@ UnifiedRenameMap::setEntry(RegIndex arch_reg, PhysRegIndex phys_reg)
         panic("rename setEntry(): unknown reg class %s\n",
               RegClassStrings[regIdxToClass(arch_reg)]);
     }
+}
+
+
+void
+UnifiedRenameMap::unified_print_mapping()
+{
+	std::cout << "*****TRANSFORM going to print the reg mappings now!" << std::endl;
+	std::cout << "*****INT REG mappings total TheISA::NumIntRegs:" << TheISA::NumIntRegs  << std::endl;
+	//intMap.simple_print_mapping((unsigned) TheISA::NumIntRegs);
+
+	for (RegIndex i = 0; i < TheISA::NumIntRegs; i++)
+	{
+		std::cout << "Archreg:" << i << " Phyreg lookup:" << lookupInt(i) << " value:" << regFile->readIntReg(lookupInt(i)) << endl;
+	}
+	//assert(i == max_regs);
+
+	std::cout << "*****FLOAT REG mappings total TheISA::NumFloatRegs:" << TheISA::NumFloatRegs << std::endl;
+	//floatMap.simple_print_mapping((unsigned) TheISA::NumFloatRegs);
+	for (RegIndex i = 0; i < TheISA::NumFloatRegs; i++)
+	{
+		std::cout << "Archreg:" << i << " Phyreg lookup:" << lookupFloat(i) << " value:" << regFile->readFloatReg(lookupFloat(i)) << endl;
+	}
+	//assert(i == max_regs);
+	
+	std::cout << "*****CC REG mappings total TheISA::NumCCRegs:" << TheISA::NumCCRegs << std::endl;
+	//ccMap.simple_print_mapping((unsigned) TheISA::NumCCRegs);
+	for (RegIndex i = 0; i < TheISA::NumCCRegs; i++)
+	{
+		std::cout << "Archreg:" << i << " Phyreg lookup:" << lookupCC(i) << " value:" << regFile->readCCReg(lookupCC(i)) << endl;
+	}
+	//assert(i == max_regs);
+}
+
+void
+UnifiedRenameMap::restrict_intreg_mapping(unsigned tf_regfile_scale_factor)
+{
+	std::cout << "restrict_intreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
+	for (RegIndex i = 0; i < TheISA::NumIntRegs; i++)
+	{
+		RegIndex phy = lookupInt(i);
+		if (phy <= (regFile->numIntPhysRegs()/tf_regfile_scale_factor))
+		{
+			std::cout << "restrict_intreg_mapping: Skipping phy:" << phy << " against regfile->numIntPhysRegs():" << regFile->numIntPhysRegs() << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+		}
+		else
+		{
+			std::cout << "restrict_intreg_mapping: REMAPPING phy:" << phy << " against regfile->numIntPhysRegs():" << regFile->numIntPhysRegs() << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			while(1)
+			{
+			RenameInfo newpair = restrict_renameInt(i);
+			uint64_t value = regFile->readIntReg(newpair.second);
+			regFile->setIntReg(newpair.first,value);
+			if (newpair.first <= (regFile->numIntPhysRegs()/tf_regfile_scale_factor))
+			{
+				std::cout << "ACCEPTING new phy:" << newpair.first << "old phy:" << newpair.second << std::endl;
+				break;
+			}
+			else	
+			{
+				std::cout << "REJECTING new phy:" << newpair.first << "old phy:" << newpair.second << std::endl;
+			}	
+			}
+		}
+	}
+	std::cout << "restrict_intreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
+}
+
+void
+UnifiedRenameMap::restrict_floatreg_mapping(unsigned tf_regfile_scale_factor)
+{
+	std::cout << "restrict_floatreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
+	for (RegIndex i = 0; i < TheISA::NumFloatRegs; i++)
+	{
+		RegIndex phy = lookupFloat(i);
+		if (phy <= (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()/tf_regfile_scale_factor))
+		{
+			std::cout << "restrict_floatreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():" << (regFile->numIntPhysRegs() +regFile->numFloatPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+		}
+		else
+		{
+			std::cout << "restrict_floatreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():" << (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			while(1)
+			{
+			RenameInfo newpair = restrict_renameFloat(i);
+			FloatReg value = regFile->readFloatReg(newpair.second);
+			regFile->setFloatReg(newpair.first,value);
+			if (newpair.first <= (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()/tf_regfile_scale_factor))
+			{
+				std::cout << "ACCEPTING new phy:" << newpair.first << "old phy:" << newpair.second << std::endl;
+				break;
+			}
+			else	
+			{
+				std::cout << "REJECTING new phy:" << newpair.first << "old phy:" << newpair.second << std::endl;
+			}	
+			}
+		}
+	}
+	std::cout << "restrict_floatreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
+}
+
+void
+UnifiedRenameMap::restrict_ccreg_mapping(unsigned tf_regfile_scale_factor)
+{
+	std::cout << "restrict_ccreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
+	for (RegIndex i = 0; i < TheISA::NumCCRegs; i++)
+	{
+		RegIndex phy = lookupCC(i);
+		if (phy <= (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regFile->numCCPhysRegs()/tf_regfile_scale_factor))
+		{
+			std::cout << "restrict_ccreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():" << (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regFile->numCCPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+		}
+		else
+		{
+			std::cout << "restrict_ccreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():" << (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+  regFile->numCCPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			while(1)
+			{
+			RenameInfo newpair = restrict_renameCC(i);
+			CCReg value = regFile->readCCReg(newpair.second);
+			regFile->setCCReg(newpair.first,value);
+			if (newpair.first <= (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regFile->numCCPhysRegs()/tf_regfile_scale_factor))
+			{
+				std::cout << "ACCEPTING new phy:" << newpair.first << "old phy:" << newpair.second << std::endl;
+				break;
+			}
+			else	
+			{
+				std::cout << "REJECTING new phy:" << newpair.first << "old phy:" << newpair.second << std::endl;
+			}	
+			}
+		}
+	}
+	std::cout << "restrict_ccreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
+} 
+
+void
+UnifiedRenameMap::compact_regmapping()
+{
+	//call compact_regmapping of each map with correct parameter
+	intMap.compact_regmapping(0);
+	//(old_baseFloatRegIndex - baseFloatRegIndex)
+	floatMap.compact_regmapping(regFile->old_numIntPhysRegs() - regFile->numIntPhysRegs());
+	//(old_baseCCRegIndex - baseCCRegIndex)
+	ccMap.compact_regmapping(regFile->old_numFloatPhysRegs() + regFile->old_numIntPhysRegs() - regFile->numFloatPhysRegs() - regFile->numIntPhysRegs());
 }

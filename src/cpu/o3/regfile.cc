@@ -47,12 +47,16 @@ PhysRegFile::PhysRegFile(unsigned _numPhysicalIntRegs,
                    + _numPhysicalFloatRegs
                    + _numPhysicalCCRegs)
 {
-    if (TheISA::NumCCRegs == 0 && _numPhysicalCCRegs != 0) {
+    std::cout << "*****TRANSFORM totalNumRegs = " << _numPhysicalIntRegs << "+" << _numPhysicalFloatRegs << "+" << _numPhysicalCCRegs << std::endl;
+	if (TheISA::NumCCRegs == 0 && _numPhysicalCCRegs != 0) {
         // Just make this a warning and go ahead and allocate them
         // anyway, to keep from having to add checks everywhere
         warn("Non-zero number of physical CC regs specified, even though\n"
              "    ISA does not use them.\n");
     }
+    old_baseFloatRegIndex = -1;
+    old_baseCCRegIndex = -1;
+    old_totalNumRegs = -1;
 }
 
 
@@ -78,4 +82,67 @@ PhysRegFile::initFreeList(UnifiedFreeList *freeList)
     while (reg_idx < totalNumRegs) {
         freeList->addCCReg(reg_idx++);
     }
+
+	std::cout << "*********TRANSFORM REG_IDX after init is " << reg_idx << std::endl;
+
 }
+
+void
+PhysRegFile::scale_regfile (unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor, UnifiedFreeList *freeList)
+{
+	old_baseFloatRegIndex = baseFloatRegIndex;
+	baseFloatRegIndex /= int_scale_factor;
+	old_baseCCRegIndex = baseCCRegIndex;
+	baseCCRegIndex = baseFloatRegIndex + (old_baseCCRegIndex - old_baseFloatRegIndex)/float_scale_factor;
+	old_totalNumRegs = totalNumRegs;	
+	totalNumRegs = baseCCRegIndex + (totalNumRegs - old_baseCCRegIndex)/cc_scale_factor;
+
+	int list_size = ((freeList->getIntList())->getfreeRegs())->size();
+	for (int i =0; i < list_size; i++)
+	{
+		PhysRegIndex phy_reg = ((freeList->getIntList())->getfreeRegs())->front();
+		//if (phy_reg > baseFloatRegIndex)
+		//{
+			((freeList->getIntList())->getfreeRegs())->pop();
+		//}
+		if (phy_reg <= baseFloatRegIndex)
+		{
+			((freeList->getIntList())->getfreeRegs())->push(phy_reg);
+		}
+	}
+	
+	list_size = ((freeList->getFloatList())->getfreeRegs())->size();
+	for (int i =0; i < list_size; i++)
+	{
+		PhysRegIndex phy_reg = ((freeList->getFloatList())->getfreeRegs())->front();
+		//if (phy_reg > baseCCRegIndex)
+		//{
+			((freeList->getFloatList())->getfreeRegs())->pop();
+		//}
+		if (phy_reg <= (old_baseFloatRegIndex + (old_baseCCRegIndex - old_baseFloatRegIndex)/float_scale_factor))
+		{
+			PhysRegIndex newval = phy_reg - (old_baseFloatRegIndex - baseFloatRegIndex);
+			assert(newval >= baseFloatRegIndex);
+			((freeList->getFloatList())->getfreeRegs())->push(newval);
+			
+		}
+	}
+	
+	list_size = ((freeList->getCCList())->getfreeRegs())->size();
+	for (int i =0; i < list_size; i++)
+	{
+		PhysRegIndex phy_reg = ((freeList->getCCList())->getfreeRegs())->front();
+		//if (phy_reg > baseCCRegIndex)
+		//{
+			((freeList->getCCList())->getfreeRegs())->pop();
+		//}
+		if (phy_reg <= (old_baseCCRegIndex + (totalNumRegs - old_baseCCRegIndex)/cc_scale_factor))
+		{
+			PhysRegIndex newval = phy_reg - (old_baseCCRegIndex - baseCCRegIndex);
+			assert(newval >= baseCCRegIndex);
+			((freeList->getCCList())->getfreeRegs())->push(newval);
+			
+		}
+	}
+}
+ 
