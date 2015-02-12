@@ -186,6 +186,12 @@ class UnifiedFreeList
 
     /** Returns the number of free cc registers. */
     unsigned numFreeCCRegs() const { return ccList.numFreeRegs(); }
+
+    //print number of free list entries lokeshjindal15
+    void print_entries()
+    {
+	    std::cout << "FREELIST ENTRIES: numFreeIntRegs:" << numFreeIntRegs() << " numFreeFloatRegs:" << numFreeFloatRegs() << " numFreeCCRegs:" << numFreeCCRegs() << std::endl;
+    }
 };
 
 inline void

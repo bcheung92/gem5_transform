@@ -137,11 +137,11 @@ class SimpleRenameMap
 	
 	//Function to print the mapping lokeshjindal15
 	void simple_print_mapping(unsigned);
-	//Function to rename an arc register for restricinng purpose lokeshjindal15
-	//difference from normal rename : since it is creating a new mapping it should add prev phyreg to free list and also copy the data to new phy reg
-    	 RenameInfo restrict_rename(RegIndex arch_reg);
-    	//compact function to update mapping of a map 
-	void compact_regmapping(PhysRegIndex subvalue);
+	//Function to rename an arch register for restricinng purpose lokeshjindal15
+	//difference from normal rename : since it is creating a new mapping it should add prev phyreg to free list.
+    	 RenameInfo restrict_rename(RegIndex arch_reg);//lokeshjindal15
+    	//compact function to update mapping of a map by subtracting the void created by regs to the left 
+	void compact_regmapping(PhysRegIndex subvalue);//lokeshjindal15
 };
 
 
@@ -380,21 +380,21 @@ class UnifiedRenameMap
 	
 	//Function to print the rename mapping
 	void unified_print_mapping();
-	//Function to restrict the intreg mapping lokeshjindal15
-	void restrict_intreg_mapping(unsigned tf_regfile_scale_factor);
+	//Function to restrict the intreg mapping to valid phy regs after scaling lokeshjindal15
+	void restrict_intreg_mapping(unsigned tf_regfile_scale_factor);//lokeshjindal15
 	//Function to restrict the floatreg mapping lokeshjindal15
-	void restrict_floatreg_mapping(unsigned tf_regfile_scale_factor);
+	void restrict_floatreg_mapping(unsigned tf_regfile_scale_factor);//lokeshjindal15
 	//Function to restrict the ccreg mapping lokeshjindal15
-	void restrict_ccreg_mapping(unsigned tf_regfile_scale_factor);
+	void restrict_ccreg_mapping(unsigned tf_regfile_scale_factor);//lokeshjindal15
 	//Function to restrict the int/float/cc reg mapping
-	void restrict_archreg_mapping(unsigned tf_regfile_scale_factor)
+	void restrict_archreg_mapping(unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor)//lokeshjindal15
 	{
-		restrict_intreg_mapping(tf_regfile_scale_factor);
-		//restrict_floatreg_mapping(tf_regfile_scale_factor);//TODO FIXME enable this once debugged the issue of number of arch registers vs phy regs
-		restrict_ccreg_mapping(tf_regfile_scale_factor);
+		restrict_intreg_mapping(int_scale_factor);
+		restrict_floatreg_mapping(float_scale_factor);
+		restrict_ccreg_mapping(cc_scale_factor);
 	}
 
-	//compacting functions to update the mapping after regfile scaling
+	//compacting functions to update the mapping after scaling - left shift due to the void created by regs on the left
 	void compact_regmapping();
 };
 

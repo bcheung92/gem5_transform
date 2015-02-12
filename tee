@@ -1,0 +1,8 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Feb  8 2015 11:45:23
+gem5 started Feb  8 2015 18:48:12
+gem5 executing on Lokeshs-MacBook-Pro.local
+command line: ./build/ARM/gem5.opt --debug-flags=Drain configs/example/se.py --cmd=/research/ljindal/445.gobmk --options=--quiet --mode gtp --input=/research/ljindal/nicklas4.tst --output=445.gobmk.stdout --errout=445.gobmk.stderr --num-cpus=1 --caches -I 10000000000 --cpu-type=arm_detailed testlog.arm
+Error: script doesn't take any positional arguments

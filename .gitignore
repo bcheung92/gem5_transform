@@ -1,5 +1,6 @@
 disks*
 asimbench*
-build*
+build/*
 binaries*
 m5out*
+*pyc

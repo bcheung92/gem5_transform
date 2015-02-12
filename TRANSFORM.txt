@@ -1,0 +1,19 @@
+REGFILE scaling:
+===============
+1. Once the pipeline has been flushed, need to make sure that none of the arch registers point to a phys reg that would sit beyond the end of scaled register file.
+restrict_archreg_mapping()(rename_map.hh)
+	This in turn calls restrict_int/float/ccreg_mapping.
+	for every arch reg, look up the phy reg and check if it will be "valid" for scaled regfile. If not, get a new phy reg from free list and the same time, copy the value from old phy reg to new phy reg. Check if this new phy reg is valid , If not, get another free reg and repeat until you find one.
+
+2. Once done with retstricting, we are now ready to actually scale the regfile.
+scale_regfile(2,1,1,&freeList)	(regfile.cc)
+	Here we capture the old boundary markers of the regfile. Next we scan the freelist element by element, check that the phy reg is actually valid and if yes, then we store it back on the freelist else remove. Also we resize the actual vector (C++ memory in gem5) for the regfile after scaling. Also the new value pushed, needs to be shifted to the left since the number of regs in left partition (intregs for float free regs and int+float regs for cc free regs).
+
+3. Just like we shifted left the free list values, in the mapped values as well we need to do the left shift.
+compact_regmapping()
+NOTE that the register access functions need this, since while reading a reg an absolute arch reg number is given which is then "classified" as int/float/cc reg , looked up for phy reg mapping in the respective map with the actual offset within that list and which is then used for actually accessing the register value.
+
+DefaultRename<Impl>::resetStage()//TODO FIXME check if need to use this after all the scaling or no
+
+TODO FIXME basically check what takeoverfrom does and see if we need to do that or not
+TODO FIXME check what commitrenamemap is	

@@ -229,7 +229,7 @@ DefaultRename<Impl>::startupStage()
 
 template <class Impl>
 void
-DefaultRename<Impl>::resetStage()
+DefaultRename<Impl>::resetStage()//TODO FIXME check if need to use this after all the scaling or not
 {
     _status = Inactive;
 

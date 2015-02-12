@@ -655,10 +655,10 @@ FullO3CPU<Impl>::tick()
 	//	}
 	//}   
 	//if (curTick() > 13270000 && ((rob.halved == false) || (iew.LSQisScaled == false)))
-	if (curTick() > 15270000 && ((rob.halved == false) || (iew.LSQisScaled == false)))
+	if (curTick() > 15270000 && ((rob.halved == false) || (iew.LSQisScaled == false) || (regFile.scaled == false)))
 	{
 		static int start_drain = 0;
-		static int TF_DEBUG = 1;
+		static int TF_DEBUG = 0;
 		if (!start_drain)
 		{
 		start_drain = 1;
@@ -674,12 +674,19 @@ FullO3CPU<Impl>::tick()
 			assert(rob.isEmpty());//my ROB should be empty
 			assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
 	
+			regFile.print_params();
+			freeList.print_entries();
 			//Let's print the reg rename mapping
 			renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
-			renameMap[0].restrict_archreg_mapping(2);	        	
+			renameMap[0].restrict_archreg_mapping(2,1,1);	        	
 			renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
 			regFile.scale_regfile(2,1,1,&freeList);
 			renameMap[0].compact_regmapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+			regFile.scaled = true;
+			regFile.print_params();
+			freeList.print_entries();
+
+
 			if (!TF_DEBUG)
 			{
 			std::cout << "*****TRANSFORM calling make_rob_half" << endl;

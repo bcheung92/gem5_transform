@@ -54,9 +54,10 @@ PhysRegFile::PhysRegFile(unsigned _numPhysicalIntRegs,
         warn("Non-zero number of physical CC regs specified, even though\n"
              "    ISA does not use them.\n");
     }
-    old_baseFloatRegIndex = -1;
-    old_baseCCRegIndex = -1;
-    old_totalNumRegs = -1;
+    old_baseFloatRegIndex = -1;//lokeshjindal15
+    old_baseCCRegIndex = -1;//lokeshjindal15
+    old_totalNumRegs = -1;//lokeshjindal15
+    scaled = false;
 }
 
 
@@ -87,6 +88,12 @@ PhysRegFile::initFreeList(UnifiedFreeList *freeList)
 
 }
 
+/*Here we capture the old boundary markers of the regfile. 
+ * Next we scan the freelist element by element, check that the phy reg is 
+ * actually valid and if yes, then we store it back on the freelist else remove. 
+ * Also we resize the actual vector (C++ memory in gem5) for the regfile after scaling. 
+ * The new value pushed, needs to be shifted to the left since the number of regs in left partition has changed 
+ * (intregs for float free regs and int+float regs for cc free regs).*/
 void
 PhysRegFile::scale_regfile (unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor, UnifiedFreeList *freeList)
 {
@@ -101,44 +108,37 @@ PhysRegFile::scale_regfile (unsigned int_scale_factor, unsigned float_scale_fact
 	for (int i =0; i < list_size; i++)
 	{
 		PhysRegIndex phy_reg = ((freeList->getIntList())->getfreeRegs())->front();
-		//if (phy_reg > baseFloatRegIndex)
-		//{
 			((freeList->getIntList())->getfreeRegs())->pop();
-		//}
-		if (phy_reg <= baseFloatRegIndex)
+		if (phy_reg < baseFloatRegIndex)//TODO FIXME check < or <=
 		{
 			((freeList->getIntList())->getfreeRegs())->push(phy_reg);
 		}
 	}
+	resizeintRegFile(baseFloatRegIndex);//TODO FIXME confirm that resize simply chopps off the nodes from the end while preserving values at the front
 	
 	list_size = ((freeList->getFloatList())->getfreeRegs())->size();
 	for (int i =0; i < list_size; i++)
 	{
 		PhysRegIndex phy_reg = ((freeList->getFloatList())->getfreeRegs())->front();
-		//if (phy_reg > baseCCRegIndex)
-		//{
 			((freeList->getFloatList())->getfreeRegs())->pop();
-		//}
-		if (phy_reg <= (old_baseFloatRegIndex + (old_baseCCRegIndex - old_baseFloatRegIndex)/float_scale_factor))
+		if (phy_reg < (old_baseFloatRegIndex + (old_baseCCRegIndex - old_baseFloatRegIndex)/float_scale_factor))//TODO FIXME check < or <=
 		{
-			PhysRegIndex newval = phy_reg - (old_baseFloatRegIndex - baseFloatRegIndex);
+			PhysRegIndex newval = phy_reg - (old_baseFloatRegIndex - baseFloatRegIndex);//subtract the void created by change in registers to the left i.e. the int regs.
 			assert(newval >= baseFloatRegIndex);
 			((freeList->getFloatList())->getfreeRegs())->push(newval);
 			
 		}
 	}
+	resizefloatRegFile((old_baseCCRegIndex - old_baseFloatRegIndex)/float_scale_factor);//TODO FIXME confirm that resize simply chopps off the nodes from the end while preserving values at the front
 	
 	list_size = ((freeList->getCCList())->getfreeRegs())->size();
 	for (int i =0; i < list_size; i++)
 	{
 		PhysRegIndex phy_reg = ((freeList->getCCList())->getfreeRegs())->front();
-		//if (phy_reg > baseCCRegIndex)
-		//{
 			((freeList->getCCList())->getfreeRegs())->pop();
-		//}
-		if (phy_reg <= (old_baseCCRegIndex + (totalNumRegs - old_baseCCRegIndex)/cc_scale_factor))
+		if (phy_reg < (old_baseCCRegIndex + (totalNumRegs - old_baseCCRegIndex)/cc_scale_factor))//TODO FIXME check < or <=
 		{
-			PhysRegIndex newval = phy_reg - (old_baseCCRegIndex - baseCCRegIndex);
+			PhysRegIndex newval = phy_reg - (old_baseCCRegIndex - baseCCRegIndex);//subtract the void created by change in registers to the left i.e. the int+float regs.;
 			assert(newval >= baseCCRegIndex);
 			((freeList->getCCList())->getfreeRegs())->push(newval);
 			
