@@ -686,18 +686,23 @@ FullO3CPU<Impl>::tick()
 			regFile.print_params();
 			freeList.print_entries();
 
+			//rename.resetStage();
+			//rename.startupStage();
+			rename.takeOverFrom();
 
 			if (!TF_DEBUG)
 			{
 			std::cout << "*****TRANSFORM calling make_rob_half" << endl;
 			rob.make_rob_half();
 			rob.update_rob_threads();
-			rob.resetState();
+			//rob.resetState();
+			rob.takeOverFrom();
 			rob.halved = true;
 			std::cout << "*****TRANSFORM DONE calling make_rob_half" << endl;
 		
 			std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
 			iew.scale_LSQ(2);
+			iew.takeOverFrom();
 			iew.LSQisScaled = true;
 			std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
 			

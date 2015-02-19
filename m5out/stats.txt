@@ -4,11 +4,11 @@ sim_seconds                                  0.000015                       # Nu
 sim_ticks                                    15270500                       # Number of ticks simulated
 final_tick                                   15270500                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
 sim_freq                                 1000000000000                       # Frequency of simulated ticks
-host_inst_rate                                  67950                       # Simulator instruction rate (inst/s)
-host_op_rate                                    78814                       # Simulator op (including micro ops) rate (op/s)
-host_tick_rate                              217299428                       # Simulator tick rate (ticks/s)
-host_mem_usage                                 691276                       # Number of bytes of host memory used
-host_seconds                                     0.07                       # Real time elapsed on the host
+host_inst_rate                                  62732                       # Simulator instruction rate (inst/s)
+host_op_rate                                    72761                       # Simulator op (including micro ops) rate (op/s)
+host_tick_rate                              200610878                       # Simulator tick rate (ticks/s)
+host_mem_usage                                 690252                       # Number of bytes of host memory used
+host_seconds                                     0.08                       # Real time elapsed on the host
 sim_insts                                        4774                       # Number of instructions simulated
 sim_ops                                          5538                       # Number of ops (including micro ops) simulated
 system.voltage_domain.voltage                       1                       # Voltage in Volts
@@ -873,10 +873,10 @@ sim_seconds                                  0.000000                       # Nu
 sim_ticks                                       76000                       # Number of ticks simulated
 final_tick                                   15346500                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
 sim_freq                                 1000000000000                       # Frequency of simulated ticks
-host_inst_rate                                 611944                       # Simulator instruction rate (inst/s)
-host_op_rate                                   709128                       # Simulator op (including micro ops) rate (op/s)
-host_tick_rate                                9721156                       # Simulator tick rate (ticks/s)
-host_mem_usage                                 691276                       # Number of bytes of host memory used
+host_inst_rate                                 715142                       # Simulator instruction rate (inst/s)
+host_op_rate                                   828448                       # Simulator op (including micro ops) rate (op/s)
+host_tick_rate                               11353451                       # Simulator tick rate (ticks/s)
+host_mem_usage                                 690252                       # Number of bytes of host memory used
 host_seconds                                     0.01                       # Real time elapsed on the host
 sim_insts                                        4775                       # Number of instructions simulated
 sim_ops                                          5539                       # Number of ops (including micro ops) simulated
@@ -1568,11 +1568,11 @@ sim_seconds                                  0.000001                       # Nu
 sim_ticks                                     1004000                       # Number of ticks simulated
 final_tick                                   16350500                       # Number of ticks from beginning of simulation (restored from checkpoints and never reset)
 sim_freq                                 1000000000000                       # Frequency of simulated ticks
-host_inst_rate                                1102000                       # Simulator instruction rate (inst/s)
-host_op_rate                                  1276218                       # Simulator op (including micro ops) rate (op/s)
-host_tick_rate                              219886115                       # Simulator tick rate (ticks/s)
-host_mem_usage                                 691276                       # Number of bytes of host memory used
-host_seconds                                     0.00                       # Real time elapsed on the host
+host_inst_rate                                 766983                       # Simulator instruction rate (inst/s)
+host_op_rate                                   888363                       # Simulator op (including micro ops) rate (op/s)
+host_tick_rate                              153118804                       # Simulator tick rate (ticks/s)
+host_mem_usage                                 690252                       # Number of bytes of host memory used
+host_seconds                                     0.01                       # Real time elapsed on the host
 sim_insts                                        5013                       # Number of instructions simulated
 sim_ops                                          5817                       # Number of ops (including micro ops) simulated
 system.voltage_domain.voltage                       1                       # Voltage in Volts
@@ -1956,7 +1956,7 @@ system.cpu.rename.SquashCycles                     22                       # Nu
 system.cpu.rename.IdleCycles                      378                       # Number of cycles rename is idle
 system.cpu.rename.BlockCycles                      17                       # Number of cycles rename is blocking
 system.cpu.rename.serializeStallCycles             46                       # count of cycles rename stalled for serializing inst
-system.cpu.rename.RunCycles                       215                       # Number of cycles rename is running
+system.cpu.rename.RunCycles                       210                       # Number of cycles rename is running
 system.cpu.rename.UnblockCycles                    20                       # Number of cycles rename is unblocking
 system.cpu.rename.RenamedInsts                    469                       # Number of instructions processed by rename
 system.cpu.rename.SquashedInsts                    21                       # Number of squashed instructions processed by rename

@@ -271,11 +271,10 @@ class ROB
     /** Registers statistics. */
     void regStats();
 
-public: //lokeshjindal15 was private originally
+  private:
     /** Reset the ROB state */
     void resetState();
 
-  private:
     /** Pointer to the CPU. */
     O3CPU *cpu;
 

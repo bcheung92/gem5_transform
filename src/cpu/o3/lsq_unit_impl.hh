@@ -1350,6 +1350,6 @@ LSQUnit<Impl>::scale_lsq_unit(unsigned tf_scale_factor)//lokeshjindal15
     //loadQueue.resize(LQEntries);
     //storeQueue.resize(SQEntries);
 
-    resetState();
+    //resetState();//moving this call outside as takeoverfrom
 }
 #endif//__CPU_O3_LSQ_UNIT_IMPL_HH__

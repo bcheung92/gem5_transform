@@ -16,4 +16,3 @@ NOTE that the register access functions need this, since while reading a reg an 
 DefaultRename<Impl>::resetStage()//TODO FIXME check if need to use this after all the scaling or no
 
 TODO FIXME basically check what takeoverfrom does and see if we need to do that or not
-TODO FIXME check what commitrenamemap is	
