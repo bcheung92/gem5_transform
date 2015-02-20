@@ -655,7 +655,7 @@ FullO3CPU<Impl>::tick()
 	//	}
 	//}   
 	//if (curTick() > 13270000 && ((rob.halved == false) || (iew.LSQisScaled == false)))
-	if (curTick() > 15270000 && ((rob.halved == false) || (iew.LSQisScaled == false) || (regFile.scaled == false)))
+	if (curTick() > 15270000 && ((rob.halved == false) || (iew.LSQisScaled == false) || (regFile.scaled == false) || (iew.instQueue.scaled == false)))
 	{
 		static int start_drain = 0;
 		static int TF_DEBUG = 0;
@@ -674,6 +674,12 @@ FullO3CPU<Impl>::tick()
 		{
 			assert(rob.isEmpty());//my ROB should be empty
 			assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
+			
+			std::cout << "*****TRANSFORM calling scale_IQ" << endl;
+			iew.instQueue.scale_IQ(2);
+			iew.instQueue.update_IQ_threads(2);
+			iew.instQueue.scaled = true;
+			std::cout << "*****TRANSFORM DONE calling scale_IQ newIQentries:" << iew.instQueue.getnumEntries() << endl;
 
 			if (!REGFILE_DEBUG)
 			{	
