@@ -341,13 +341,13 @@ class ROB
 
   public:
     //lokeshjindal15 Function to scale the ROB size to half
-    void make_rob_half();
+    void scale_rob(unsigned tf_scale_factor);
 
     //lokeshjindal15 variable to check rob has been havled or not
-    bool halved;
+    bool scaled;
 
     //Function to update the thread structures omce ROB has been resized
-    void update_rob_threads();
+    void update_rob_threads(unsigned tf_scale_factor);
 };
 
 

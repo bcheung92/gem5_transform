@@ -734,3 +734,42 @@ warn: 	instruction 'mcr icimvau' unimplemented
 warn: 	instruction 'mcr bpiallis' unimplemented
 warn: 	instruction 'mcr icialluis' unimplemented
 7085608194: system.terminal: attach terminal 0
+warn: 	instruction 'mcr dccimvac' unimplemented
+warn: Tried to read RealView I/O at offset 0x60 that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+info: Read CNTFREQ_EL0 frequency
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+warn: Not doing anything for miscreg ACTLR
+warn: Not doing anything for write of miscreg ACTLR
+warn: 	instruction 'mcr bpiall' unimplemented
+warn: Not doing anything for miscreg ACTLR
+warn: Not doing anything for write of miscreg ACTLR
+warn: Not doing anything for miscreg ACTLR
+warn: Not doing anything for write of miscreg ACTLR
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+info: trap check M:0 N:0 1:0 2:0 hdcr 0, hcptr 3fff, hstr 0
+warn: CP14 unimplemented crn[1], opc1[0], crm[1], opc2[4]
+warn: Not doing anything for read to miscreg pmcr
+warn: Not doing anything for write to miscreg pmcr
+warn: Not doing anything for write to miscreg pmcr
+warn: Not doing anything for write to miscreg pmcr
+warn: Not doing anything for write to miscreg pmcr
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: SCReg: Writing 0x8416740 to dcc0:site1:pos0:fn1:dev5
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: 	instruction 'mcr dcisw' unimplemented
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: Tried to write RVIO at offset 0xa8 (data 0) that doesn't exist
+warn: allocating bonus target for snoop

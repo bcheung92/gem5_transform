@@ -655,7 +655,7 @@ FullO3CPU<Impl>::tick()
 	//	}
 	//}   
 	//if (curTick() > 13270000 && ((rob.halved == false) || (iew.LSQisScaled == false)))
-	if (curTick() > 15270000 && ((rob.halved == false) || (iew.LSQisScaled == false) || (regFile.scaled == false) || (iew.instQueue.scaled == false)))
+	if (curTick() > 15270000 && ((rob.scaled == false) || (iew.LSQisScaled == false) || (regFile.scaled == false) || (iew.instQueue.scaled == false)))
 	{
 		static int start_drain = 0;
 		static int TF_DEBUG = 0;
@@ -675,6 +675,11 @@ FullO3CPU<Impl>::tick()
 			assert(rob.isEmpty());//my ROB should be empty
 			assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
 			
+			std::cout << "*****TRANSFORM calling scale_TLB original size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
+			dtb->scale_TLB(2);
+			itb->scale_TLB(2);	
+			std::cout << "*****TRANSFORM DONE calling scale_TLB new size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
+
 			std::cout << "*****TRANSFORM calling scale_IQ" << endl;
 			iew.instQueue.scale_IQ(2);
 			iew.instQueue.update_IQ_threads(2);
@@ -712,13 +717,13 @@ FullO3CPU<Impl>::tick()
 
 			if (!TF_DEBUG)
 			{
-			std::cout << "*****TRANSFORM calling make_rob_half" << endl;
-			rob.make_rob_half();
-			rob.update_rob_threads();
+			std::cout << "*****TRANSFORM calling scale_rob" << endl;
+			rob.scale_rob(2);
+			rob.update_rob_threads(2);
 			//rob.resetState();
 			rob.takeOverFrom();
-			rob.halved = true;
-			std::cout << "*****TRANSFORM DONE calling make_rob_half" << endl;
+			rob.scaled = true;
+			std::cout << "*****TRANSFORM DONE calling scale_rob" << endl;
 		
 			std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
 			iew.scale_LSQ(2);

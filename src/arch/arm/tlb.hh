@@ -362,6 +362,15 @@ private:
                    bool hyp, bool ignore_asn, uint8_t target_el);
 
     bool checkELMatch(uint8_t target_el, uint8_t tentry_el, bool ignore_el);
+
+public:
+	//scale TLB lokeshjindal15
+	void scale_TLB (unsigned tf_scale_factor)
+	{
+		size /= tf_scale_factor;
+	}	
+
+
 };
 
 } // namespace ArmISA

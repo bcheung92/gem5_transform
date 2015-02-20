@@ -1,12 +1,12 @@
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Feb 19 2015 22:10:55
-gem5 started Feb 19 2015 22:12:31
+gem5 compiled Feb 20 2015 13:07:12
+gem5 started Feb 20 2015 13:09:39
 gem5 executing on bigbird
 command line: ./build/ARM/gem5.opt --debug-flags=Drain configs/example/se.py --cmd=/research/ljindal/445.gobmk --options=--quiet --mode gtp --input=/research/ljindal/nicklas4.tst --output=445.gobmk.stdout --errout=445.gobmk.stderr --num-cpus=1 --caches -I 10000000000 --cpu-type=detailed
 Global frequency set at 1000000000000 ticks per second
-      0: system.cpu.isa: ISA system set to: 0 0x4ce0000
+      0: system.cpu.isa: ISA system set to: 0 0x4eab000
 *****TRANSFORM totalNumRegs = 256+256+1280
 *********TRANSFORM REG_IDX after init is 1792
 0: system.remote_gdb.listener: listening for remote gdb #0 on port 7000
@@ -345,6 +345,10 @@ warn: CP14 unimplemented crn[8], opc1[2], crm[9], opc2[4]
 15307000: system.cpu: IEW not drained.
 15307500: system.cpu.iew.lsq: Not drained, SQ not empty.
 15307500: system.cpu: IEW not drained.
+*****TRANSFORM calling scale_TLB original size dtb:64 itb:64
+*****TRANSFORM DONE calling scale_TLB new size dtb:32 itb:32
+*****TRANSFORM calling scale_IQ
+*****TRANSFORM DONE calling scale_IQ newIQentries:32
 REGFILE PARAMS: baseFloatRegIndex:256 sizeOfintRegFile:256 baseCCRegIndex:512 sizeOffloatRegFile:256 totalNumRegs:1792 old_baseFloatRegIndex:4294967295 old_baseCCRegIndex:4294967295 old_totalNumRegs:4294967295
 FREELIST ENTRIES: numFreeIntRegs:213 numFreeFloatRegs:96 numFreeCCRegs:1274
 *****TRANSFORM going to print the reg mappings now!
@@ -1034,10 +1038,10 @@ Archreg:5 Phyreg lookup:517 value:0
 *****TRANSFORM DONE calling functions to scale Phy Regfile
 REGFILE PARAMS: baseFloatRegIndex:128 sizeOfintRegFile:128 baseCCRegIndex:384 sizeOffloatRegFile:256 totalNumRegs:1664 old_baseFloatRegIndex:256 old_baseCCRegIndex:512 old_totalNumRegs:1792
 FREELIST ENTRIES: numFreeIntRegs:85 numFreeFloatRegs:96 numFreeCCRegs:1146
-*****TRANSFORM calling make_rob_half
+*****TRANSFORM calling scale_rob
 *****TRANSFORM make_rob_half original size = 192new rob size = 96
 *****TRANSFORM update_rob_threads  tid 0 old maxEntries:192 new maxEntries:96
-*****TRANSFORM DONE calling make_rob_half
+*****TRANSFORM DONE calling scale_rob
 *****TRANSFORM calling functions to scale LSQ
 *****TRANSFORM scale_entire_lsq : Old LQEntries:32 Old SQEntries:32 New LQEntries:16 New SQEntries:16
 *****TRANSFORM update_lsq_units :  TID: 0 scale_lsq_unit 
@@ -1071,4 +1075,4 @@ info: Increasing stack size by one page.
 info: Increasing stack size by one page.
 info: Increasing stack size by one page.
 info: Increasing stack size by one page.
-Exiting @ tick 72778498500 because target called exit()
+Exiting @ tick 72656538500 because target called exit()
