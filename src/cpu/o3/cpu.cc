@@ -659,6 +659,7 @@ FullO3CPU<Impl>::tick()
 	{
 		static int start_drain = 0;
 		static int TF_DEBUG = 0;
+		static int REGFILE_DEBUG = 0;
 		if (!start_drain)
 		{
 		start_drain = 1;
@@ -673,22 +674,35 @@ FullO3CPU<Impl>::tick()
 		{
 			assert(rob.isEmpty());//my ROB should be empty
 			assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
-	
+
+			if (!REGFILE_DEBUG)
+			{	
 			regFile.print_params();
 			freeList.print_entries();
 			//Let's print the reg rename mapping
 			renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+			std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
 			renameMap[0].restrict_archreg_mapping(2,1,1);	        	
 			renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
 			regFile.scale_regfile(2,1,1,&freeList);
 			renameMap[0].compact_regmapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
 			regFile.scaled = true;
+			std::cout << "*****TRANSFORM DONE calling functions to scale Phy Regfile" << endl;
 			regFile.print_params();
 			freeList.print_entries();
 
 			//rename.resetStage();
 			//rename.startupStage();
 			rename.takeOverFrom();
+			iew.instQueue.updatenumPhysRegs(regFile.totalNumPhysRegs());
+			scoreboard.updatenumPhysRegs(regFile.totalNumPhysRegs());
+			iew.instQueue.getDependencyGraph()->resize(regFile.totalNumPhysRegs());
+			iew.instQueue.getDependencyGraph()->reset();
+			}
+			else
+			{
+			regFile.scaled = true;
+			}
 
 			if (!TF_DEBUG)
 			{

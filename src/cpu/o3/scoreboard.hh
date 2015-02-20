@@ -156,7 +156,10 @@ class Scoreboard
 
         regScoreBoard[reg_idx] = false;
     }
-
+	void updatenumPhysRegs(unsigned numphysregs)
+        {
+                numPhysRegs = numphysregs;
+        }
 };
 
 #endif

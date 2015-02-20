@@ -1,0 +1,736 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Feb 19 2015 22:10:55
+gem5 started Feb 19 2015 22:26:21
+gem5 executing on bigbird
+command line: /users/ljindal/gem5.oct18.new.exp/build/ARM/gem5.opt --outdir=m5out_tmp/ /users/ljindal/gem5.oct18.new.exp/configs/example/1.4GHzfs.py.multicore.percore.mdomain.socket --machine-type VExpress_EMM --kernel vmlinux.performance --num-cpus=4 --cpu-type=arm_detailed --dtb-filename vexpress-v2p-ca15-tc1-gem5_dvfs_per_core_4cpus.dtb --caches --l1d_size=32kB --l1i_size=32kB --l1i_assoc=2 --l1d_assoc=2 --l2cache --l2_size=1MB --l2_assoc=16 --disk-image=ARMv7a-ICS-Android.SMP.Asimbench-v3.img
+Global frequency set at 1000000000000 ticks per second
+info: kernel located at: /users/ljindal/gem5.oct18.new.exp/binaries/vmlinux.performance
+Listening for system connection on port 5900
+Listening for system connection on port 3456
+      0: system.cpu0.isa: ISA system set to: 0x5816200 0x5816200
+*****TRANSFORM totalNumRegs = 128+192+640
+*********TRANSFORM REG_IDX after init is 960
+      0: system.cpu1.isa: ISA system set to: 0x5816200 0x5816200
+*****TRANSFORM totalNumRegs = 128+192+640
+*********TRANSFORM REG_IDX after init is 960
+      0: system.cpu2.isa: ISA system set to: 0x5816200 0x5816200
+*****TRANSFORM totalNumRegs = 128+192+640
+*********TRANSFORM REG_IDX after init is 960
+      0: system.cpu3.isa: ISA system set to: 0x5816200 0x5816200
+*****TRANSFORM totalNumRegs = 128+192+640
+*********TRANSFORM REG_IDX after init is 960
+0: system.remote_gdb.listener: listening for remote gdb #0 on port 7000
+0: system.remote_gdb.listener: listening for remote gdb #1 on port 7002
+0: system.remote_gdb.listener: listening for remote gdb #2 on port 7003
+0: system.remote_gdb.listener: listening for remote gdb #3 on port 7004
+info: Using bootloader at address 0x10
+info: Using kernel entry physical address at 0x80008000
+info: Loading DTB file: /users/ljindal/gem5.oct18.new.exp/binaries/vexpress-v2p-ca15-tc1-gem5_dvfs_per_core_4cpus.dtb at address 0x88000000
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+*****TRANSFORM going to call drain()
+*****TRANSFORM DONE with drain()
+REGFILE PARAMS: baseFloatRegIndex:128 sizeOfintRegFile:128 baseCCRegIndex:320 sizeOffloatRegFile:192 totalNumRegs:960 old_baseFloatRegIndex:4294967295 old_baseCCRegIndex:4294967295 old_totalNumRegs:4294967295
+FREELIST ENTRIES: numFreeIntRegs:85 numFreeFloatRegs:32 numFreeCCRegs:634
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+Archreg:0 Phyreg lookup:64 value:0
+Archreg:1 Phyreg lookup:1 value:2272
+Archreg:2 Phyreg lookup:2 value:2281701376
+Archreg:3 Phyreg lookup:51 value:0
+Archreg:4 Phyreg lookup:120 value:2153783668
+Archreg:5 Phyreg lookup:53 value:2153784384
+Archreg:6 Phyreg lookup:63 value:0
+Archreg:7 Phyreg lookup:124 value:2147608248
+Archreg:8 Phyreg lookup:110 value:2147483648
+Archreg:9 Phyreg lookup:67 value:1091551472
+Archreg:10 Phyreg lookup:105 value:2151933452
+Archreg:11 Phyreg lookup:11 value:0
+Archreg:12 Phyreg lookup:127 value:3800110080
+Archreg:13 Phyreg lookup:13 value:0
+Archreg:14 Phyreg lookup:14 value:0
+Archreg:15 Phyreg lookup:44 value:0
+Archreg:16 Phyreg lookup:16 value:0
+Archreg:17 Phyreg lookup:15 value:2147516512
+Archreg:18 Phyreg lookup:18 value:0
+Archreg:19 Phyreg lookup:19 value:0
+Archreg:20 Phyreg lookup:20 value:0
+Archreg:21 Phyreg lookup:21 value:0
+Archreg:22 Phyreg lookup:22 value:0
+Archreg:23 Phyreg lookup:23 value:0
+Archreg:24 Phyreg lookup:24 value:0
+Archreg:25 Phyreg lookup:25 value:0
+Archreg:26 Phyreg lookup:26 value:0
+Archreg:27 Phyreg lookup:27 value:0
+Archreg:28 Phyreg lookup:28 value:0
+Archreg:29 Phyreg lookup:29 value:0
+Archreg:30 Phyreg lookup:30 value:0
+Archreg:31 Phyreg lookup:31 value:0
+Archreg:32 Phyreg lookup:32 value:0
+Archreg:33 Phyreg lookup:33 value:0
+Archreg:34 Phyreg lookup:34 value:0
+Archreg:35 Phyreg lookup:35 value:0
+Archreg:36 Phyreg lookup:36 value:0
+Archreg:37 Phyreg lookup:37 value:0
+Archreg:38 Phyreg lookup:38 value:0
+Archreg:39 Phyreg lookup:39 value:0
+Archreg:40 Phyreg lookup:40 value:0
+Archreg:41 Phyreg lookup:41 value:0
+Archreg:42 Phyreg lookup:42 value:0
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+Archreg:0 Phyreg lookup:128 value:0
+Archreg:1 Phyreg lookup:129 value:0
+Archreg:2 Phyreg lookup:130 value:0
+Archreg:3 Phyreg lookup:131 value:0
+Archreg:4 Phyreg lookup:132 value:0
+Archreg:5 Phyreg lookup:133 value:0
+Archreg:6 Phyreg lookup:134 value:0
+Archreg:7 Phyreg lookup:135 value:0
+Archreg:8 Phyreg lookup:136 value:0
+Archreg:9 Phyreg lookup:137 value:0
+Archreg:10 Phyreg lookup:138 value:0
+Archreg:11 Phyreg lookup:139 value:0
+Archreg:12 Phyreg lookup:140 value:0
+Archreg:13 Phyreg lookup:141 value:0
+Archreg:14 Phyreg lookup:142 value:0
+Archreg:15 Phyreg lookup:143 value:0
+Archreg:16 Phyreg lookup:144 value:0
+Archreg:17 Phyreg lookup:145 value:0
+Archreg:18 Phyreg lookup:146 value:0
+Archreg:19 Phyreg lookup:147 value:0
+Archreg:20 Phyreg lookup:148 value:0
+Archreg:21 Phyreg lookup:149 value:0
+Archreg:22 Phyreg lookup:150 value:0
+Archreg:23 Phyreg lookup:151 value:0
+Archreg:24 Phyreg lookup:152 value:0
+Archreg:25 Phyreg lookup:153 value:0
+Archreg:26 Phyreg lookup:154 value:0
+Archreg:27 Phyreg lookup:155 value:0
+Archreg:28 Phyreg lookup:156 value:0
+Archreg:29 Phyreg lookup:157 value:0
+Archreg:30 Phyreg lookup:158 value:0
+Archreg:31 Phyreg lookup:159 value:0
+Archreg:32 Phyreg lookup:160 value:0
+Archreg:33 Phyreg lookup:161 value:0
+Archreg:34 Phyreg lookup:162 value:0
+Archreg:35 Phyreg lookup:163 value:0
+Archreg:36 Phyreg lookup:164 value:0
+Archreg:37 Phyreg lookup:165 value:0
+Archreg:38 Phyreg lookup:166 value:0
+Archreg:39 Phyreg lookup:167 value:0
+Archreg:40 Phyreg lookup:168 value:0
+Archreg:41 Phyreg lookup:169 value:0
+Archreg:42 Phyreg lookup:170 value:0
+Archreg:43 Phyreg lookup:171 value:0
+Archreg:44 Phyreg lookup:172 value:0
+Archreg:45 Phyreg lookup:173 value:0
+Archreg:46 Phyreg lookup:174 value:0
+Archreg:47 Phyreg lookup:175 value:0
+Archreg:48 Phyreg lookup:176 value:0
+Archreg:49 Phyreg lookup:177 value:0
+Archreg:50 Phyreg lookup:178 value:0
+Archreg:51 Phyreg lookup:179 value:0
+Archreg:52 Phyreg lookup:180 value:0
+Archreg:53 Phyreg lookup:181 value:0
+Archreg:54 Phyreg lookup:182 value:0
+Archreg:55 Phyreg lookup:183 value:0
+Archreg:56 Phyreg lookup:184 value:0
+Archreg:57 Phyreg lookup:185 value:0
+Archreg:58 Phyreg lookup:186 value:0
+Archreg:59 Phyreg lookup:187 value:0
+Archreg:60 Phyreg lookup:188 value:0
+Archreg:61 Phyreg lookup:189 value:0
+Archreg:62 Phyreg lookup:190 value:0
+Archreg:63 Phyreg lookup:191 value:0
+Archreg:64 Phyreg lookup:192 value:0
+Archreg:65 Phyreg lookup:193 value:0
+Archreg:66 Phyreg lookup:194 value:0
+Archreg:67 Phyreg lookup:195 value:0
+Archreg:68 Phyreg lookup:196 value:0
+Archreg:69 Phyreg lookup:197 value:0
+Archreg:70 Phyreg lookup:198 value:0
+Archreg:71 Phyreg lookup:199 value:0
+Archreg:72 Phyreg lookup:200 value:0
+Archreg:73 Phyreg lookup:201 value:0
+Archreg:74 Phyreg lookup:202 value:0
+Archreg:75 Phyreg lookup:203 value:0
+Archreg:76 Phyreg lookup:204 value:0
+Archreg:77 Phyreg lookup:205 value:0
+Archreg:78 Phyreg lookup:206 value:0
+Archreg:79 Phyreg lookup:207 value:0
+Archreg:80 Phyreg lookup:208 value:0
+Archreg:81 Phyreg lookup:209 value:0
+Archreg:82 Phyreg lookup:210 value:0
+Archreg:83 Phyreg lookup:211 value:0
+Archreg:84 Phyreg lookup:212 value:0
+Archreg:85 Phyreg lookup:213 value:0
+Archreg:86 Phyreg lookup:214 value:0
+Archreg:87 Phyreg lookup:215 value:0
+Archreg:88 Phyreg lookup:216 value:0
+Archreg:89 Phyreg lookup:217 value:0
+Archreg:90 Phyreg lookup:218 value:0
+Archreg:91 Phyreg lookup:219 value:0
+Archreg:92 Phyreg lookup:220 value:0
+Archreg:93 Phyreg lookup:221 value:0
+Archreg:94 Phyreg lookup:222 value:0
+Archreg:95 Phyreg lookup:223 value:0
+Archreg:96 Phyreg lookup:224 value:0
+Archreg:97 Phyreg lookup:225 value:0
+Archreg:98 Phyreg lookup:226 value:0
+Archreg:99 Phyreg lookup:227 value:0
+Archreg:100 Phyreg lookup:228 value:0
+Archreg:101 Phyreg lookup:229 value:0
+Archreg:102 Phyreg lookup:230 value:0
+Archreg:103 Phyreg lookup:231 value:0
+Archreg:104 Phyreg lookup:232 value:0
+Archreg:105 Phyreg lookup:233 value:0
+Archreg:106 Phyreg lookup:234 value:0
+Archreg:107 Phyreg lookup:235 value:0
+Archreg:108 Phyreg lookup:236 value:0
+Archreg:109 Phyreg lookup:237 value:0
+Archreg:110 Phyreg lookup:238 value:0
+Archreg:111 Phyreg lookup:239 value:0
+Archreg:112 Phyreg lookup:240 value:0
+Archreg:113 Phyreg lookup:241 value:0
+Archreg:114 Phyreg lookup:242 value:0
+Archreg:115 Phyreg lookup:243 value:0
+Archreg:116 Phyreg lookup:244 value:0
+Archreg:117 Phyreg lookup:245 value:0
+Archreg:118 Phyreg lookup:246 value:0
+Archreg:119 Phyreg lookup:247 value:0
+Archreg:120 Phyreg lookup:248 value:0
+Archreg:121 Phyreg lookup:249 value:0
+Archreg:122 Phyreg lookup:250 value:0
+Archreg:123 Phyreg lookup:251 value:0
+Archreg:124 Phyreg lookup:252 value:0
+Archreg:125 Phyreg lookup:253 value:0
+Archreg:126 Phyreg lookup:254 value:0
+Archreg:127 Phyreg lookup:255 value:0
+Archreg:128 Phyreg lookup:256 value:0
+Archreg:129 Phyreg lookup:257 value:0
+Archreg:130 Phyreg lookup:258 value:0
+Archreg:131 Phyreg lookup:259 value:0
+Archreg:132 Phyreg lookup:260 value:0
+Archreg:133 Phyreg lookup:261 value:0
+Archreg:134 Phyreg lookup:262 value:0
+Archreg:135 Phyreg lookup:263 value:0
+Archreg:136 Phyreg lookup:264 value:0
+Archreg:137 Phyreg lookup:265 value:0
+Archreg:138 Phyreg lookup:266 value:0
+Archreg:139 Phyreg lookup:267 value:0
+Archreg:140 Phyreg lookup:268 value:0
+Archreg:141 Phyreg lookup:269 value:0
+Archreg:142 Phyreg lookup:270 value:0
+Archreg:143 Phyreg lookup:271 value:0
+Archreg:144 Phyreg lookup:272 value:0
+Archreg:145 Phyreg lookup:273 value:0
+Archreg:146 Phyreg lookup:274 value:0
+Archreg:147 Phyreg lookup:275 value:0
+Archreg:148 Phyreg lookup:276 value:0
+Archreg:149 Phyreg lookup:277 value:0
+Archreg:150 Phyreg lookup:278 value:0
+Archreg:151 Phyreg lookup:279 value:0
+Archreg:152 Phyreg lookup:280 value:0
+Archreg:153 Phyreg lookup:281 value:0
+Archreg:154 Phyreg lookup:282 value:0
+Archreg:155 Phyreg lookup:283 value:0
+Archreg:156 Phyreg lookup:284 value:0
+Archreg:157 Phyreg lookup:285 value:0
+Archreg:158 Phyreg lookup:286 value:0
+Archreg:159 Phyreg lookup:287 value:0
+*****CC REG mappings total TheISA::NumCCRegs:6
+Archreg:0 Phyreg lookup:679 value:2
+Archreg:1 Phyreg lookup:681 value:0
+Archreg:2 Phyreg lookup:680 value:0
+Archreg:3 Phyreg lookup:339 value:0
+Archreg:4 Phyreg lookup:324 value:0
+Archreg:5 Phyreg lookup:325 value:0
+*****TRANSFORM calling functions to scale Phy Regfile
+restrict_intreg_mapping BEFORE numFreeEntries:32
+restrict_intreg_mapping: REMAPPING phy:64 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+before numFreeRegs:85
+after numFreeRegs:85
+ACCEPTING new phy:4old phy:64
+restrict_intreg_mapping: Skipping phy:1 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:2 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:51 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:120 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+before numFreeRegs:85
+after numFreeRegs:85
+REJECTING new phy:112old phy:120
+before numFreeRegs:85
+after numFreeRegs:85
+REJECTING new phy:126old phy:112
+before numFreeRegs:85
+after numFreeRegs:85
+ACCEPTING new phy:57old phy:126
+restrict_intreg_mapping: Skipping phy:53 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:63 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:124 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+before numFreeRegs:85
+after numFreeRegs:85
+REJECTING new phy:116old phy:124
+before numFreeRegs:85
+after numFreeRegs:85
+ACCEPTING new phy:5old phy:116
+restrict_intreg_mapping: REMAPPING phy:110 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+before numFreeRegs:85
+after numFreeRegs:85
+ACCEPTING new phy:45old phy:110
+restrict_intreg_mapping: REMAPPING phy:67 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+before numFreeRegs:85
+after numFreeRegs:85
+ACCEPTING new phy:8old phy:67
+restrict_intreg_mapping: REMAPPING phy:105 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+before numFreeRegs:85
+after numFreeRegs:85
+ACCEPTING new phy:50old phy:105
+restrict_intreg_mapping: Skipping phy:11 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: REMAPPING phy:127 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+before numFreeRegs:85
+after numFreeRegs:85
+ACCEPTING new phy:47old phy:127
+restrict_intreg_mapping: Skipping phy:13 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:14 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:44 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:16 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:15 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:18 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:19 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:20 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:21 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:22 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:23 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:24 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:25 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:26 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:27 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:28 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:29 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:30 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:31 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:32 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:33 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:34 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:35 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:36 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:37 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:38 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:39 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:40 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:41 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping: Skipping phy:42 against regfile->numIntPhysRegs():128 with tf_regfile_scale_factor:2
+restrict_intreg_mapping AFTER numFreeEntries:32
+restrict_floatreg_mapping BEFORE numFreeEntries:32
+restrict_floatreg_mapping: Skipping phy:128 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:129 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:130 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:131 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:132 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:133 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:134 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:135 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:136 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:137 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:138 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:139 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:140 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:141 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:142 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:143 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:144 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:145 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:146 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:147 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:148 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:149 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:150 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:151 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:152 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:153 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:154 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:155 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:156 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:157 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:158 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:159 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:160 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:161 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:162 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:163 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:164 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:165 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:166 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:167 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:168 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:169 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:170 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:171 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:172 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:173 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:174 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:175 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:176 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:177 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:178 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:179 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:180 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:181 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:182 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:183 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:184 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:185 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:186 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:187 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:188 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:189 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:190 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:191 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:192 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:193 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:194 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:195 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:196 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:197 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:198 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:199 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:200 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:201 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:202 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:203 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:204 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:205 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:206 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:207 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:208 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:209 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:210 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:211 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:212 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:213 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:214 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:215 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:216 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:217 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:218 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:219 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:220 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:221 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:222 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:223 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:224 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:225 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:226 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:227 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:228 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:229 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:230 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:231 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:232 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:233 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:234 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:235 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:236 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:237 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:238 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:239 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:240 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:241 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:242 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:243 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:244 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:245 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:246 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:247 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:248 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:249 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:250 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:251 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:252 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:253 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:254 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:255 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:256 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:257 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:258 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:259 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:260 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:261 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:262 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:263 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:264 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:265 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:266 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:267 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:268 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:269 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:270 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:271 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:272 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:273 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:274 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:275 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:276 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:277 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:278 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:279 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:280 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:281 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:282 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:283 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:284 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:285 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:286 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping: Skipping phy:287 against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():320 with tf_regfile_scale_factor:1
+restrict_floatreg_mapping AFTER numFreeEntries:32
+restrict_ccreg_mapping BEFORE numFreeEntries:32
+restrict_ccreg_mapping: Skipping phy:679 against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():960 with tf_regfile_scale_factor:1
+restrict_ccreg_mapping: Skipping phy:681 against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():960 with tf_regfile_scale_factor:1
+restrict_ccreg_mapping: Skipping phy:680 against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():960 with tf_regfile_scale_factor:1
+restrict_ccreg_mapping: Skipping phy:339 against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():960 with tf_regfile_scale_factor:1
+restrict_ccreg_mapping: Skipping phy:324 against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():960 with tf_regfile_scale_factor:1
+restrict_ccreg_mapping: Skipping phy:325 against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():960 with tf_regfile_scale_factor:1
+restrict_ccreg_mapping AFTER numFreeEntries:32
+*****TRANSFORM going to print the reg mappings now!
+*****INT REG mappings total TheISA::NumIntRegs:43
+Archreg:0 Phyreg lookup:4 value:0
+Archreg:1 Phyreg lookup:1 value:2272
+Archreg:2 Phyreg lookup:2 value:2281701376
+Archreg:3 Phyreg lookup:51 value:0
+Archreg:4 Phyreg lookup:57 value:2153783668
+Archreg:5 Phyreg lookup:53 value:2153784384
+Archreg:6 Phyreg lookup:63 value:0
+Archreg:7 Phyreg lookup:5 value:2147608248
+Archreg:8 Phyreg lookup:45 value:2147483648
+Archreg:9 Phyreg lookup:8 value:1091551472
+Archreg:10 Phyreg lookup:50 value:2151933452
+Archreg:11 Phyreg lookup:11 value:0
+Archreg:12 Phyreg lookup:47 value:3800110080
+Archreg:13 Phyreg lookup:13 value:0
+Archreg:14 Phyreg lookup:14 value:0
+Archreg:15 Phyreg lookup:44 value:0
+Archreg:16 Phyreg lookup:16 value:0
+Archreg:17 Phyreg lookup:15 value:2147516512
+Archreg:18 Phyreg lookup:18 value:0
+Archreg:19 Phyreg lookup:19 value:0
+Archreg:20 Phyreg lookup:20 value:0
+Archreg:21 Phyreg lookup:21 value:0
+Archreg:22 Phyreg lookup:22 value:0
+Archreg:23 Phyreg lookup:23 value:0
+Archreg:24 Phyreg lookup:24 value:0
+Archreg:25 Phyreg lookup:25 value:0
+Archreg:26 Phyreg lookup:26 value:0
+Archreg:27 Phyreg lookup:27 value:0
+Archreg:28 Phyreg lookup:28 value:0
+Archreg:29 Phyreg lookup:29 value:0
+Archreg:30 Phyreg lookup:30 value:0
+Archreg:31 Phyreg lookup:31 value:0
+Archreg:32 Phyreg lookup:32 value:0
+Archreg:33 Phyreg lookup:33 value:0
+Archreg:34 Phyreg lookup:34 value:0
+Archreg:35 Phyreg lookup:35 value:0
+Archreg:36 Phyreg lookup:36 value:0
+Archreg:37 Phyreg lookup:37 value:0
+Archreg:38 Phyreg lookup:38 value:0
+Archreg:39 Phyreg lookup:39 value:0
+Archreg:40 Phyreg lookup:40 value:0
+Archreg:41 Phyreg lookup:41 value:0
+Archreg:42 Phyreg lookup:42 value:0
+*****FLOAT REG mappings total TheISA::NumFloatRegs:160
+Archreg:0 Phyreg lookup:128 value:0
+Archreg:1 Phyreg lookup:129 value:0
+Archreg:2 Phyreg lookup:130 value:0
+Archreg:3 Phyreg lookup:131 value:0
+Archreg:4 Phyreg lookup:132 value:0
+Archreg:5 Phyreg lookup:133 value:0
+Archreg:6 Phyreg lookup:134 value:0
+Archreg:7 Phyreg lookup:135 value:0
+Archreg:8 Phyreg lookup:136 value:0
+Archreg:9 Phyreg lookup:137 value:0
+Archreg:10 Phyreg lookup:138 value:0
+Archreg:11 Phyreg lookup:139 value:0
+Archreg:12 Phyreg lookup:140 value:0
+Archreg:13 Phyreg lookup:141 value:0
+Archreg:14 Phyreg lookup:142 value:0
+Archreg:15 Phyreg lookup:143 value:0
+Archreg:16 Phyreg lookup:144 value:0
+Archreg:17 Phyreg lookup:145 value:0
+Archreg:18 Phyreg lookup:146 value:0
+Archreg:19 Phyreg lookup:147 value:0
+Archreg:20 Phyreg lookup:148 value:0
+Archreg:21 Phyreg lookup:149 value:0
+Archreg:22 Phyreg lookup:150 value:0
+Archreg:23 Phyreg lookup:151 value:0
+Archreg:24 Phyreg lookup:152 value:0
+Archreg:25 Phyreg lookup:153 value:0
+Archreg:26 Phyreg lookup:154 value:0
+Archreg:27 Phyreg lookup:155 value:0
+Archreg:28 Phyreg lookup:156 value:0
+Archreg:29 Phyreg lookup:157 value:0
+Archreg:30 Phyreg lookup:158 value:0
+Archreg:31 Phyreg lookup:159 value:0
+Archreg:32 Phyreg lookup:160 value:0
+Archreg:33 Phyreg lookup:161 value:0
+Archreg:34 Phyreg lookup:162 value:0
+Archreg:35 Phyreg lookup:163 value:0
+Archreg:36 Phyreg lookup:164 value:0
+Archreg:37 Phyreg lookup:165 value:0
+Archreg:38 Phyreg lookup:166 value:0
+Archreg:39 Phyreg lookup:167 value:0
+Archreg:40 Phyreg lookup:168 value:0
+Archreg:41 Phyreg lookup:169 value:0
+Archreg:42 Phyreg lookup:170 value:0
+Archreg:43 Phyreg lookup:171 value:0
+Archreg:44 Phyreg lookup:172 value:0
+Archreg:45 Phyreg lookup:173 value:0
+Archreg:46 Phyreg lookup:174 value:0
+Archreg:47 Phyreg lookup:175 value:0
+Archreg:48 Phyreg lookup:176 value:0
+Archreg:49 Phyreg lookup:177 value:0
+Archreg:50 Phyreg lookup:178 value:0
+Archreg:51 Phyreg lookup:179 value:0
+Archreg:52 Phyreg lookup:180 value:0
+Archreg:53 Phyreg lookup:181 value:0
+Archreg:54 Phyreg lookup:182 value:0
+Archreg:55 Phyreg lookup:183 value:0
+Archreg:56 Phyreg lookup:184 value:0
+Archreg:57 Phyreg lookup:185 value:0
+Archreg:58 Phyreg lookup:186 value:0
+Archreg:59 Phyreg lookup:187 value:0
+Archreg:60 Phyreg lookup:188 value:0
+Archreg:61 Phyreg lookup:189 value:0
+Archreg:62 Phyreg lookup:190 value:0
+Archreg:63 Phyreg lookup:191 value:0
+Archreg:64 Phyreg lookup:192 value:0
+Archreg:65 Phyreg lookup:193 value:0
+Archreg:66 Phyreg lookup:194 value:0
+Archreg:67 Phyreg lookup:195 value:0
+Archreg:68 Phyreg lookup:196 value:0
+Archreg:69 Phyreg lookup:197 value:0
+Archreg:70 Phyreg lookup:198 value:0
+Archreg:71 Phyreg lookup:199 value:0
+Archreg:72 Phyreg lookup:200 value:0
+Archreg:73 Phyreg lookup:201 value:0
+Archreg:74 Phyreg lookup:202 value:0
+Archreg:75 Phyreg lookup:203 value:0
+Archreg:76 Phyreg lookup:204 value:0
+Archreg:77 Phyreg lookup:205 value:0
+Archreg:78 Phyreg lookup:206 value:0
+Archreg:79 Phyreg lookup:207 value:0
+Archreg:80 Phyreg lookup:208 value:0
+Archreg:81 Phyreg lookup:209 value:0
+Archreg:82 Phyreg lookup:210 value:0
+Archreg:83 Phyreg lookup:211 value:0
+Archreg:84 Phyreg lookup:212 value:0
+Archreg:85 Phyreg lookup:213 value:0
+Archreg:86 Phyreg lookup:214 value:0
+Archreg:87 Phyreg lookup:215 value:0
+Archreg:88 Phyreg lookup:216 value:0
+Archreg:89 Phyreg lookup:217 value:0
+Archreg:90 Phyreg lookup:218 value:0
+Archreg:91 Phyreg lookup:219 value:0
+Archreg:92 Phyreg lookup:220 value:0
+Archreg:93 Phyreg lookup:221 value:0
+Archreg:94 Phyreg lookup:222 value:0
+Archreg:95 Phyreg lookup:223 value:0
+Archreg:96 Phyreg lookup:224 value:0
+Archreg:97 Phyreg lookup:225 value:0
+Archreg:98 Phyreg lookup:226 value:0
+Archreg:99 Phyreg lookup:227 value:0
+Archreg:100 Phyreg lookup:228 value:0
+Archreg:101 Phyreg lookup:229 value:0
+Archreg:102 Phyreg lookup:230 value:0
+Archreg:103 Phyreg lookup:231 value:0
+Archreg:104 Phyreg lookup:232 value:0
+Archreg:105 Phyreg lookup:233 value:0
+Archreg:106 Phyreg lookup:234 value:0
+Archreg:107 Phyreg lookup:235 value:0
+Archreg:108 Phyreg lookup:236 value:0
+Archreg:109 Phyreg lookup:237 value:0
+Archreg:110 Phyreg lookup:238 value:0
+Archreg:111 Phyreg lookup:239 value:0
+Archreg:112 Phyreg lookup:240 value:0
+Archreg:113 Phyreg lookup:241 value:0
+Archreg:114 Phyreg lookup:242 value:0
+Archreg:115 Phyreg lookup:243 value:0
+Archreg:116 Phyreg lookup:244 value:0
+Archreg:117 Phyreg lookup:245 value:0
+Archreg:118 Phyreg lookup:246 value:0
+Archreg:119 Phyreg lookup:247 value:0
+Archreg:120 Phyreg lookup:248 value:0
+Archreg:121 Phyreg lookup:249 value:0
+Archreg:122 Phyreg lookup:250 value:0
+Archreg:123 Phyreg lookup:251 value:0
+Archreg:124 Phyreg lookup:252 value:0
+Archreg:125 Phyreg lookup:253 value:0
+Archreg:126 Phyreg lookup:254 value:0
+Archreg:127 Phyreg lookup:255 value:0
+Archreg:128 Phyreg lookup:256 value:0
+Archreg:129 Phyreg lookup:257 value:0
+Archreg:130 Phyreg lookup:258 value:0
+Archreg:131 Phyreg lookup:259 value:0
+Archreg:132 Phyreg lookup:260 value:0
+Archreg:133 Phyreg lookup:261 value:0
+Archreg:134 Phyreg lookup:262 value:0
+Archreg:135 Phyreg lookup:263 value:0
+Archreg:136 Phyreg lookup:264 value:0
+Archreg:137 Phyreg lookup:265 value:0
+Archreg:138 Phyreg lookup:266 value:0
+Archreg:139 Phyreg lookup:267 value:0
+Archreg:140 Phyreg lookup:268 value:0
+Archreg:141 Phyreg lookup:269 value:0
+Archreg:142 Phyreg lookup:270 value:0
+Archreg:143 Phyreg lookup:271 value:0
+Archreg:144 Phyreg lookup:272 value:0
+Archreg:145 Phyreg lookup:273 value:0
+Archreg:146 Phyreg lookup:274 value:0
+Archreg:147 Phyreg lookup:275 value:0
+Archreg:148 Phyreg lookup:276 value:0
+Archreg:149 Phyreg lookup:277 value:0
+Archreg:150 Phyreg lookup:278 value:0
+Archreg:151 Phyreg lookup:279 value:0
+Archreg:152 Phyreg lookup:280 value:0
+Archreg:153 Phyreg lookup:281 value:0
+Archreg:154 Phyreg lookup:282 value:0
+Archreg:155 Phyreg lookup:283 value:0
+Archreg:156 Phyreg lookup:284 value:0
+Archreg:157 Phyreg lookup:285 value:0
+Archreg:158 Phyreg lookup:286 value:0
+Archreg:159 Phyreg lookup:287 value:0
+*****CC REG mappings total TheISA::NumCCRegs:6
+Archreg:0 Phyreg lookup:679 value:2
+Archreg:1 Phyreg lookup:681 value:0
+Archreg:2 Phyreg lookup:680 value:0
+Archreg:3 Phyreg lookup:339 value:0
+Archreg:4 Phyreg lookup:324 value:0
+Archreg:5 Phyreg lookup:325 value:0
+*****TRANSFORM DONE calling functions to scale Phy Regfile
+REGFILE PARAMS: baseFloatRegIndex:64 sizeOfintRegFile:64 baseCCRegIndex:256 sizeOffloatRegFile:192 totalNumRegs:896 old_baseFloatRegIndex:128 old_baseCCRegIndex:320 old_totalNumRegs:960
+FREELIST ENTRIES: numFreeIntRegs:21 numFreeFloatRegs:32 numFreeCCRegs:570
+*****TRANSFORM calling make_rob_half
+*****TRANSFORM make_rob_half original size = 40new rob size = 20
+*****TRANSFORM update_rob_threads  tid 0 old maxEntries:40 new maxEntries:20
+*****TRANSFORM DONE calling make_rob_half
+*****TRANSFORM calling functions to scale LSQ
+*****TRANSFORM scale_entire_lsq : Old LQEntries:16 Old SQEntries:16 New LQEntries:8 New SQEntries:8
+*****TRANSFORM update_lsq_units :  TID: 0 scale_lsq_unit 
+*****TRANSFROM scale_lsq_unit : Old LQEntries:17 Old SQEntries:17
+ New LQEntries:9 New SQEntries:9
+*****TRANSFORM LSQ<Impl>::resetEntries tid:0 Calling resizeEntries
+****TRANSFORM LSQUnit<Impl>::resizeLQ : Old LQEntries:9 New LQEntries:9
+****TRANSFORM LSQUnit<Impl>::resizeSQ : Old SQEntries:9 New SQEntries:9
+*****TRANSFORM DONE calling functions to scale LSQ
+****TRANSFORM DRAINRESUME going to call drainResume
+****TRANSFORM DONE Core should resume now!
+warn: Not doing anything for miscreg ACTLR
+warn: Not doing anything for write of miscreg ACTLR
+warn: The clidr register always reports 0 caches.
+warn: clidr LoUIS field of 0b001 to match current ARM implementations.
+warn: The csselr register isn't implemented.
+warn: 	instruction 'mcr dccmvau' unimplemented
+warn: 	instruction 'mcr icimvau' unimplemented
+warn: 	instruction 'mcr bpiallis' unimplemented
+warn: 	instruction 'mcr icialluis' unimplemented
+7085608194: system.terminal: attach terminal 0

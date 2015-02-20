@@ -541,6 +541,16 @@ class InstructionQueue
 
     Stats::Scalar intAluAccesses;
     Stats::Scalar fpAluAccesses;
+
+	DependencyGraph<DynInstPtr> * getDependencyGraph()
+	{
+		return &dependGraph;
+	}
+
+	void updatenumPhysRegs(unsigned numphysregs)
+	{
+		numPhysRegs = numphysregs;
+	}
 };
 
 #endif //__CPU_O3_INST_QUEUE_HH__
