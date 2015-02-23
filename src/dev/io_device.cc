@@ -68,7 +68,8 @@ PioPort::getAddrRanges() const
 
 PioDevice::PioDevice(const Params *p)
     : MemObject(p), sys(p->system), pioPort(this)
-{}
+{
+}
 
 PioDevice::~PioDevice()
 {
@@ -106,7 +107,8 @@ PioDevice::drain(DrainManager *dm)
 BasicPioDevice::BasicPioDevice(const Params *p, Addr size)
     : PioDevice(p), pioAddr(p->pio_addr), pioSize(size),
       pioDelay(p->pio_latency)
-{}
+{
+}
 
 AddrRangeList
 BasicPioDevice::getAddrRanges() const

@@ -280,7 +280,9 @@ class System : public MemObject
     uint64_t workItemsBegin;
     uint64_t workItemsEnd;
     uint32_t numWorkIds;
-    std::vector<bool> activeCpus;
+public://lokeshjindal15 TODO FIXME was protected originally    
+	std::vector<bool> activeCpus;
+protected:
 
     /** This array is a per-sytem list of all devices capable of issuing a
      * memory system request and an associated string for each master id.

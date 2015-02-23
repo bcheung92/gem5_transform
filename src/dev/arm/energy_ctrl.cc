@@ -46,6 +46,9 @@
 #include "params/EnergyCtrl.hh"
 #include "sim/dvfs_handler.hh"
 
+#include "sim/system.hh"//lokeshjindal15
+#include "cpu/o3/thread_context.hh"//lokeshjindal15
+
 EnergyCtrl::EnergyCtrl(const Params *p)
     : BasicPioDevice(p, PIO_NUM_FIELDS * 4),        // each field is 32 bit
       dvfsHandler(p->dvfs_handler),
@@ -57,6 +60,8 @@ EnergyCtrl::EnergyCtrl(const Params *p)
 {
     fatal_if(!p->dvfs_handler, "EnergyCtrl: Needs a DVFSHandler for a "
              "functioning system.\n");
+	esys = p->system;
+std::cout << "ENERGY_CTRL TRANSFORM energy_ctrl.cc EnergyCtrl::EnergyCtrl system size of activeCpus is:" << esys->activeCpus.size() << std::endl;
 }
 
 Tick
@@ -185,6 +190,23 @@ EnergyCtrl::write(PacketPtr pkt)
         }
         break;
       case PERF_LEVEL:
+
+        //lokeshjindal15 TODO FIXME override with perf_level = 6 (800MHz) if asked for a lower frequency        
+        if (data > 6)
+        {           
+        	std::cout << "ENERGY_CTRL TRANSFORM : for CPU:" << domainID << " changing perf_level/data from " << data << " to " << 6 << std::endl;  
+                data = 6;
+		assert(esys->activeCpus.size() >= domainID);
+		
+		if (!(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_down))
+		{
+			assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down) == 0);
+			assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down) == 0);
+			((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down = 1;
+        		std::cout << "ENERGY_CTRL TRANSFORM : for CPU:" << domainID << " setting start_transform_down to 1" << std::endl;  
+		}
+        } 
+
         if (dvfsHandler->perfLevel(domainID, data)) {
             if (updateAckEvent.scheduled()) {
                 // The OS driver is trying to change the perf level while

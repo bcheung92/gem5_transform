@@ -57,6 +57,8 @@ DefaultBTB::DefaultBTB(unsigned _numEntries,
     tagMask = (1 << tagBits) - 1;
 
     tagShiftAmt = instShiftAmt + floorLog2(numEntries);
+
+	std::cout << "BTBPRINT _numEntries:" << _numEntries << " _tagBits:" << _tagBits << " _instShiftAmt:" << _instShiftAmt << " idxMask:" << idxMask << " tagMask:" << tagMask <<     " tagShiftAmt:" << tagShiftAmt << std::endl;
 }
 
 void

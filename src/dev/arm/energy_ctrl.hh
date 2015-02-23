@@ -183,5 +183,8 @@ class EnergyCtrl : public BasicPioDevice
     }
 
     EventWrapper<EnergyCtrl, &EnergyCtrl::updatePLAck> updateAckEvent;
+
+public://TODO FIXME lokeshjindal15 capturing pointer to the system to use during transform of cpu
+	System * esys;
 };
 #endif //__DEV_ARM_ENERGY_CTRL_HH__

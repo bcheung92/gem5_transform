@@ -83,8 +83,10 @@ class PioPort : public SimpleTimingPort
  */
 class PioDevice : public MemObject
 {
-  protected:
+  //protected:
+public: //lokeshjindal15 TODO FIXME was protected originally. made public so that energy_ctrl device can use it!
     System *sys;
+  protected:
 
     /** The pioPort that handles the requests for us and provides us requests
      * that it sees. */

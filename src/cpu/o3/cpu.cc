@@ -411,6 +411,11 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
 
     for (ThreadID tid = 0; tid < this->numThreads; tid++)
         this->thread[tid]->setFuncExeInst(0);
+
+	//lokeshjindal15 init transform flags
+	start_transform_down = 0;
+	transforming_down = 0;
+	done_transform_down = 0;
 }
 
 template <class Impl>
@@ -658,8 +663,6 @@ FullO3CPU<Impl>::tick()
 	if (curTick() > 15270000 && ((rob.scaled == false) || (iew.LSQisScaled == false) || (regFile.scaled == false) || (iew.instQueue.scaled == false)))
 	{
 		static int start_drain = 0;
-		static int TF_DEBUG = 0;
-		static int REGFILE_DEBUG = 0;
 		if (!start_drain)
 		{
 		start_drain = 1;
@@ -672,73 +675,46 @@ FullO3CPU<Impl>::tick()
 		
 		if (isDrained())
 		{
-			assert(rob.isEmpty());//my ROB should be empty
-			assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
-			
-			std::cout << "*****TRANSFORM calling scale_TLB original size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
-			dtb->scale_TLB(2);
-			itb->scale_TLB(2);	
-			std::cout << "*****TRANSFORM DONE calling scale_TLB new size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
-
-			std::cout << "*****TRANSFORM calling scale_IQ" << endl;
-			iew.instQueue.scale_IQ(2);
-			iew.instQueue.update_IQ_threads(2);
-			iew.instQueue.scaled = true;
-			std::cout << "*****TRANSFORM DONE calling scale_IQ newIQentries:" << iew.instQueue.getnumEntries() << endl;
-
-			if (!REGFILE_DEBUG)
-			{	
-			regFile.print_params();
-			freeList.print_entries();
-			//Let's print the reg rename mapping
-			renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
-			std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
-			renameMap[0].restrict_archreg_mapping(2,1,1);	        	
-			renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
-			regFile.scale_regfile(2,1,1,&freeList);
-			renameMap[0].compact_regmapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
-			regFile.scaled = true;
-			std::cout << "*****TRANSFORM DONE calling functions to scale Phy Regfile" << endl;
-			regFile.print_params();
-			freeList.print_entries();
-
-			//rename.resetStage();
-			//rename.startupStage();
-			rename.takeOverFrom();
-			iew.instQueue.updatenumPhysRegs(regFile.totalNumPhysRegs());
-			scoreboard.updatenumPhysRegs(regFile.totalNumPhysRegs());
-			iew.instQueue.getDependencyGraph()->resize(regFile.totalNumPhysRegs());
-			iew.instQueue.getDependencyGraph()->reset();
-			}
-			else
-			{
-			regFile.scaled = true;
-			}
-
-			if (!TF_DEBUG)
-			{
-			std::cout << "*****TRANSFORM calling scale_rob" << endl;
-			rob.scale_rob(2);
-			rob.update_rob_threads(2);
-			//rob.resetState();
-			rob.takeOverFrom();
-			rob.scaled = true;
-			std::cout << "*****TRANSFORM DONE calling scale_rob" << endl;
-		
-			std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
-			iew.scale_LSQ(2);
-			iew.takeOverFrom();
-			iew.LSQisScaled = true;
-			std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
-			
+			transform_down_self();	
 			std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
 			drainResume();
 			Stats::dump();
 			Stats::reset();
 			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
-			}
+		}
+	}
+	if (0)
+	{
+		if (start_transform_down)
+		{
+		std::cout << "*****TRANSFORM going to call drain()" << endl;
+		Stats::dump();
+		Stats::reset();
+		drain(drainManager);
+		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
+		assert(done_transform_down == 0);
+		assert(transforming_down == 0);
+		transforming_down = 1;
+		start_transform_down = 0;
+		}
+		
+		if (transforming_down && isDrained())
+		{
+			assert(done_transform_down == 0);
+			transform_down_self();
+			
+			transforming_down = 0;
+			done_transform_down = 1;
+	
+			std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
+			drainResume();
+			Stats::dump();
+			Stats::reset();
+			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
 	} 
+
+ 
 
     if (!tickEvent.scheduled()) {
         if (_status == SwitchedOut) {
@@ -1852,6 +1828,63 @@ FullO3CPU<Impl>::updateThreadPriority()
 
         activeThreads.push_back(high_thread);
     }
+}
+
+template <class Impl>
+void
+FullO3CPU<Impl>::transform_down_self()
+{
+	assert(rob.isEmpty());//my ROB should be empty
+ 	assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
+ 	
+ 	std::cout << "*****TRANSFORM calling scale_TLB original size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
+ 	dtb->scale_TLB(2);
+ 	itb->scale_TLB(2);	
+ 	std::cout << "*****TRANSFORM DONE calling scale_TLB new size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
+
+ 	std::cout << "*****TRANSFORM calling scale_IQ" << endl;
+ 	iew.instQueue.scale_IQ(2);
+ 	iew.instQueue.update_IQ_threads(2);
+ 	iew.instQueue.scaled = true;
+ 	std::cout << "*****TRANSFORM DONE calling scale_IQ newIQentries:" << iew.instQueue.getnumEntries() << endl;
+
+ 	regFile.print_params();
+ 	freeList.print_entries();
+ 	//Let's print the reg rename mapping
+ 	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
+ 	renameMap[0].restrict_archreg_mapping(2,1,1);	        	
+ 	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	regFile.scale_regfile(2,1,1,&freeList);
+ 	renameMap[0].compact_regmapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	regFile.scaled = true;
+ 	std::cout << "*****TRANSFORM DONE calling functions to scale Phy Regfile" << endl;
+ 	regFile.print_params();
+ 	freeList.print_entries();
+
+ 	//rename.resetStage();
+ 	//rename.startupStage();
+ 	rename.takeOverFrom();
+ 	iew.instQueue.updatenumPhysRegs(regFile.totalNumPhysRegs());
+ 	scoreboard.updatenumPhysRegs(regFile.totalNumPhysRegs());
+ 	iew.instQueue.getDependencyGraph()->resize(regFile.totalNumPhysRegs());
+ 	iew.instQueue.getDependencyGraph()->reset();
+
+ 	std::cout << "*****TRANSFORM calling scale_rob" << endl;
+ 	rob.scale_rob(2);
+ 	rob.update_rob_threads(2);
+ 	//rob.resetState();
+ 	rob.takeOverFrom();
+ 	rob.scaled = true;
+ 	std::cout << "*****TRANSFORM DONE calling scale_rob" << endl;
+ 
+ 	std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
+ 	iew.scale_LSQ(2);
+ 	iew.takeOverFrom();
+ 	iew.LSQisScaled = true;
+ 	std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
+ 	
+
 }
 
 // Forward declaration of FullO3CPU.
