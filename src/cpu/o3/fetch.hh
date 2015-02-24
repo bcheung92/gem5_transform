@@ -573,8 +573,11 @@ class DefaultFetch
     /** Number of instruction fetched per cycle. */
     Stats::Formula fetchRate;
 
-  public://lokeshjindal15 variable to stop the fetch
-	bool start_drain; 
+  public://lokeshjindal15 function to expose branchPred
+	BPredUnit * getbranchPred()
+	{
+		return branchPred;
+	}
 };
 
 #endif //__CPU_O3_FETCH_HH__

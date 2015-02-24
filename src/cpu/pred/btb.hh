@@ -125,6 +125,18 @@ class DefaultBTB
 
     /** Number of bits to shift PC when calculating tag. */
     unsigned tagShiftAmt;
+
+public:
+	 //lokeshjindal15 function to scale the btb
+         void scale_btb (unsigned tf_scale_factor)
+         {
+                 numEntries /= tf_scale_factor;
+                 idxMask = numEntries - 1;
+         } 
+	unsigned getnumEntries()
+	{
+		return numEntries;
+	} 
 };
 
 #endif // __CPU_PRED_BTB_HH__

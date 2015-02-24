@@ -1837,7 +1837,12 @@ FullO3CPU<Impl>::transform_down_self()
 	assert(rob.isEmpty());//my ROB should be empty
  	assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
  	
- 	std::cout << "*****TRANSFORM calling scale_TLB original size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
+ 	
+	std::cout << "*****TRANSFORM calling scale_btb original size btb:" << fetch.getbranchPred()->getBTB()->getnumEntries() << endl;
+ 	fetch.getbranchPred()->getBTB()->scale_btb(2);
+	std::cout << "*****TRANSFORM calling scale_btb new size btb:" << fetch.getbranchPred()->getBTB()->getnumEntries() << endl;
+
+	std::cout << "*****TRANSFORM calling scale_TLB original size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
  	dtb->scale_TLB(2);
  	itb->scale_TLB(2);	
  	std::cout << "*****TRANSFORM DONE calling scale_TLB new size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;

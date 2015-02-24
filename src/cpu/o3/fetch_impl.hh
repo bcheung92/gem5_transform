@@ -155,8 +155,6 @@ DefaultFetch<Impl>::DefaultFetch(O3CPU *_cpu, DerivO3CPUParams *params)
         // which may not hold the entire cache line.
         fetchBuffer[tid] = new uint8_t[fetchBufferSize];
     }
-	//lokeshjindal15 init start_drain to false
-	start_drain = false;
 
 }
 

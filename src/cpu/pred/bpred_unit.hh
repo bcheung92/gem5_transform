@@ -290,6 +290,13 @@ class BPredUnit : public SimObject
     Stats::Scalar usedRAS;
     /** Stat for number of times the RAS is incorrect. */
     Stats::Scalar RASIncorrect;
+
+public:
+	//lokeshjindal15 function to expose BTB
+	DefaultBTB * getBTB()
+	{
+		return &BTB;
+	}
 };
 
 #endif // __CPU_PRED_BPRED_UNIT_HH__
