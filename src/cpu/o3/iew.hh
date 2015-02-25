@@ -486,6 +486,7 @@ public:
 
 	//Function to scale the LSQ of IEW lokeshjindal15
 	void scale_LSQ(unsigned tf_scale_factor_LSQ);
+	void scale_up_LSQ(unsigned tf_scale_factor_LSQ);
 	//Variable to keep track of whther LSQ has been scaled or not lokeshjindal15 
 	bool LSQisScaled;
 };

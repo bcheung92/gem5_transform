@@ -128,12 +128,9 @@ class DefaultBTB
 
 public:
 	 //lokeshjindal15 function to scale the btb
-         void scale_btb (unsigned tf_scale_factor)
-         {
-                 numEntries /= tf_scale_factor;
-                 idxMask = numEntries - 1;
-         } 
-	unsigned getnumEntries()
+         void scale_btb (unsigned tf_scale_factor);
+         void scale_up_btb (unsigned tf_scale_factor);
+         unsigned getnumEntries()
 	{
 		return numEntries;
 	} 

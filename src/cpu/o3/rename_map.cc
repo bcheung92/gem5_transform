@@ -281,11 +281,13 @@ UnifiedRenameMap::restrict_intreg_mapping(unsigned tf_regfile_scale_factor)
 		RegIndex phy = lookupInt(i);
 		if (phy < (regFile->numIntPhysRegs()/tf_regfile_scale_factor))//TODO FIXME check < or <=
 		{
-			std::cout << "restrict_intreg_mapping: Skipping phy:" << phy << " against regfile->numIntPhysRegs():" << regFile->numIntPhysRegs() << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			std::cout << "restrict_intreg_mapping: Skipping phy:" << phy << " against regfile->numIntPhysRegs():" << 
+			regFile->numIntPhysRegs() << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
 		}
 		else
 		{
-			std::cout << "restrict_intreg_mapping: REMAPPING phy:" << phy << " against regfile->numIntPhysRegs():" << regFile->numIntPhysRegs() << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			std::cout << "restrict_intreg_mapping: REMAPPING phy:" << phy << " against regfile->numIntPhysRegs():" << 
+			regFile->numIntPhysRegs() << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
 			while(1)
 			{
 			RenameInfo newpair = restrict_renameInt(i);
@@ -311,6 +313,21 @@ UnifiedRenameMap::restrict_intreg_mapping(unsigned tf_regfile_scale_factor)
  * copy the value from old phy reg to new phy reg.
  * Check if this new phy reg is valid , If not, get another free reg and repeat until you find one*/
 void
+UnifiedRenameMap::restrict_up_intreg_mapping(unsigned tf_regfile_scale_factor)
+{
+	std::cout << "restrict_up_intreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
+	for (RegIndex i = 0; i < TheISA::NumIntRegs; i++)
+	{
+		RegIndex phy = lookupInt(i);
+		assert(phy < (regFile->numIntPhysRegs()));//TODO FIXME check < or <=
+	}
+	std::cout << "restrict_intreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
+}
+/*for every arch reg, look up the phy reg and check if it will be "valid" for scaled regfile.
+ * If not, get a new phy reg from free list and the same time,
+ * copy the value from old phy reg to new phy reg.
+ * Check if this new phy reg is valid , If not, get another free reg and repeat until you find one*/
+void
 UnifiedRenameMap::restrict_floatreg_mapping(unsigned tf_regfile_scale_factor)
 {
 	std::cout << "restrict_floatreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
@@ -319,11 +336,13 @@ UnifiedRenameMap::restrict_floatreg_mapping(unsigned tf_regfile_scale_factor)
 		RegIndex phy = lookupFloat(i);
 		if (phy < (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()/tf_regfile_scale_factor))//TODO FIXME check < or <=
 		{
-			std::cout << "restrict_floatreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():" << (regFile->numIntPhysRegs() +regFile->numFloatPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			std::cout << "restrict_floatreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():" << 
+			(regFile->numIntPhysRegs() +regFile->numFloatPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
 		}
 		else
 		{
-			std::cout << "restrict_floatreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():" << (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			std::cout << "restrict_floatreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() + regfile->numFloatPhysRegs():" << 
+			(regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
 			while(1)
 			{
 			RenameInfo newpair = restrict_renameFloat(i);
@@ -349,6 +368,35 @@ UnifiedRenameMap::restrict_floatreg_mapping(unsigned tf_regfile_scale_factor)
  * copy the value from old phy reg to new phy reg.
  * Check if this new phy reg is valid , If not, get another free reg and repeat until you find one*/
 void
+UnifiedRenameMap::restrict_up_floatreg_mapping(unsigned tf_regfile_scale_factor)
+{
+	std::cout << "restrict_up_floatreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
+	for (RegIndex i = 0; i < TheISA::NumFloatRegs; i++)
+	{
+		RegIndex phy = lookupFloat(i);
+		if (phy >= regFile->numIntPhysRegs())//TODO FIXME check < or <=
+		{
+			std::cout << "restrict_up_floatreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() " << 
+			regFile->numIntPhysRegs() << endl;
+		}
+		else
+		{
+			std::cout << "restrict_up_floatreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() " << 
+			regFile->numIntPhysRegs() << endl;
+			RenameInfo newpair = restrict_renameFloat(i);
+			assert((newpair.first >= regFile->numIntPhysRegs()) && (newpair.first < regFile->numFloatPhysRegs()));//TODO FIXME check < or <=
+			FloatReg value = regFile->readFloatReg(newpair.second);
+			regFile->setFloatReg(newpair.first,value);
+		}
+	}
+	std::cout << "restrict_up_floatreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
+}
+
+/*for every arch reg, look up the phy reg and check if it will be "valid" for scaled regfile.
+ * If not, get a new phy reg from free list and the same time,
+ * copy the value from old phy reg to new phy reg.
+ * Check if this new phy reg is valid , If not, get another free reg and repeat until you find one*/
+void
 UnifiedRenameMap::restrict_ccreg_mapping(unsigned tf_regfile_scale_factor)
 {
 	std::cout << "restrict_ccreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
@@ -357,11 +405,13 @@ UnifiedRenameMap::restrict_ccreg_mapping(unsigned tf_regfile_scale_factor)
 		RegIndex phy = lookupCC(i);
 		if (phy < (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regFile->numCCPhysRegs()/tf_regfile_scale_factor))//TODO FIXME check < or <=
 		{
-			std::cout << "restrict_ccreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():" << (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regFile->numCCPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			std::cout << "restrict_ccreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():" << 
+			(regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regFile->numCCPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
 		}
 		else
 		{
-			std::cout << "restrict_ccreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():" << (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+  regFile->numCCPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
+			std::cout << "restrict_ccreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+ regfile->numCCPhysRegs():" << 
+			(regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()+  regFile->numCCPhysRegs()) << " with tf_regfile_scale_factor:" << tf_regfile_scale_factor << endl;
 			while(1)
 			{
 			RenameInfo newpair = restrict_renameCC(i);
@@ -380,6 +430,34 @@ UnifiedRenameMap::restrict_ccreg_mapping(unsigned tf_regfile_scale_factor)
 		}
 	}
 	std::cout << "restrict_ccreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
+}
+/*for every arch reg, look up the phy reg and check if it will be "valid" for scaled regfile.
+ * If not, get a new phy reg from free list and the same time,
+ * copy the value from old phy reg to new phy reg.
+ * Check if this new phy reg is valid , If not, get another free reg and repeat until you find one*/
+void
+UnifiedRenameMap::restrict_up_ccreg_mapping(unsigned tf_regfile_scale_factor)
+{
+	std::cout << "restrict_up_ccreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
+	for (RegIndex i = 0; i < TheISA::NumCCRegs; i++)
+	{
+		RegIndex phy = lookupCC(i);
+		if (phy >= (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()))//TODO FIXME check < or <=
+		{
+			std::cout << "restrict_up_ccreg_mapping: Skipping phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs():" << 
+			(regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()) << endl;
+		}
+		else
+		{
+			std::cout << "restrict_up_ccreg_mapping: REMAPPING phy:" << phy << " against regFile->numIntPhysRegs() + regFile->numFloatPhysRegs():" << 
+			(regFile->numIntPhysRegs() + regFile->numFloatPhysRegs()) << endl;
+			RenameInfo newpair = restrict_renameCC(i);
+			assert ((newpair.first >= (regFile->numIntPhysRegs() + regFile->numFloatPhysRegs())) && (newpair.first < regFile->totalNumPhysRegs()));//TODO FIXME check < or <=
+			CCReg value = regFile->readCCReg(newpair.second);
+			regFile->setCCReg(newpair.first,value);
+		}
+	}
+	std::cout << "restrict_up_ccreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
 } 
 
 void

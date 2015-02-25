@@ -416,6 +416,10 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
 	start_transform_down = 0;
 	transforming_down = 0;
 	done_transform_down = 0;
+	
+	start_transform_up = 0;
+	transforming_up = 0;
+	done_transform_up = 0;
 }
 
 template <class Impl>
@@ -1861,7 +1865,8 @@ FullO3CPU<Impl>::transform_down_self()
  	renameMap[0].restrict_archreg_mapping(2,1,1);	        	
  	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
  	regFile.scale_regfile(2,1,1,&freeList);
- 	renameMap[0].compact_regmapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	renameMap[0].compact_regmapping();//TODO FIXME check if needs to be called. I think this is wrong
+ 	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
  	regFile.scaled = true;
  	std::cout << "*****TRANSFORM DONE calling functions to scale Phy Regfile" << endl;
  	regFile.print_params();
@@ -1885,9 +1890,72 @@ FullO3CPU<Impl>::transform_down_self()
  
  	std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
  	iew.scale_LSQ(2);
- 	iew.takeOverFrom();
  	iew.LSQisScaled = true;
  	std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
+ 	
+	iew.takeOverFrom();//This is VERY IMP to do after all the updates to various data structures! yy
+
+}
+
+template <class Impl>
+void
+FullO3CPU<Impl>::transform_up_self()
+{
+	assert(rob.isEmpty());//my ROB should be empty
+ 	assert(!iew.ldstQueue.hasStoresToWB());//my LSQ should not be holding any entries pending for WB
+ 	
+ 	
+	std::cout << "*****TRANSFORM_UP calling scale_up_btb original size btb:" << fetch.getbranchPred()->getBTB()->getnumEntries() << endl;
+ 	fetch.getbranchPred()->getBTB()->scale_up_btb(2);
+	std::cout << "*****TRANSFORM_UP calling scale_up_btb new size btb:" << fetch.getbranchPred()->getBTB()->getnumEntries() << endl;
+
+	std::cout << "*****TRANSFORM_UP calling scale_up_TLB original size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
+ 	dtb->scale_up_TLB(2);
+ 	itb->scale_up_TLB(2);	
+ 	std::cout << "*****TRANSFORM_UP DONE calling scale_up_TLB new size dtb:" << dtb->getsize() << " itb:" << itb->getsize() << endl;
+
+ 	std::cout << "*****TRANSFORM_UP calling scale_up_IQ oldIQentries:" << iew.instQueue.getnumEntries() << " oldFreeEntries:" << iew.instQueue.numFreeEntries() << endl;
+ 	iew.instQueue.scale_up_IQ(2);
+ 	iew.instQueue.update_up_IQ_threads(2);
+ 	iew.instQueue.scaled = true;
+ 	std::cout << "*****TRANSFORM_UP DONE calling scale_up_IQ newIQentries:" << iew.instQueue.getnumEntries() << " newFreeEntries:" << iew.instQueue.numFreeEntries() << endl;
+
+ 	regFile.print_params();
+ 	freeList.print_entries();
+ 	//Let's print the reg rename mapping
+ 	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
+ 	regFile.scale_up_regfile(2,1,1,&freeList);
+ 	renameMap[0].restrict_up_archreg_mapping(2,1,1);	        	
+ 	//renameMap[0].compact_up_regmapping();//TODO FIXME check if needs to be called
+ 	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	regFile.scaled = true;
+ 	std::cout << "*****TRANSFORM DONE calling functions to scale Phy Regfile" << endl;
+ 	regFile.print_params();
+ 	freeList.print_entries();
+
+ 	//rename.resetStage();
+ 	//rename.startupStage();
+ 	rename.takeOverFrom();
+ 	iew.instQueue.updatenumPhysRegs(regFile.totalNumPhysRegs());
+ 	scoreboard.updatenumPhysRegs(regFile.totalNumPhysRegs());
+ 	iew.instQueue.getDependencyGraph()->resize(regFile.totalNumPhysRegs());
+ 	iew.instQueue.getDependencyGraph()->reset();
+
+ 	std::cout << "*****TRANSFORM_UP calling scale_up_rob" << endl;
+ 	rob.scale_up_rob(2);
+ 	rob.update_up_rob_threads(2);
+ 	//rob.resetState();
+ 	rob.takeOverFrom();
+ 	rob.scaled = true;
+ 	std::cout << "*****TRANSFORM_UP DONE calling scale_up_rob" << endl;
+ 
+ 	std::cout << "*****TRANSFORM_UP calling functions to scale LSQ" << endl;
+ 	iew.scale_up_LSQ(2);
+ 	iew.LSQisScaled = true;
+ 	std::cout << "*****TRANSFORM_UP DONE calling functions to scale LSQ" << endl;
+ 	
+	iew.takeOverFrom();//This is VERY IMP to do after all the updates to various data structures! yy
  	
 
 }

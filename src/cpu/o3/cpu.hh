@@ -751,7 +751,12 @@ public:
 	bool transforming_down;
 	bool done_transform_down;
 
+	bool start_transform_up;
+	bool transforming_up;
+	bool done_transform_up;
+	
 	void transform_down_self();
+	void transform_up_self();
 };
 
 #endif // __CPU_O3_CPU_HH__

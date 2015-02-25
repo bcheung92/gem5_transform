@@ -333,8 +333,10 @@ protected: //TODO FIXME once thread above is made protected, remove this
 public:
 	//Function to scale the entire LSQ
 	void scale_entire_lsq(unsigned tf_scale_factor_entire);
+	void scale_up_entire_lsq(unsigned tf_scale_factor_entire);
 	//Function to update all LSQunits per thread lokeshjindal15
 	void update_lsq_units(unsigned tf_scale_factor_entire);
+	void update_up_lsq_units(unsigned tf_scale_factor_entire);
 
 };
 

@@ -550,6 +550,7 @@ class LSQUnit {
 public:
 	//Function to scale the LSQunit on the fly lokeshjindal15
 	void scale_lsq_unit(unsigned tf_scale_factor);
+	void scale_up_lsq_unit(unsigned tf_scale_factor);
 
 };
 

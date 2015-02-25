@@ -552,7 +552,9 @@ class InstructionQueue
 		numPhysRegs = numphysregs;
 	}
 	void scale_IQ(unsigned tf_scale_factor);//lokeshjindal15
+	void scale_up_IQ(unsigned tf_scale_factor);//lokeshjindal15
 	void update_IQ_threads(unsigned tf_scale_factor);//lokeshjindal15
+	void update_up_IQ_threads(unsigned tf_scale_factor);//lokeshjindal15
 	bool scaled;
 	unsigned getnumEntries()
 	{

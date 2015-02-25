@@ -1567,6 +1567,15 @@ void
 InstructionQueue<Impl>::scale_IQ(unsigned tf_scale_factor)
 {
 	numEntries /= tf_scale_factor;
+	freeEntries = numEntries;
+}
+
+template <class Impl>
+void
+InstructionQueue<Impl>::scale_up_IQ(unsigned tf_scale_factor)
+{
+	numEntries *= tf_scale_factor;
+	freeEntries = numEntries;
 }
 
 template <class Impl>
@@ -1575,6 +1584,15 @@ InstructionQueue<Impl>::update_IQ_threads(unsigned tf_scale_factor)
 {
 	for (ThreadID tid = 0; tid  < numThreads; tid++) {
 		maxEntries[tid] /= tf_scale_factor;
+	}
+}
+
+template <class Impl>
+void
+InstructionQueue<Impl>::update_up_IQ_threads(unsigned tf_scale_factor)
+{
+	for (ThreadID tid = 0; tid  < numThreads; tid++) {
+		maxEntries[tid] *= tf_scale_factor;
 	}
 }
 #endif//__CPU_O3_INST_QUEUE_IMPL_HH__

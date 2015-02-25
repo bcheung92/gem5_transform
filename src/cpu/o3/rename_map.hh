@@ -394,6 +394,19 @@ class UnifiedRenameMap
 		restrict_ccreg_mapping(cc_scale_factor);
 	}
 
+	//Function to restrict the intreg mapping to valid phy regs after scaling lokeshjindal15
+	void restrict_up_intreg_mapping(unsigned tf_regfile_scale_factor);//lokeshjindal15
+	//Function to restrict the floatreg mapping lokeshjindal15
+	void restrict_up_floatreg_mapping(unsigned tf_regfile_scale_factor);//lokeshjindal15
+	//Function to restrict the ccreg mapping lokeshjindal15
+	void restrict_up_ccreg_mapping(unsigned tf_regfile_scale_factor);//lokeshjindal15
+	//Function to restrict the int/float/cc reg mapping
+	void restrict_up_archreg_mapping(unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor)//lokeshjindal15
+	{
+		restrict_up_intreg_mapping(int_scale_factor);
+		restrict_up_floatreg_mapping(float_scale_factor);
+		restrict_up_ccreg_mapping(cc_scale_factor);
+	}
 	//compacting functions to update the mapping after scaling - left shift due to the void created by regs on the left
 	void compact_regmapping();
 };

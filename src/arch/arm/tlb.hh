@@ -369,7 +369,18 @@ public:
 	{
 		size /= tf_scale_factor;
 	}	
-
+	
+	void scale_up_TLB (unsigned tf_scale_factor)
+	{
+		size *= tf_scale_factor;
+		//need to invalidate the new TLB entries
+		for (int x = (size/tf_scale_factor); x < size; x++)
+		{
+			TlbEntry *te;
+			te = &table[x];
+			te->valid = false;
+		}
+	}	
 
 };
 

@@ -286,6 +286,7 @@ class PhysRegFile
 	//scale the regfile structures lokeshjindal15
 	/*actually scale the phy reg file and also filter & compact the free list*/
         void scale_regfile (unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor, UnifiedFreeList *freeLis);//lokeshjindal15
+        void scale_up_regfile (unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor, UnifiedFreeList *freeLis);//lokeshjindal15
 	bool scaled;//lokeshjindal15
 	unsigned getsizeOfintRegFile()//lokeshjindal15
 	{
