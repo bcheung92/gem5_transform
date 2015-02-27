@@ -142,6 +142,7 @@ class SimpleRenameMap
     	 RenameInfo restrict_rename(RegIndex arch_reg);//lokeshjindal15
     	//compact function to update mapping of a map by subtracting the void created by regs to the left 
 	void compact_regmapping(PhysRegIndex subvalue);//lokeshjindal15
+	void compact_up_regmapping(PhysRegIndex subvalue);//lokeshjindal15
 };
 
 
@@ -303,7 +304,13 @@ class UnifiedRenameMap
         assert(regFile->isFloatPhysReg(phys_reg));
         return phys_reg;
     }
-
+    
+    PhysRegIndex lookupFloat_old(RegIndex rel_arch_reg) const
+    {
+        PhysRegIndex phys_reg = floatMap.lookup(rel_arch_reg);
+        assert(regFile->isFloatPhysReg_old(phys_reg));
+        return phys_reg;
+    }
     /**
      * Perform lookup() on a condition-code register, given a relative
      * condition-code register index.
@@ -312,6 +319,13 @@ class UnifiedRenameMap
     {
         PhysRegIndex phys_reg = ccMap.lookup(rel_arch_reg);
         assert(regFile->isCCPhysReg(phys_reg));
+        return phys_reg;
+    }
+    
+    PhysRegIndex lookupCC_old(RegIndex rel_arch_reg) const
+    {
+        PhysRegIndex phys_reg = ccMap.lookup(rel_arch_reg);
+        assert(regFile->isCCPhysReg_old(phys_reg));
         return phys_reg;
     }
 
@@ -404,11 +418,12 @@ class UnifiedRenameMap
 	void restrict_up_archreg_mapping(unsigned int_scale_factor, unsigned float_scale_factor, unsigned cc_scale_factor)//lokeshjindal15
 	{
 		restrict_up_intreg_mapping(int_scale_factor);
+		restrict_up_ccreg_mapping(cc_scale_factor);//CRUCIAL THAT YOU CALL THEM IN OPPOSITE ORDER CC before FLOAT
 		restrict_up_floatreg_mapping(float_scale_factor);
-		restrict_up_ccreg_mapping(cc_scale_factor);
 	}
 	//compacting functions to update the mapping after scaling - left shift due to the void created by regs on the left
 	void compact_regmapping();
+	void compact_up_regmapping();
 };
 
 #endif //__CPU_O3_RENAME_MAP_HH__

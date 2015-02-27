@@ -419,7 +419,7 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
 	
 	start_transform_up = 0;
 	transforming_up = 0;
-	done_transform_up = 0;
+	done_transform_up = 1;
 }
 
 template <class Impl>
@@ -664,7 +664,9 @@ FullO3CPU<Impl>::tick()
 	//	}
 	//}   
 	//if (curTick() > 13270000 && ((rob.halved == false) || (iew.LSQisScaled == false)))
-	if (curTick() > 15270000 && ((rob.scaled == false) || (iew.LSQisScaled == false) || (regFile.scaled == false) || (iew.instQueue.scaled == false)))
+	
+
+	if (0 && curTick() > 15270000 && ((rob.scaled == false) || (iew.LSQisScaled == false) || (regFile.scaled == false) || (iew.instQueue.scaled == false)))
 	{
 		static int start_drain = 0;
 		if (!start_drain)
@@ -687,7 +689,48 @@ FullO3CPU<Impl>::tick()
 			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
 	}
-	if (0)
+	
+	if (curTick() > 15270000)
+	{
+		static int start_drain_down_1 = 0;
+		if (!start_drain_down_1)
+		{
+		start_drain_down_1 = 1;
+		start_transform_down = 1;
+		}
+		
+	}
+	if ( 1 && curTick() > (15270000*10))
+	{
+		static int start_drain_up_1 = 0;
+		if (!start_drain_up_1)
+		{
+		start_drain_up_1 = 1;
+		start_transform_up = 1;
+		}
+		
+	}
+	if (curTick() > 15270000*50)
+	{
+		static int start_drain_down_2 = 0;
+		if (!start_drain_down_2)
+		{
+		start_drain_down_2 = 1;
+		start_transform_down = 1;
+		}
+		
+	}
+	if ( 1 && curTick() > (15270000*100))
+	{
+		static int start_drain_up_2 = 0;
+		if (!start_drain_up_2)
+		{
+		start_drain_up_2 = 1;
+		start_transform_up = 1;
+		}
+		
+	}
+	if (1)
 	{
 		if (start_transform_down)
 		{
@@ -698,6 +741,9 @@ FullO3CPU<Impl>::tick()
 		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
 		assert(done_transform_down == 0);
 		assert(transforming_down == 0);
+		assert(done_transform_up == 1);
+		assert(transforming_up == 0);
+		assert(start_transform_up == 0);
 		transforming_down = 1;
 		start_transform_down = 0;
 		}
@@ -705,10 +751,15 @@ FullO3CPU<Impl>::tick()
 		if (transforming_down && isDrained())
 		{
 			assert(done_transform_down == 0);
+			assert(done_transform_up == 1);
+			assert(start_transform_down == 0);
+			assert(start_transform_up == 0);
+			assert(transforming_up == 0);
 			transform_down_self();
 			
 			transforming_down = 0;
 			done_transform_down = 1;
+			done_transform_up = 0;
 	
 			std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
 			drainResume();
@@ -717,8 +768,45 @@ FullO3CPU<Impl>::tick()
 			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
 	} 
-
- 
+	if (1)
+	{
+		if (start_transform_up)
+		{
+		std::cout << "*****TRANSFORM going to call drain()" << endl;
+		Stats::dump();
+		Stats::reset();
+		drain(drainManager);
+		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
+		assert(done_transform_down == 1);
+		assert(transforming_down == 0);
+		assert(done_transform_up == 0);
+		assert(transforming_up == 0);
+		assert(start_transform_down == 0);
+		transforming_up = 1;
+		start_transform_up = 0;
+		}
+		
+		if (transforming_up && isDrained())
+		{
+			assert(done_transform_up == 0);
+			assert(done_transform_down == 1);
+			assert(start_transform_down == 0);
+			assert(start_transform_up == 0);
+			assert(transforming_down == 0);
+			transform_up_self();
+			
+			transforming_up = 0;
+			done_transform_up = 1;
+			done_transform_down = 0;
+	
+			std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
+			drainResume();
+			Stats::dump();
+			Stats::reset();
+			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
+		}
+	}
+ 	
 
     if (!tickEvent.scheduled()) {
         if (_status == SwitchedOut) {
@@ -1920,6 +2008,8 @@ FullO3CPU<Impl>::transform_up_self()
  	iew.instQueue.scaled = true;
  	std::cout << "*****TRANSFORM_UP DONE calling scale_up_IQ newIQentries:" << iew.instQueue.getnumEntries() << " newFreeEntries:" << iew.instQueue.numFreeEntries() << endl;
 
+        if(1)
+	{
  	regFile.print_params();
  	freeList.print_entries();
  	//Let's print the reg rename mapping
@@ -1941,7 +2031,7 @@ FullO3CPU<Impl>::transform_up_self()
  	scoreboard.updatenumPhysRegs(regFile.totalNumPhysRegs());
  	iew.instQueue.getDependencyGraph()->resize(regFile.totalNumPhysRegs());
  	iew.instQueue.getDependencyGraph()->reset();
-
+	}
  	std::cout << "*****TRANSFORM_UP calling scale_up_rob" << endl;
  	rob.scale_up_rob(2);
  	rob.update_up_rob_threads(2);

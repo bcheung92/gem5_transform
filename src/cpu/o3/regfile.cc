@@ -193,7 +193,7 @@ PhysRegFile::scale_up_regfile (unsigned int_scale_factor, unsigned float_scale_f
 			
 		//}
 	}
-	for (PhysRegIndex phy_reg = old_baseCCRegIndex; phy_reg < baseCCRegIndex; phy_reg++)
+	for (PhysRegIndex phy_reg = (baseFloatRegIndex + old_baseCCRegIndex - old_baseFloatRegIndex); phy_reg < baseCCRegIndex; phy_reg++)
 	{
 		((freeList->getFloatList())->getfreeRegs())->push(phy_reg);
 	}
@@ -213,7 +213,7 @@ PhysRegFile::scale_up_regfile (unsigned int_scale_factor, unsigned float_scale_f
 			
 		//}
 	}
-	for (PhysRegIndex phy_reg = old_totalNumRegs; phy_reg < totalNumRegs; phy_reg++)
+	for (PhysRegIndex phy_reg = (baseCCRegIndex + old_totalNumRegs - old_baseCCRegIndex) ; phy_reg < totalNumRegs; phy_reg++)
 	{
 		((freeList->getCCList())->getfreeRegs())->push(phy_reg);
 	}

@@ -165,6 +165,11 @@ class PhysRegFile
         return (baseFloatRegIndex <= reg_idx && reg_idx < baseCCRegIndex);
     }
 
+     bool isFloatPhysReg_old(PhysRegIndex reg_idx) const
+    {
+        return (old_baseFloatRegIndex <= reg_idx && reg_idx < old_baseCCRegIndex);
+    }
+
     /**
      * Return true if the specified physical register index
      * corresponds to a condition-code physical register.
@@ -172,6 +177,11 @@ class PhysRegFile
     bool isCCPhysReg(PhysRegIndex reg_idx)
     {
         return (baseCCRegIndex <= reg_idx && reg_idx < totalNumRegs);
+    }
+    
+    bool isCCPhysReg_old(PhysRegIndex reg_idx)
+    {
+        return (old_baseCCRegIndex <= reg_idx && reg_idx < old_totalNumRegs);
     }
 
     /** Reads an integer register. */
@@ -191,6 +201,19 @@ class PhysRegFile
 
         // Remove the base Float reg dependency.
         PhysRegIndex reg_offset = reg_idx - baseFloatRegIndex;
+
+        DPRINTF(IEW, "RegFile: Access to float register %i, has "
+                "data %#x\n", int(reg_idx), floatRegFile[reg_offset].q);
+
+        return floatRegFile[reg_offset].d;
+    }
+    
+    FloatReg readFloatReg_old(PhysRegIndex reg_idx) const
+    {
+        assert(isFloatPhysReg_old(reg_idx));
+
+        // Remove the base Float reg dependency.
+        PhysRegIndex reg_offset = reg_idx - old_baseFloatRegIndex;
 
         DPRINTF(IEW, "RegFile: Access to float register %i, has "
                 "data %#x\n", int(reg_idx), floatRegFile[reg_offset].q);
@@ -220,6 +243,19 @@ class PhysRegFile
 
         // Remove the base CC reg dependency.
         PhysRegIndex reg_offset = reg_idx - baseCCRegIndex;
+
+        DPRINTF(IEW, "RegFile: Access to cc register %i, has "
+                "data %#x\n", int(reg_idx), ccRegFile[reg_offset]);
+
+        return ccRegFile[reg_offset];
+    }
+
+    CCReg readCCReg_old(PhysRegIndex reg_idx)
+    {
+        assert(isCCPhysReg_old(reg_idx));
+
+        // Remove the base CC reg dependency.
+        PhysRegIndex reg_offset = reg_idx - old_baseCCRegIndex;
 
         DPRINTF(IEW, "RegFile: Access to cc register %i, has "
                 "data %#x\n", int(reg_idx), ccRegFile[reg_offset]);
