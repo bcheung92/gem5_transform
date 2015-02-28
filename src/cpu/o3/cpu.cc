@@ -734,11 +734,6 @@ FullO3CPU<Impl>::tick()
 	{
 		if (start_transform_down)
 		{
-		std::cout << "*****TRANSFORM going to call drain()" << endl;
-		Stats::dump();
-		Stats::reset();
-		drain(drainManager);
-		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
 		assert(done_transform_down == 0);
 		assert(transforming_down == 0);
 		assert(done_transform_up == 1);
@@ -746,6 +741,11 @@ FullO3CPU<Impl>::tick()
 		assert(start_transform_up == 0);
 		transforming_down = 1;
 		start_transform_down = 0;
+		std::cout << "*****TRANSFORM going to call drain()" << endl;
+		Stats::dump();
+		Stats::reset();
+		drain(drainManager);
+		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
 		}
 		
 		if (transforming_down && isDrained())
@@ -772,11 +772,6 @@ FullO3CPU<Impl>::tick()
 	{
 		if (start_transform_up)
 		{
-		std::cout << "*****TRANSFORM going to call drain()" << endl;
-		Stats::dump();
-		Stats::reset();
-		drain(drainManager);
-		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
 		assert(done_transform_down == 1);
 		assert(transforming_down == 0);
 		assert(done_transform_up == 0);
@@ -784,6 +779,11 @@ FullO3CPU<Impl>::tick()
 		assert(start_transform_down == 0);
 		transforming_up = 1;
 		start_transform_up = 0;
+		std::cout << "*****TRANSFORM going to call drain()" << endl;
+		Stats::dump();
+		Stats::reset();
+		drain(drainManager);
+		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
 		}
 		
 		if (transforming_up && isDrained())

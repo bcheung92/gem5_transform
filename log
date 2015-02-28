@@ -1,13 +1,13 @@
 gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
-gem5 compiled Feb 27 2015 17:30:41
-gem5 started Feb 27 2015 17:31:13
+gem5 compiled Feb 27 2015 19:11:35
+gem5 started Feb 27 2015 19:12:16
 gem5 executing on bigbird
 command line: ./build/ARM/gem5.opt --outdir=m5out --debug-flags=Drain configs/example/se.py --cmd=/research/ljindal/445.gobmk --options=--quiet --mode gtp --input=/research/ljindal/nicklas4.tst --output=445.gobmk.stdout --errout=445.gobmk.stderr --num-cpus=1 --caches -I 10000000000 --cpu-type=detailed
 Global frequency set at 1000000000000 ticks per second
 BTBPRINT _numEntries:4096 _tagBits:16 _instShiftAmt:2 idxMask:4095 tagMask:65535 tagShiftAmt:14
-      0: system.cpu.isa: ISA system set to: 0 0x4a2d000
+      0: system.cpu.isa: ISA system set to: 0 0x5d04000
 *****TRANSFORM totalNumRegs = 256+256+1280
 *********TRANSFORM REG_IDX after init is 1792
 0: system.remote_gdb.listener: listening for remote gdb #0 on port 7000
