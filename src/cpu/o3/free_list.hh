@@ -79,7 +79,7 @@ class SimpleFreeList
 
 	//return a pointer to the freeRegs queue //lokeshjindal15
 	std::queue<PhysRegIndex> * getfreeRegs(){ return &freeRegs;}
-
+/*
     void printFreeList()
     {
         int list_size = freeRegs.size();
@@ -98,7 +98,7 @@ class SimpleFreeList
        assert( list_size == freeRegs.size());
       assert( freeRegs.front() == first_reg);
     } 
-
+*/
 };
 
 
@@ -212,13 +212,15 @@ class UnifiedFreeList
     {
 	    std::cout << std::endl;
 	    std::cout << "FREELIST ENTRIES: numFreeIntRegs:" << numFreeIntRegs() << " numFreeFloatRegs:" << numFreeFloatRegs() << " numFreeCCRegs:" << numFreeCCRegs() << std::endl;
-	    std::cout << "***** Printing INT FREELIST" << std::endl;
+	    /*
+        std::cout << "***** Printing INT FREELIST" << std::endl;
 	    intList.printFreeList();
 	    std::cout << "***** Printing FLOAT FREELIST" << std::endl;
 	    floatList.printFreeList();
 	    std::cout << "***** Printing CC FREELIST" << std::endl;
 	    ccList.printFreeList();
     	    std::cout << std::endl;
+            */
     }
 };
 

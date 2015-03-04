@@ -318,8 +318,9 @@ UnifiedRenameMap::restrict_up_intreg_mapping(unsigned tf_regfile_scale_factor)
 	std::cout << "restrict_up_intreg_mapping BEFORE numFreeEntries:" << numFreeEntries() << std::endl;
 	for (RegIndex i = 0; i < TheISA::NumIntRegs; i++)
 	{
-		RegIndex phy = lookupInt(i);
-		assert(phy < (regFile->numIntPhysRegs()));//TODO FIXME check < or <=
+		//RegIndex phy = lookupInt(i);
+		//assert(phy < (regFile->numIntPhysRegs()));//TODO FIXME check < or <=
+		assert(lookupInt(i) < (regFile->numIntPhysRegs()));//optimizing for gem5.fast Essentially does what's mentioned in above 2 lines
 	}
 	std::cout << "restrict_intreg_mapping AFTER numFreeEntries:" << numFreeEntries() << std::endl;
 }

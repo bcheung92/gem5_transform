@@ -193,7 +193,7 @@ EnergyCtrl::write(PacketPtr pkt)
 
         //lokeshjindal15 TODO FIXME override with perf_level = 6 (800MHz) if asked for a lower frequency        
         assert( data >= 0);
-	if (data <= 6)
+	if (data > 6)
         {           
         	std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " changing perf_level/data from " << data << " to " << 6 << std::endl;  
                 data = 6;

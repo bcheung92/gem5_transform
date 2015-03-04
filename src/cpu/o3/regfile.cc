@@ -169,11 +169,11 @@ PhysRegFile::scale_up_regfile (unsigned int_scale_factor, unsigned float_scale_f
 	for (int i =0; i < list_size; i++)
 	{
 		PhysRegIndex phy_reg = ((freeList->getIntList())->getfreeRegs())->front();
-			//((freeList->getIntList())->getfreeRegs())->pop();
+			((freeList->getIntList())->getfreeRegs())->pop();
 		assert (phy_reg < old_baseFloatRegIndex);//TODO FIXME check < or <=
 		//if (phy_reg < baseFloatRegIndex)//TODO FIXME check < or <=
 		//{
-		//	((freeList->getIntList())->getfreeRegs())->push(phy_reg);
+			((freeList->getIntList())->getfreeRegs())->push(phy_reg);
 		//}	
 	}
 	for (PhysRegIndex phy_reg = old_baseFloatRegIndex; phy_reg < baseFloatRegIndex; phy_reg++)
