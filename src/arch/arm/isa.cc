@@ -420,6 +420,11 @@ ISA::readMiscReg(int misc_reg, ThreadContext *tc)
     CPSR cpsr = 0;
     PCState pc = 0;
     SCR scr = 0;
+    
+
+DPRINTF(MiscRegs, "LOKESH Reading misc reg %s for misc_reg=%d\n",miscRegName[misc_reg], misc_reg);
+
+
 
     if (misc_reg == MISCREG_CPSR) {
         cpsr = miscRegs[misc_reg];

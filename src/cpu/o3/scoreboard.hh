@@ -63,7 +63,6 @@ class Scoreboard
     /** Scoreboard of physical integer registers, saying whether or not they
      *  are ready. */
     std::vector<bool> regScoreBoard;
-
     /** The number of actual physical registers */
     unsigned numPhysRegs;
 
@@ -160,6 +159,15 @@ class Scoreboard
         {
                 numPhysRegs = numphysregs;
         }
+
+	void reset_scoreboard()
+	{
+		for (int i = 0; i < regScoreBoard.size(); i++)
+		{
+			regScoreBoard[i] = true;
+		}
+	}
+
 };
 
 #endif

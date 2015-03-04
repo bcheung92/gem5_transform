@@ -47,6 +47,8 @@
 #include "cpu/o3/regfile.hh"
 #include "cpu/reg_class.hh"
 
+#include "debug/Rename.hh"//lokeshjindal15 adding for debug prints
+
 /**
  * Register rename map for a single class of registers (e.g., integer
  * or floating point).  Because the register class is implicitly
@@ -290,6 +292,7 @@ class UnifiedRenameMap
     PhysRegIndex lookupInt(RegIndex rel_arch_reg) const
     {
         PhysRegIndex phys_reg = intMap.lookup(rel_arch_reg);
+	DPRINTF(Rename, "rename_map.hh lookupInt : rel_arch_reg=%d and phys_reg=%d numIntPhysRegs():%d\n", rel_arch_reg, phys_reg, regFile->numIntPhysRegs());
         assert(regFile->isIntPhysReg(phys_reg));
         return phys_reg;
     }
@@ -337,7 +340,7 @@ class UnifiedRenameMap
     {
         // misc regs aren't really renamed, just given an index
         // beyond the range of actual physical registers
-        PhysRegIndex phys_reg = rel_arch_reg + regFile->totalNumPhysRegs();
+        PhysRegIndex phys_reg = rel_arch_reg + regFile->misc_totalNumPhysRegs();
         return phys_reg;
     }
 
@@ -358,6 +361,7 @@ class UnifiedRenameMap
     void setIntEntry(RegIndex arch_reg, PhysRegIndex phys_reg)
     {
         assert(regFile->isIntPhysReg(phys_reg));
+        DPRINTF(Rename, "LOKESH setIntEntry arch_reg:%d to phys_reg:%d\n", arch_reg, phys_reg);
         intMap.setEntry(arch_reg, phys_reg);
     }
 
@@ -368,6 +372,7 @@ class UnifiedRenameMap
     void setFloatEntry(RegIndex arch_reg, PhysRegIndex phys_reg)
     {
         assert(regFile->isFloatPhysReg(phys_reg));
+        DPRINTF(Rename, "LOKESH setFloatEntry arch_reg:%d to phys_reg:%d\n", arch_reg, phys_reg);
         floatMap.setEntry(arch_reg, phys_reg);
     }
 
@@ -378,6 +383,7 @@ class UnifiedRenameMap
     void setCCEntry(RegIndex arch_reg, PhysRegIndex phys_reg)
     {
         assert(regFile->isCCPhysReg(phys_reg));
+        DPRINTF(Rename, "LOKESH setCCEntry arch_reg:%d to phys_reg:%d\n", arch_reg, phys_reg);
         ccMap.setEntry(arch_reg, phys_reg);
     }
 
@@ -424,6 +430,12 @@ class UnifiedRenameMap
 	//compacting functions to update the mapping after scaling - left shift due to the void created by regs on the left
 	void compact_regmapping();
 	void compact_up_regmapping();
+
+    PhysRegFile * getregFile()
+    {
+        return regFile;
+    }    
+
 };
 
 #endif //__CPU_O3_RENAME_MAP_HH__

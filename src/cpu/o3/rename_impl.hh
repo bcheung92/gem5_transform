@@ -997,6 +997,7 @@ DefaultRename<Impl>::renameSrcRegs(DynInstPtr &inst, ThreadID tid)
         PhysRegIndex renamed_reg;
 
         switch (regIdxToClass(src_reg, &rel_src_reg)) {
+        	DPRINTF(Rename, "[tid:%u]: LOKESH Looking up %s src_reg=%d rel_src_reg:%d\n", RegClassStrings[regIdxToClass(src_reg)], src_reg, rel_src_reg);
           case IntRegClass:
             flat_rel_src_reg = tc->flattenIntIndex(rel_src_reg);
             renamed_reg = map->lookupInt(flat_rel_src_reg);

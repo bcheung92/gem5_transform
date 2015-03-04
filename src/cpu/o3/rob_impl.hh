@@ -263,7 +263,7 @@ ROB<Impl>::retireHead(ThreadID tid)
     assert(head_inst->readyToCommit());
 
     DPRINTF(ROB, "[tid:%u]: Retiring head instruction, "
-            "instruction PC %s, [sn:%lli]\n", tid, head_inst->pcState(),
+            "instruction PC %s, numInstsInROB:%d [sn:%lli]\n", tid, head_inst->pcState(), numInstsInROB,
             head_inst->seqNum);
 
     --numInstsInROB;

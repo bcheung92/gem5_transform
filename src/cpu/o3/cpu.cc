@@ -690,7 +690,7 @@ FullO3CPU<Impl>::tick()
 		}
 	}
 	
-	if (curTick() > 15270000)
+	if (0 && curTick() > 15270000)
 	{
 		static int start_drain_down_1 = 0;
 		if (!start_drain_down_1)
@@ -700,7 +700,7 @@ FullO3CPU<Impl>::tick()
 		}
 		
 	}
-	if ( 1 && curTick() > (15270000*10))
+	if ( 0 && curTick() > (15270000*10))
 	{
 		static int start_drain_up_1 = 0;
 		if (!start_drain_up_1)
@@ -710,7 +710,7 @@ FullO3CPU<Impl>::tick()
 		}
 		
 	}
-	if (curTick() > 15270000*50)
+	if (0 && curTick() > 15270000*50)
 	{
 		static int start_drain_down_2 = 0;
 		if (!start_drain_down_2)
@@ -720,7 +720,7 @@ FullO3CPU<Impl>::tick()
 		}
 		
 	}
-	if ( 1 && curTick() > (15270000*100))
+	if ( 0 && curTick() > (15270000*100))
 	{
 		static int start_drain_up_2 = 0;
 		if (!start_drain_up_2)
@@ -1946,18 +1946,33 @@ FullO3CPU<Impl>::transform_down_self()
  	std::cout << "*****TRANSFORM DONE calling scale_IQ newIQentries:" << iew.instQueue.getnumEntries() << endl;
 
  	regFile.print_params();
- 	freeList.print_entries();
+    std::cout << "LOKESH BEFORE TRANSFORM_DOWN PRINTING FREELIST" << std::endl;
+    freeList.print_entries();
  	//Let's print the reg rename mapping
+    
+    std::cout << "LOKESH BEFORE TRANSFORM_DOWN PRINTING renameMap" << std::endl;
  	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
- 	std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
+    std::cout << "LOKESH BEFORE TRANSFORM_DOWN PRINTING commitRenameMap" << std::endl;
+ 	commitRenameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	
+    std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
  	renameMap[0].restrict_archreg_mapping(2,1,1);	        	
  	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
  	regFile.scale_regfile(2,1,1,&freeList);
  	renameMap[0].compact_regmapping();//TODO FIXME check if needs to be called. I think this is wrong
+    
+    std::cout << "LOKESH AFTER TRANSFORM_DOWN PRINTING renameMap" << std::endl;
  	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
- 	regFile.scaled = true;
+    
+    copyRenameMaptoCommit(&renameMap[0], &commitRenameMap[0]);
+    
+    std::cout << "LOKESH AFTER TRANSFORM_DOWN PRINTING commitRenameMap" << std::endl;
+ 	commitRenameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	
+    regFile.scaled = true;
  	std::cout << "*****TRANSFORM DONE calling functions to scale Phy Regfile" << endl;
  	regFile.print_params();
+    std::cout << "LOKESH PRINTING AFTER TRANSFORM_DOWN FREELIST" << std::endl;
  	freeList.print_entries();
 
  	//rename.resetStage();
@@ -1968,6 +1983,9 @@ FullO3CPU<Impl>::transform_down_self()
  	iew.instQueue.getDependencyGraph()->resize(regFile.totalNumPhysRegs());
  	iew.instQueue.getDependencyGraph()->reset();
 
+	//reset the scoreboard entries
+	scoreboard.reset_scoreboard();	
+
  	std::cout << "*****TRANSFORM calling scale_rob" << endl;
  	rob.scale_rob(2);
  	rob.update_rob_threads(2);
@@ -1975,6 +1993,8 @@ FullO3CPU<Impl>::transform_down_self()
  	rob.takeOverFrom();
  	rob.scaled = true;
  	std::cout << "*****TRANSFORM DONE calling scale_rob" << endl;
+	
+
  
  	std::cout << "*****TRANSFORM calling functions to scale LSQ" << endl;
  	iew.scale_LSQ(2);
@@ -1982,6 +2002,14 @@ FullO3CPU<Impl>::transform_down_self()
  	std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
  	
 	iew.takeOverFrom();//This is VERY IMP to do after all the updates to various data structures! yy
+
+	fetch.takeOverFrom();
+
+    	decode.takeOverFrom();
+
+    	rename.takeOverFrom();
+
+    	commit.takeOverFrom();
 
 }
 
@@ -2008,20 +2036,34 @@ FullO3CPU<Impl>::transform_up_self()
  	iew.instQueue.scaled = true;
  	std::cout << "*****TRANSFORM_UP DONE calling scale_up_IQ newIQentries:" << iew.instQueue.getnumEntries() << " newFreeEntries:" << iew.instQueue.numFreeEntries() << endl;
 
-        if(1)
-	{
  	regFile.print_params();
+    std::cout << "LOKESH BEFORE TRANSFORM_UP PRINTING FREELIST" << std::endl;
+    freeList.print_entries();
  	freeList.print_entries();
- 	//Let's print the reg rename mapping
+ 	
+    //Let's print the reg rename mapping
+    std::cout << "LOKESH BEFORE TRANSFORM_UP PRINTING renameMap" << std::endl;
  	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
- 	std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
+    std::cout << "LOKESH BEFORE TRANSFORM_UP PRINTING commitRenameMap" << std::endl;
+ 	commitRenameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	
+    std::cout << "*****TRANSFORM calling functions to scale Phy Regfile" << endl;
  	regFile.scale_up_regfile(2,1,1,&freeList);
  	renameMap[0].restrict_up_archreg_mapping(2,1,1);	        	
  	//renameMap[0].compact_up_regmapping();//TODO FIXME check if needs to be called
+    
+    std::cout << "LOKESH AFTER TRANSFORM_UP PRINTING renameMap" << std::endl;
  	renameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
- 	regFile.scaled = true;
+    
+    copyRenameMaptoCommit(&renameMap[0], &commitRenameMap[0]);
+    
+    std::cout << "LOKESH AFTER TRANSFORM_UP PRINTING commitRenameMap" << std::endl;
+ 	commitRenameMap[0].unified_print_mapping();//call UnifiedRenameMap::print_mapping for thread 0 FIXME TODO generalize for all threads
+ 	
+    regFile.scaled = true;
  	std::cout << "*****TRANSFORM DONE calling functions to scale Phy Regfile" << endl;
  	regFile.print_params();
+    std::cout << "LOKESH AFTER TRANSFORM_UP PRINTING FREELIST" << std::endl;
  	freeList.print_entries();
 
  	//rename.resetStage();
@@ -2031,8 +2073,11 @@ FullO3CPU<Impl>::transform_up_self()
  	scoreboard.updatenumPhysRegs(regFile.totalNumPhysRegs());
  	iew.instQueue.getDependencyGraph()->resize(regFile.totalNumPhysRegs());
  	iew.instQueue.getDependencyGraph()->reset();
-	}
- 	std::cout << "*****TRANSFORM_UP calling scale_up_rob" << endl;
+	
+	//reset the scoreboard entries
+	scoreboard.reset_scoreboard();	
+ 	
+	std::cout << "*****TRANSFORM_UP calling scale_up_rob" << endl;
  	rob.scale_up_rob(2);
  	rob.update_up_rob_threads(2);
  	//rob.resetState();
@@ -2046,9 +2091,45 @@ FullO3CPU<Impl>::transform_up_self()
  	std::cout << "*****TRANSFORM_UP DONE calling functions to scale LSQ" << endl;
  	
 	iew.takeOverFrom();//This is VERY IMP to do after all the updates to various data structures! yy
- 	
+	
+	fetch.takeOverFrom();
+
+    	decode.takeOverFrom();
+
+    	rename.takeOverFrom();
+
+    	commit.takeOverFrom();
 
 }
 
+template <class Impl>
+void
+FullO3CPU<Impl>::copyRenameMaptoCommit(typename CPUPolicy::RenameMap * src_rename_map, typename CPUPolicy::RenameMap * dest_rename_map)
+{
+    for (RegIndex i = 0; i < TheISA::NumIntRegs; i++)
+    {
+        RegIndex phy = src_rename_map->lookupInt(i);
+        assert((src_rename_map->getregFile())->isIntPhysReg(phy));
+        assert((dest_rename_map->getregFile())->isIntPhysReg(phy));
+        dest_rename_map->setIntEntry(i, phy);
+    }
+
+    for (RegIndex i = 0; i < TheISA::NumFloatRegs; i++)
+    {
+        RegIndex phy = src_rename_map->lookupFloat(i);
+        assert((src_rename_map->getregFile())->isFloatPhysReg(phy));
+        assert((dest_rename_map->getregFile())->isFloatPhysReg(phy));
+        dest_rename_map->setFloatEntry(i, phy);
+    }
+
+    for (RegIndex i = 0; i < TheISA::NumCCRegs; i++)
+    {
+        RegIndex phy = src_rename_map->lookupCC(i);
+        assert((src_rename_map->getregFile())->isCCPhysReg(phy));
+        assert((dest_rename_map->getregFile())->isCCPhysReg(phy));
+        dest_rename_map->setCCEntry(i, phy);
+    }
+}
+  
 // Forward declaration of FullO3CPU.
 template class FullO3CPU<O3CPUImpl>;

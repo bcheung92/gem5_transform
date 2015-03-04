@@ -757,6 +757,9 @@ public:
 	
 	void transform_down_self();
 	void transform_up_self();
+
+    void copyRenameMaptoCommit(typename CPUPolicy::RenameMap * src_rename_map, typename CPUPolicy::RenameMap * dest_rename_map);
+
 };
 
 #endif // __CPU_O3_CPU_HH__

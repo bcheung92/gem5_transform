@@ -58,6 +58,9 @@ PhysRegFile::PhysRegFile(unsigned _numPhysicalIntRegs,
     old_baseCCRegIndex = -1;//lokeshjindal15
     old_totalNumRegs = -1;//lokeshjindal15
     scaled = false;
+	
+    init_misc_totalNumRegs = _numPhysicalIntRegs + _numPhysicalFloatRegs + _numPhysicalCCRegs;
+
 }
 
 

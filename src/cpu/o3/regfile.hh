@@ -100,6 +100,8 @@ class PhysRegFile
     unsigned old_baseFloatRegIndex;//lokeshjindal15
     unsigned old_baseCCRegIndex;//lokeshjindal15
     unsigned old_totalNumRegs;//lokeshjindal15;
+    
+    unsigned init_misc_totalNumRegs;//lokeshjindal15;
 
   public:
     /**
@@ -131,6 +133,8 @@ class PhysRegFile
     
     /** @return the total number of physical registers. */
     unsigned totalNumPhysRegs() const { return totalNumRegs; }
+
+    unsigned misc_totalNumPhysRegs() const { return init_misc_totalNumRegs; }
 
     /** @return the OLD number of integer physical registers. */
     unsigned old_numIntPhysRegs() const { return old_baseFloatRegIndex; }

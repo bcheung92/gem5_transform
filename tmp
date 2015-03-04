@@ -1,58 +1,16 @@
-Usage
-=====
-  gem5.opt [gem5 options] script.py [script options]
-
-gem5 is copyrighted software; use the --copyright option for details.
-
-Options
-=======
---version               show program's version number and exit
---help, -h              show this help message and exit
---build-info, -B        Show build information
---copyright, -C         Show full copyright information
---readme, -R            Show the readme
---outdir=DIR, -d DIR    Set the output directory to DIR [Default: m5out]
---redirect-stdout, -r   Redirect stdout (& stderr, without -e) to file
---redirect-stderr, -e   Redirect stderr to file
---stdout-file=FILE      Filename for -r redirection [Default: simout]
---stderr-file=FILE      Filename for -e redirection [Default: simerr]
---interactive, -i       Invoke the interactive interpreter after running the
-                        script
---pdb                   Invoke the python debugger before running the script
---path=PATH[:PATH], -p PATH[:PATH]
-                        Prepend PATH to the system path when invoking the
-                        script
---quiet, -q             Reduce verbosity
---verbose, -v           Increase verbosity
-
-Statistics Options
-------------------
---stats-file=FILE       Sets the output file for statistics [Default:
-                        stats.txt]
-
-Configuration Options
----------------------
---dump-config=FILE      Dump configuration output file [Default: config.ini]
---json-config=FILE      Create JSON output of the configuration [Default:
-                        config.json]
---dot-config=FILE       Create DOT & pdf outputs of the configuration
-                        [Default: config.dot]
-
-Debugging Options
------------------
---debug-break=TIME[,TIME]
-                        Tick to create a breakpoint
---debug-help            Print help on debug flags
---debug-flags=FLAG[,FLAG]
-                        Sets the flags for debug output (-FLAG disables a
-                        flag)
---debug-start=TIME      Start debug output at TIME (must be in ticks)
---debug-file=FILE       Sets the output file for debug [Default: cout]
---debug-ignore=EXPR     Ignore EXPR sim objects
---remote-gdb-port=REMOTE_GDB_PORT
-                        Remote gdb base port (set to 0 to disable listening)
-
-Help Options
-------------
---list-sim-objects      List all built-in SimObjects, their params and default
-                        values
+*****TRANSFORM calling scale_rob
+*****TRANSFORM make_rob_half original size = 192new rob size = 96
+*****TRANSFORM update_rob_threads  tid 0 old maxEntries:192 new maxEntries:96
+*****TRANSFORM DONE calling scale_rob
+*****TRANSFORM_UP calling scale_up_rob
+*****TRANSFORM_UP original size = 96new rob size = 192
+*****TRANSFORM_UP update_up_rob_threads  tid 0 old maxEntries:96 new maxEntries:192
+*****TRANSFORM_UP DONE calling scale_up_rob
+*****TRANSFORM calling scale_rob
+*****TRANSFORM make_rob_half original size = 192new rob size = 96
+*****TRANSFORM update_rob_threads  tid 0 old maxEntries:192 new maxEntries:96
+*****TRANSFORM DONE calling scale_rob
+*****TRANSFORM_UP calling scale_up_rob
+*****TRANSFORM_UP original size = 96new rob size = 192
+*****TRANSFORM_UP update_up_rob_threads  tid 0 old maxEntries:96 new maxEntries:192
+*****TRANSFORM_UP DONE calling scale_up_rob
