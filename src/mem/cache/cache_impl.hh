@@ -1306,7 +1306,7 @@ void
 Cache<TagStore>::memWriteback()
 {
     WrappedBlkVisitor visitor(*this, &Cache<TagStore>::writebackVisitor);
-    tags->forEachBlk(visitor);
+    tags->forEachBlk(visitor);//ADDCODE lokeshjindal15 instead of calling writeback for each cacheblock, neeed to call for blocks that are getting power gated. check if block is dirty or not also implemented within the visitor function.
 }
 
 template<class TagStore>

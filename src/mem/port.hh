@@ -114,6 +114,11 @@ class Port
     /** Get the port id. */
     PortID getId() const { return id; }
 
+    MemObject* getOwner()//lokeshjindal15 function to expose the I/D-cache to cpu
+    {
+        return &owner;
+    }
+
 };
 
 /** Forward declaration */
@@ -202,6 +207,11 @@ class MasterPort : public BaseMasterPort
      * Unbind this master port and the associated slave port.
      */
     void unbind();
+
+    SlavePort* getPeerPort()//lokeshjindal15
+    {
+        return _slavePort;
+    }
 
     /**
      * Send an atomic request packet, where the data is moved and the

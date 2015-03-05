@@ -556,6 +556,18 @@ void
 FullO3CPU<Impl>::tick()
 {
     DPRINTF(O3CPU, "\n\nFullO3CPU: Ticking main, FullO3CPU.\n");
+
+    //TODO FIXME remove this hack
+    static int print_once = 0;
+
+    if (print_once == 0)
+    {
+        print_once = 1;
+        do_something_with_dcache();
+    }
+
+
+
     assert(!switchedOut());
     assert(getDrainState() != Drainable::Drained);
 

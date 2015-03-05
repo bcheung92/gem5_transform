@@ -68,6 +68,9 @@
 #include "params/DerivO3CPU.hh"
 #include "sim/process.hh"
 
+#include "mem/cache/cache.hh"//lokeshjindal15
+#include "mem/cache/tags/lru.hh"//lokeshjindal15
+
 template <class>
 class Checker;
 class ThreadContext;
@@ -759,6 +762,12 @@ public:
 	void transform_up_self();
 
     void copyRenameMaptoCommit(typename CPUPolicy::RenameMap * src_rename_map, typename CPUPolicy::RenameMap * dest_rename_map);
+
+    void do_something_with_dcache()
+    {
+        ((Cache<LRU>*)(((getDataPort()).getPeerPort())->getOwner()))->print_cache_message();
+        //((((getDataPort()).getPeerPort())->getOwner())).do_something_with_memobject();
+    }
 
 };
 

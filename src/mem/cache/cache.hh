@@ -421,6 +421,11 @@ class Cache : public BaseCache
      */
     virtual void serialize(std::ostream &os);
     void unserialize(Checkpoint *cp, const std::string &section);
+
+    void print_cache_message()
+    {
+        std::cout << "LOKESH I am being called from inside Cache!" << std::endl;
+    }
 };
 
 #endif // __CACHE_HH__

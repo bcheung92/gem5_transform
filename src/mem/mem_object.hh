@@ -91,6 +91,10 @@ class MemObject : public ClockedObject
      */
     virtual BaseSlavePort& getSlavePort(const std::string& if_name,
                                         PortID idx = InvalidPortID);
+    void do_something_with_memobject()
+    {
+        std::cout << "LOKESH I am in MemObject right now!" << std::endl;
+    }
 };
 
 #endif //__MEM_MEM_OBJECT_HH__
