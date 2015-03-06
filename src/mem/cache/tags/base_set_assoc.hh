@@ -59,6 +59,25 @@
 #include "mem/packet.hh"
 #include "params/BaseSetAssoc.hh"
 
+/*Notes by lokeshjindal15
+ * Class BaseSetAssoc:
+ * has a filed blklist which is a list of pointers of type CacheBlk.
+ * has fields assoc (associativity) and numSets (# of sets in cache)
+ * sets => pointer of type CacheSet<CacheBlk> * a linear array of all the sets in cache
+ *          sets = new Cacheset<CacheBlk>[numSets]
+ * blks => pointer of type CacheBlk * a linear array of all the blocks in the cache
+ *          blks = new CacheBlk[numSets * assoc]
+ * dataBlks => pointer fo type uint8_t * a linear array of actual storage of data
+ *              dataBlks = new uint8_t[numSets * assoc * blkSize];
+ * setShift => amount to shift the address to get the set
+ * tagShift => amount to shift the address to get the tag
+ * setMask => Mask out all bits that aren't part of the set index
+ * blkMask => Mask out all bits that aren't part of the block offset
+ * function invalidate => Invalidate the given block pass parameter of type CacheBlk
+ *
+ */
+
+
 /**
  * A BaseSetAssoc cache tag store.
  * @sa  \ref gem5MemorySystem "gem5 Memory System"

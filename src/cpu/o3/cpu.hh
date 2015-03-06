@@ -769,6 +769,8 @@ public:
         //((((getDataPort()).getPeerPort())->getOwner())).do_something_with_memobject();
     }
 
+    void scaleL1Ddown();
+
 };
 
 #endif // __CPU_O3_CPU_HH__

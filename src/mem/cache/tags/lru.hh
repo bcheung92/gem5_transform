@@ -53,6 +53,11 @@
 #include "mem/cache/tags/base_set_assoc.hh"
 #include "params/LRU.hh"
 
+/* notes by lokeshjindal15
+ * No change require here to change associativity of cache on-the-fly
+ */
+
+
 class LRU : public BaseSetAssoc
 {
   public:
@@ -74,6 +79,11 @@ class LRU : public BaseSetAssoc
     BlkType* findVictim(Addr addr) const;
     void insertBlock(PacketPtr pkt, BlkType *blk);
     void invalidate(BlkType *blk);
+
+    void do_something_with_lru()//lokeshjindal15
+    {
+        std::cout << std::endl << "********** LOKESH I am being called from inside LRU **************" << std::endl << std::endl;
+    }
 };
 
 #endif // __MEM_CACHE_TAGS_LRU_HH__

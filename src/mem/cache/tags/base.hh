@@ -56,6 +56,11 @@
 #include "params/BaseTags.hh"
 #include "sim/clocked_object.hh"
 
+/*Notes by lokeshjindal15
+ * Simply defines a BaseTags class from ClockedObject
+ * Has fields blkSize, size of cache, hitlatency and pointer to parent cache, BaseCache *cache
+*/
+
 class BaseCache;
 
 /**

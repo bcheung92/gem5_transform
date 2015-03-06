@@ -425,6 +425,7 @@ class Cache : public BaseCache
     void print_cache_message()
     {
         std::cout << "LOKESH I am being called from inside Cache!" << std::endl;
+        tags->do_something_with_lru();
     }
 };
 

@@ -52,6 +52,14 @@
 
 #include "mem/cache/blk.hh" // base class
 
+/* Notes by lokeshjindal15
+ * class Cacheset:
+ * assoc => associativity of this set
+ * Blktype **blks => pointers to blocks in this set
+ *  
+ */
+
+
 /**
  * An associative set of cache blocks.
  */

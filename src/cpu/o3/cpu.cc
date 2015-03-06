@@ -2142,6 +2142,16 @@ FullO3CPU<Impl>::copyRenameMaptoCommit(typename CPUPolicy::RenameMap * src_renam
         dest_rename_map->setCCEntry(i, phy);
     }
 }
-  
+
+/*function to scale down Dcache
+ *
+ */
+template <class Impl>
+void
+FullO3CPU<Impl>::scaleL1Ddown()
+{
+    Cache<LRU>* DCachePtr = ((Cache<LRU>*)(((getDataPort()).getPeerPort())->getOwner()));
+    std::cout << "*****TRANSFORM scaleL1Ddown: DCachePtr:" << DCachePtr << std::endl;
+}
 // Forward declaration of FullO3CPU.
 template class FullO3CPU<O3CPUImpl>;
