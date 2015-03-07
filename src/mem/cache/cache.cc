@@ -44,8 +44,8 @@
 // Template Instantiations
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-template class Cache<FALRU>;
+//template class Cache<FALRU>; //UNCOMMENT THIS TODO FIXME lokeshjindal15 also look into base.cc create function
 template class Cache<LRU>;
-template class Cache<RandomRepl>;
+template class Cache<RandomRepl>;//TODO FIXME HACK REMOVE
 
 #endif //DOXYGEN_SHOULD_SKIP_THIS

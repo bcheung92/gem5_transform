@@ -77,6 +77,16 @@
  *
  */
 
+/* lokeshjindal15 changes for scaling associativity
+ * like in Cache class ../cache_impl.hh
+ * the function tags->forEachBlock is called inside block visitor function
+ * for invalidate and writebacks
+ * use exactly same architecture just change forEachBlock to
+ * a new function like forEachScaledBlock...
+ * and the functions writeback and invalidate can also be modified to their scaling versions 
+ * in cahce_impl.hh and these scaling versions can be called inside one main function called 
+ * scale_cache_down()
+ */
 
 /**
  * A BaseSetAssoc cache tag store.
@@ -105,7 +115,8 @@ class BaseSetAssoc : public BaseTags
 
   protected:
     /** The associativity of the cache. */
-    const unsigned assoc;
+    //const unsigned assoc;
+    unsigned assoc;//lokeshjindal15 was originally defined as const as above
     /** The number of sets in the cache. */
     const unsigned numSets;
     /** Whether tags and data are accessed sequentially. */
@@ -407,6 +418,73 @@ public:
         for (unsigned i = 0; i < numSets * assoc; ++i) {
             if (!visitor(blks[i]))
                 return;
+        }
+    }
+    
+    template <typename v>
+    void forEachBlkScaleDown(v &visitor, unsigned tfscalefac) {//lokeshjindal15
+        unsigned new_assoc = assoc/tfscalefac;
+        unsigned checkedinset = 0;
+        for (unsigned i = new_assoc; i < numSets * assoc; ++i) {
+           assert(checkedinset <= (assoc - new_assoc));
+           if (checkedinset != (assoc - new_assoc))
+           { 
+               std::cout << "foreachblkscaleDown: dispatching blk:" << i << std::endl;
+               checkedinset++; 
+               if (!visitor(blks[i]))
+                {
+                    warn_once("base_set_assoc.hh: foreachblkscaleDown: stopped at block i:%d numSets:%d assoc:%di new_assoc:%d\n", i, numSets, assoc, new_assoc);
+                    return;
+                }
+           }
+           else
+           {
+               checkedinset = 0;
+               i = i + new_assoc - 1;
+           }
+        }
+    }
+
+    template <typename v>
+    void forEachBlkScaleUp(v &visitor, unsigned tfscalefac) {//lokeshjindal15
+        unsigned new_assoc = assoc * tfscalefac;
+        unsigned checkedinset = 0;
+        for (unsigned i = assoc; i < numSets * new_assoc; ++i) {
+           assert(checkedinset <= (new_assoc - assoc));
+           if (checkedinset != (new_assoc - assoc))
+           { 
+               std::cout << "foreachblkscaleUp: dispatching blk:" << i << std::endl;
+               checkedinset++; 
+               visitor(blks[i]);
+              if (!visitor(blks[i]))
+                {
+                    warn_once("base_set_assoc.hh: foreachblkscaleDown: stopped at block i:%d numSets:%d assoc:%di new_assoc:%d\n", i, numSets, assoc, new_assoc);
+                    return;
+                }  
+           }
+           else
+           {
+               checkedinset = 0;
+               i = i + assoc - 1;
+           }
+        }
+    }
+
+    void updateAssocDown(unsigned tfscalefac)
+    {
+        assoc /= tfscalefac;
+    }
+    
+    void updateAssocUp(unsigned tfscalefac)
+    {
+        assoc *= tfscalefac;
+    }
+    
+    void updateAssocCachesets()
+    {
+        for (unsigned i = 0; i < numSets; ++i)
+        {
+            sets[i].assoc = assoc;
         }
     }
 };

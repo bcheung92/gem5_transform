@@ -305,11 +305,20 @@ class Cache : public BaseCache
      */
     PacketPtr writebackBlk(BlkType *blk);
 
-
+protected:
+public://lokeshjindal15 were protected originally as above
+    void printAllBlks();
+    void scaleCacheDown(unsigned tfScaleFac);//lokeshjindal15
+    void scaleCacheUp(unsigned tfScaleFac);//lokeshjindal15
     void memWriteback();
+    void memWritebackScaleDown(unsigned tfScaleFac);//lokeshjindal15
+    void memWritebackScaleUp(unsigned tfScaleFac);//lokeshjindal15
     void memInvalidate();
+    void memInvalidateScaleDown(unsigned tfScaleFac);//lokeshjindal15
+    void memInvalidateScaleUp(unsigned tfScaleFac);//lokeshjindal15
     bool isDirty() const;
 
+protected:
     /**
      * Cache block visitor that writes back dirty cache blocks using
      * functional writes.

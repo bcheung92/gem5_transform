@@ -397,6 +397,12 @@ class CacheBlkPrintWrapper : public Printable
     virtual ~CacheBlkPrintWrapper() {}
     void print(std::ostream &o, int verbosity = 0,
                const std::string &prefix = "") const;
+
+    bool operator()(CacheBlk &passedBlk){//lokeshjindal15
+        blk = &passedBlk;
+        print(std::cout);
+        return true;
+    }
 };
 
 /**

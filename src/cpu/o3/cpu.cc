@@ -702,6 +702,22 @@ FullO3CPU<Impl>::tick()
 		}
 	}
 	
+    if (1 && curTick() > 15270000)
+	{
+		static int print_cache = 0;
+		if (!print_cache)
+		{
+		print_cache = 1;
+        Cache<LRU> * dcacheptr = getDcachePtr();
+        std::cout << std::endl << "***** LOKESH print dcache BEFORE invalidate! *****" << std:: endl;
+        dcacheptr->printAllBlks();
+        dcacheptr->memWriteback();
+        dcacheptr->memInvalidate();
+        std::cout << std::endl << "***** LOKESH print dcache AFTER invalidate! *****" << std:: endl;
+        dcacheptr->printAllBlks();
+		}
+		
+	}
 	if (0 && curTick() > 15270000)
 	{
 		static int start_drain_down_1 = 0;
@@ -2153,5 +2169,12 @@ FullO3CPU<Impl>::scaleL1Ddown()
     Cache<LRU>* DCachePtr = ((Cache<LRU>*)(((getDataPort()).getPeerPort())->getOwner()));
     std::cout << "*****TRANSFORM scaleL1Ddown: DCachePtr:" << DCachePtr << std::endl;
 }
+
+template <class Impl>
+Cache<LRU>* FullO3CPU<Impl>::getDcachePtr()
+{
+    return ((Cache<LRU>*)(((getDataPort()).getPeerPort())->getOwner()));
+}
+
 // Forward declaration of FullO3CPU.
 template class FullO3CPU<O3CPUImpl>;

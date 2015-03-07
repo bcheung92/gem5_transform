@@ -770,6 +770,7 @@ public:
     }
 
     void scaleL1Ddown();
+    Cache<LRU> * getDcachePtr();
 
 };
 
