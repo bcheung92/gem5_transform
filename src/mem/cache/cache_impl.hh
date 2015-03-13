@@ -1315,10 +1315,12 @@ template<class TagStore>
 void
 Cache<TagStore>::scaleCacheDown(unsigned tfScaleFac)//lokeshjindal15
 {
+    std::cout << "cache_impl.hh: ::scaleCacheDown calling memWritebackScaleDown(" << tfScaleFac << ")" << std::endl;
     memWritebackScaleDown(tfScaleFac);
+    std::cout << "cache_impl.hh: ::scaleCacheDown calling memInvalidateScaleDown(" << tfScaleFac << ")" << std::endl;
     memInvalidateScaleDown(tfScaleFac);
-    tags->updateAssocDown(tfScaleFac);
-    tags->updateAssocCachesets();
+    tags->updateAssocDown(tfScaleFac); //TODO FIXME UNCOMMENT
+    tags->updateAssocCachesets();//TODO FIXME UNCOMMENT
 }
 
 /*

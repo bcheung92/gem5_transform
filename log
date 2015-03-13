@@ -2091,3 +2091,4 @@ info: Increasing stack size by one page.
 info: Increasing stack size by one page.
 info: Increasing stack size by one page.
 info: Increasing stack size by one page.
+Exiting @ tick 55251610000 because target called exit()

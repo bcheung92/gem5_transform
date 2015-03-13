@@ -117,6 +117,7 @@ class BaseSetAssoc : public BaseTags
     /** The associativity of the cache. */
     //const unsigned assoc;
     unsigned assoc;//lokeshjindal15 was originally defined as const as above
+    unsigned orig_assoc;//lokeshjindal15 was originally defined as const as above
     /** The number of sets in the cache. */
     const unsigned numSets;
     /** Whether tags and data are accessed sequentially. */
@@ -125,8 +126,11 @@ class BaseSetAssoc : public BaseTags
     /** The cache sets. */
     SetType *sets;
 
+  protected:
+  public://lokeshjindal15 TODO FIXME was protected originally
     /** The cache blocks. */
     BlkType *blks;
+  protected:
     /** The data blocks, 1 per cache block. */
     uint8_t *dataBlks;
 
@@ -415,7 +419,8 @@ public:
      */
     template <typename V>
     void forEachBlk(V &visitor) {
-        for (unsigned i = 0; i < numSets * assoc; ++i) {
+        //for (unsigned i = 0; i < numSets * assoc; ++i) {
+        for (unsigned i = 0; i < numSets * orig_assoc; ++i) {
             if (!visitor(blks[i]))
                 return;
         }
@@ -424,49 +429,67 @@ public:
     template <typename v>
     void forEachBlkScaleDown(v &visitor, unsigned tfscalefac) {//lokeshjindal15
         unsigned new_assoc = assoc/tfscalefac;
-        unsigned checkedinset = 0;
-        for (unsigned i = new_assoc; i < numSets * assoc; ++i) {
-           assert(checkedinset <= (assoc - new_assoc));
-           if (checkedinset != (assoc - new_assoc))
-           { 
-               std::cout << "foreachblkscaleDown: dispatching blk:" << i << std::endl;
-               checkedinset++; 
-               if (!visitor(blks[i]))
-                {
-                    warn_once("base_set_assoc.hh: foreachblkscaleDown: stopped at block i:%d numSets:%d assoc:%di new_assoc:%d\n", i, numSets, assoc, new_assoc);
+        //unsigned checkedinset = 0;
+        //for (unsigned i = new_assoc; i < numSets * assoc; ++i) {
+        //for (unsigned i = 0; i < numSets * assoc; ++i) {//TODO FIXME uncomment above
+        //    std::cout << std::endl<< " foreachblkscaleDown: checking i:" << i << " addr:" << &blks[i] << " "  << blks[i].print() << std::endl;//TODO FIXME remove addr
+           //assert(checkedinset <= (assoc - new_assoc));
+           //if (checkedinset != (assoc - new_assoc))
+           //{ 
+           //    std::cout << "dispatching blk:" << i << std::endl;
+           //    checkedinset++; 
+           //    if (!visitor(blks[i]))
+           //     {
+           //         warn_once("base_set_assoc.hh: foreachblkscaleDown: stopped at block i:%d numSets:%d assoc:%di new_assoc:%d\n", i, numSets, assoc, new_assoc);
+           //         return;
+           //     }
+           //}
+           //else
+           //{
+           //    checkedinset = 0;
+           //    i = i + new_assoc - 1;
+           //}
+        //}
+        for (unsigned i = 0; i < numSets; i++)
+        {
+            for (unsigned j = new_assoc; j < assoc; j++)
+            {
+                if(!visitor(*(sets[i].blks[j])))
                     return;
-                }
-           }
-           else
-           {
-               checkedinset = 0;
-               i = i + new_assoc - 1;
-           }
+            }
         }
     }
 
     template <typename v>
     void forEachBlkScaleUp(v &visitor, unsigned tfscalefac) {//lokeshjindal15
         unsigned new_assoc = assoc * tfscalefac;
-        unsigned checkedinset = 0;
-        for (unsigned i = assoc; i < numSets * new_assoc; ++i) {
-           assert(checkedinset <= (new_assoc - assoc));
-           if (checkedinset != (new_assoc - assoc))
-           { 
-               std::cout << "foreachblkscaleUp: dispatching blk:" << i << std::endl;
-               checkedinset++; 
-               visitor(blks[i]);
-              if (!visitor(blks[i]))
-                {
-                    warn_once("base_set_assoc.hh: foreachblkscaleDown: stopped at block i:%d numSets:%d assoc:%di new_assoc:%d\n", i, numSets, assoc, new_assoc);
+        //unsigned checkedinset = 0;
+        //for (unsigned i = assoc; i < numSets * new_assoc; ++i) {
+        //   assert(checkedinset <= (new_assoc - assoc));
+        //   if (checkedinset != (new_assoc - assoc))
+        //   { 
+        //       std::cout << "foreachblkscaleUp: dispatching blk:" << i << std::endl;
+        //       checkedinset++; 
+        //       visitor(blks[i]);
+        //      if (!visitor(blks[i]))
+        //        {
+        //            warn_once("base_set_assoc.hh: foreachblkscaleDown: stopped at block i:%d numSets:%d assoc:%di new_assoc:%d\n", i, numSets, assoc, new_assoc);
+        //            return;
+        //        }  
+        //   }
+        //   else
+        //   {
+        //       checkedinset = 0;
+        //       i = i + assoc - 1;
+        //   }
+        //}
+        for (unsigned i = 0; i < numSets; i++)
+        {
+            for (unsigned j = assoc; j < new_assoc; j++)
+            {
+                if(!visitor(*(sets[i].blks[j])))
                     return;
-                }  
-           }
-           else
-           {
-               checkedinset = 0;
-               i = i + assoc - 1;
-           }
+            }
         }
     }
 

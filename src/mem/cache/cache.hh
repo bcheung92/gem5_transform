@@ -165,9 +165,11 @@ class Cache : public BaseCache
         MemSidePort(const std::string &_name, Cache<TagStore> *_cache,
                     const std::string &_label);
     };
-
+  protected:
+  public://lokeshjindal15 TODO FIXME tags was protected originally
     /** Tag and data Storage */
     TagStore *tags;
+  protected:
 
     /** Prefetcher */
     BasePrefetcher *prefetcher;

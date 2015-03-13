@@ -58,6 +58,8 @@ BaseSetAssoc::BaseSetAssoc(const Params *p)
      numSets(p->size / (p->block_size * p->assoc)),
      sequentialAccess(p->sequential_access)
 {
+
+    orig_assoc = p->assoc;//lokeshjindal15 variable to hold original associativity for transformation
     // Check parameters
     if (blkSize < 4 || !isPowerOf2(blkSize)) {
         fatal("Block size must be at least 4 and a power of 2");
@@ -146,8 +148,8 @@ BaseSetAssoc::print() const {
         // link in the data blocks
         for (unsigned j = 0; j < assoc; ++j) {
             BlkType *blk = sets[i].blks[j];
-            if (blk->isValid())
-                cache_state += csprintf("\tset: %d block: %d %s\n", i, j,
+            //if (blk->isValid())//lokeshjindal15 TODO FIXME UNCOMMENT
+                cache_state += csprintf("\tset: %d block: %d addr:%p %s\n", i, j, blk,//TODO FIXME remove addr
                         blk->print());
         }
     }

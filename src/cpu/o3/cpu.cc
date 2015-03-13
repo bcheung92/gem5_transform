@@ -704,17 +704,40 @@ FullO3CPU<Impl>::tick()
 	
     if (1 && curTick() > 15270000)
 	{
-		static int print_cache = 0;
-		if (!print_cache)
+		static int print_cache_down = 0;
+		if (!print_cache_down)
 		{
-		print_cache = 1;
+		print_cache_down = 1;
         Cache<LRU> * dcacheptr = getDcachePtr();
-        std::cout << std::endl << "***** LOKESH print dcache BEFORE invalidate! *****" << std:: endl;
-        dcacheptr->printAllBlks();
-        dcacheptr->memWriteback();
-        dcacheptr->memInvalidate();
-        std::cout << std::endl << "***** LOKESH print dcache AFTER invalidate! *****" << std:: endl;
-        dcacheptr->printAllBlks();
+        std::cout << std::endl << "***** LOKESH print dcache BEFORE scaling DOWN! *****" << std:: endl;
+        //dcacheptr->printAllBlks();
+        std::cout << dcacheptr->tags->print() << std::endl;
+        //dcacheptr->memWriteback();
+        //dcacheptr->memInvalidate();
+        dcacheptr->scaleCacheDown(2);
+        std::cout << std::endl << "***** LOKESH print dcache AFTER scaling DOWN! *****" << std:: endl;
+        //dcacheptr->printAllBlks();
+        std::cout << dcacheptr->tags->print() << std::endl;
+		}
+		
+	}
+    
+    if (1 && curTick() > (4*15270000))
+	{
+		static int print_cache_up = 0;
+		if (!print_cache_up)
+		{
+		print_cache_up = 1;
+        Cache<LRU> * dcacheptr = getDcachePtr();
+        std::cout << std::endl << "***** LOKESH print dcache BEFORE scaling UP! *****" << std:: endl;
+        //dcacheptr->printAllBlks();
+        std::cout << dcacheptr->tags->print() << std::endl;
+        //dcacheptr->memWriteback();
+        //dcacheptr->memInvalidate();
+        dcacheptr->scaleCacheUp(2);
+        std::cout << std::endl << "***** LOKESH print dcache AFTER scaling UP! *****" << std:: endl;
+        //dcacheptr->printAllBlks();
+        std::cout << dcacheptr->tags->print() << std::endl;
 		}
 		
 	}
