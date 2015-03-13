@@ -771,6 +771,7 @@ public:
 
     void scaleL1Ddown();
     Cache<LRU> * getDcachePtr();
+    Cache<LRU> * getIcachePtr();
 
 };
 

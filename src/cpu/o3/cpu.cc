@@ -558,13 +558,13 @@ FullO3CPU<Impl>::tick()
     DPRINTF(O3CPU, "\n\nFullO3CPU: Ticking main, FullO3CPU.\n");
 
     //TODO FIXME remove this hack
-    static int print_once = 0;
+    //static int print_once = 0;
 
-    if (print_once == 0)
-    {
-        print_once = 1;
-        do_something_with_dcache();
-    }
+    //if (print_once == 0)
+    //{
+    //    print_once = 1;
+    //    do_something_with_dcache();
+    //}
 
 
 
@@ -702,7 +702,7 @@ FullO3CPU<Impl>::tick()
 		}
 	}
 	
-    if (1 && curTick() > 15270000)
+    if (0 && curTick() > 15270000)
 	{
 		static int print_cache_down = 0;
 		if (!print_cache_down)
@@ -722,7 +722,7 @@ FullO3CPU<Impl>::tick()
 		
 	}
     
-    if (1 && curTick() > (4*15270000))
+    if (0 && curTick() > (4*15270000))
 	{
 		static int print_cache_up = 0;
 		if (!print_cache_up)
@@ -2062,6 +2062,31 @@ FullO3CPU<Impl>::transform_down_self()
 
     	commit.takeOverFrom();
 
+    //scale down Dcache
+    Cache<LRU> * dcacheptr = getDcachePtr();
+    std::cout << std::endl << "***** LOKESH print dcache BEFORE scaling DOWN! *****" << std:: endl;
+    //dcacheptr->printAllBlks();
+    std::cout << dcacheptr->tags->print() << std::endl;
+    //dcacheptr->memWriteback();
+    //dcacheptr->memInvalidate();
+    dcacheptr->scaleCacheDown(2);
+    std::cout << std::endl << "***** LOKESH print dcache AFTER scaling DOWN! *****" << std:: endl;
+    //dcacheptr->printAllBlks();
+    std::cout << dcacheptr->tags->print() << std::endl;
+
+    //scale down Icache
+    Cache<LRU> * icacheptr = getIcachePtr();
+    std::cout << std::endl << "***** LOKESH print icache BEFORE scaling DOWN! *****" << std:: endl;
+    //icacheptr->printAllBlks();
+    std::cout << icacheptr->tags->print() << std::endl;
+    //icacheptr->memWriteback();
+    //icacheptr->memInvalidate();
+    icacheptr->scaleCacheDown(2);
+    std::cout << std::endl << "***** LOKESH print icache AFTER scaling DOWN! *****" << std:: endl;
+    //icacheptr->printAllBlks();
+    std::cout << icacheptr->tags->print() << std::endl;
+
+
 }
 
 template <class Impl>
@@ -2151,6 +2176,31 @@ FullO3CPU<Impl>::transform_up_self()
 
     	commit.takeOverFrom();
 
+    //scale Dcache up
+    Cache<LRU> * dcacheptr = getDcachePtr();
+    std::cout << std::endl << "***** LOKESH print dcache BEFORE scaling UP! *****" << std:: endl;
+    //dcacheptr->printAllBlks();
+    std::cout << dcacheptr->tags->print() << std::endl;
+    //dcacheptr->memWriteback();
+    //dcacheptr->memInvalidate();
+    dcacheptr->scaleCacheUp(2);
+    std::cout << std::endl << "***** LOKESH print dcache AFTER scaling UP! *****" << std:: endl;
+    //dcacheptr->printAllBlks();
+    std::cout << dcacheptr->tags->print() << std::endl;
+
+    //scale Icache up
+    Cache<LRU> * icacheptr = getIcachePtr();
+    std::cout << std::endl << "***** LOKESH print icache BEFORE scaling UP! *****" << std:: endl;
+    //icacheptr->printAllBlks();
+    std::cout << icacheptr->tags->print() << std::endl;
+    //icacheptr->memWriteback();
+    //icacheptr->memInvalidate();
+    icacheptr->scaleCacheUp(2);
+    std::cout << std::endl << "***** LOKESH print icache AFTER scaling UP! *****" << std:: endl;
+    //icacheptr->printAllBlks();
+    std::cout << icacheptr->tags->print() << std::endl;
+
+
 }
 
 template <class Impl>
@@ -2197,6 +2247,12 @@ template <class Impl>
 Cache<LRU>* FullO3CPU<Impl>::getDcachePtr()
 {
     return ((Cache<LRU>*)(((getDataPort()).getPeerPort())->getOwner()));
+}
+
+template <class Impl>
+Cache<LRU>* FullO3CPU<Impl>::getIcachePtr()
+{
+    return ((Cache<LRU>*)(((getInstPort()).getPeerPort())->getOwner()));
 }
 
 // Forward declaration of FullO3CPU.
