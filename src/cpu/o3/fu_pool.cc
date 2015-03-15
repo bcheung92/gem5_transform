@@ -96,11 +96,30 @@ FUPool::FUPool(const Params *p)
     //  Iterate through the list of FUDescData structures
     //
     const vector<FUDesc *> &paramList =  p->FUList;
-    for (FUDDiterator i = paramList.begin(); i != paramList.end(); ++i) {
+    //for (FUDDiterator i = paramList.begin(); i != paramList.end(); ++i) {
+    int _i = 0;
+    for (FUDDiterator i = paramList.begin(); i != paramList.end(); ++i, _i++) {//lokeshjindal15 TODO FIXME
 
+        //lokeshjindal15 update params to store num of FUs
+        switch(_i)
+        {
+            case 0: num_simplint = ((*i)->number);
+                    break;
+            case 1: num_cmplxint = ((*i)->number);
+                    break;
+            case 2: num_load = ((*i)->number);
+                    break;
+            case 3: num_store = ((*i)->number);
+                    break;
+            case 4: num_fp = ((*i)->number);
+                    break;
+            default: warn_once("TRANSFORM : fu_pool.cc: FUPool::FUPool could not find a matching case for _i=%d\n", _i);
+                    break;
+        }
         //
         //  Don't bother with this if we're not going to create any FU's
         //
+        std::cout << "FUPool() param#" << _i  << " number:" << ((*i)->number);
         if ((*i)->number) {
             //
             //  Create the FuncUnit object from this structure
@@ -113,15 +132,20 @@ FUPool::FUPool(const Params *p)
 
             OPDDiterator j = (*i)->opDescList.begin();
             OPDDiterator end = (*i)->opDescList.end();
-            for (; j != end; ++j) {
+            //for (; j != end; ++j) {
+            int _j = 0;
+            for (; j != end; ++j, _j++) {//lokeshjindal15 TODO FIXME
                 // indicate that this pool has this capability
+                std::cout << " _j#" << _j ;
                 capabilityList.set((*j)->opClass);
 
                 // Add each of the FU's that will have this capability to the
                 // appropriate queue.
                 for (int k = 0; k < (*i)->number; ++k)
+                {
+                    std::cout << " k:" << k << " opClass:" << (*j)->opClass << std::endl; 
                     fuPerCapList[(*j)->opClass].addFU(numFU + k);
-
+                }
                 // indicate that this FU has the capability
                 fu->addCapability((*j)->opClass, (*j)->opLat, (*j)->issueLat);
 
@@ -138,7 +162,9 @@ FUPool::FUPool(const Params *p)
             fu->name = (*i)->name() + "(0)";
             funcUnits.push_back(fu);
 
-            for (int c = 1; c < (*i)->number; ++c) {
+            int _c = 0;
+            for (int c = 1; c < (*i)->number; ++c, _c++) {
+                std::cout << " dup#" << _c << std::endl;
                 ostringstream s;
                 numFU++;
                 FuncUnit *fu2 = new FuncUnit(*fu);
@@ -155,6 +181,21 @@ FUPool::FUPool(const Params *p)
     for (int i = 0; i < numFU; i++) {
         unitBusy[i] = false;
     }
+
+    //lokeshjindal15 maintain a backup copy of FU data structures
+    for ( int i = 0; i < Num_OpClasses; i++)
+    {
+        fuPerCapList[i].org_funcUnitsIdx = fuPerCapList[i].funcUnitsIdx;
+        fuPerCapList[i].org_size = fuPerCapList[i].size;
+    }
+    std::cout << "********************* START FUPool # of FUs ****************" << std::endl;
+    std::cout << "num_simplint:" << num_simplint << std::endl;
+    std::cout << "num_cmplxint:" << num_cmplxint << std::endl;
+    std::cout << "num_load:" << num_load << std::endl;
+    std::cout << "num_store:" << num_store << std::endl;
+    std::cout << "num_fp:" << num_fp << std::endl;
+    std::cout << "********************* END FUPool # of FUs ****************" << std::endl;
+
 }
 
 void
@@ -255,6 +296,20 @@ FUPool::dump()
     }
 }
 
+void
+FUPool::dump_fuPerCapList()
+{
+   std::cout << "************** START FUPool::dump_fuPerCapList *************" << std::endl;
+   for (int i = 0; i < Num_OpClasses; i++)
+   {
+       std::cout << "i=" << i << " fuPerCapList[" << i << "].size:" << fuPerCapList[i].size << std::endl; 
+       for (int j = 0 ; j < fuPerCapList[i].size; j++)
+       {
+           std::cout << " funcUnitsIdx[" << j << "]=" << fuPerCapList[i].funcUnitsIdx[j] << std::endl;
+       }
+   }
+   std::cout << "************** END FUPool::dump_fuPerCapList *************" << std::endl;
+}
 bool
 FUPool::isDrained() const
 {
@@ -284,4 +339,59 @@ FUPool *
 FUPoolParams::create()
 {
     return new FUPool(this);
+}
+
+void
+FUPool::scaleDownALUs(unsigned tfScaleFac)
+{
+    int d_num_simplint = num_simplint / tfScaleFac;
+    for ( int i = 0; i < Num_OpClasses; i++)
+    {
+        for ( int j = 0; j < fuPerCapList[i].size; j++)
+        {
+            for ( int toignore = d_num_simplint; toignore < num_simplint; toignore++)
+            {
+                if (fuPerCapList[i].funcUnitsIdx[j] == toignore)
+                {
+                    fuPerCapList[i].funcUnitsIdx.erase(fuPerCapList[i].funcUnitsIdx.begin() + j);
+                    fuPerCapList[i].size--;
+                    fuPerCapList[i].idx = 0;
+                    assert(fuPerCapList[i].size == fuPerCapList[i].funcUnitsIdx.size());
+                }
+            }
+        }
+    }
+}
+void
+FUPool::scaleDownFPUs(unsigned tfScaleFac)
+{
+    int d_num_fp = num_fp / tfScaleFac;
+    int numOtherFUs = num_simplint + num_cmplxint + num_load + num_store;
+    for ( int i = 0; i < Num_OpClasses; i++)
+    {
+        for ( int j = 0; j < fuPerCapList[i].size; j++)
+        {
+            for ( int toignore = (numOtherFUs + d_num_fp); toignore < (numOtherFUs + num_fp); toignore++)
+            {
+                if (fuPerCapList[i].funcUnitsIdx[j] == toignore)
+                {
+                    fuPerCapList[i].funcUnitsIdx.erase(fuPerCapList[i].funcUnitsIdx.begin() + j);
+                    fuPerCapList[i].size--;
+                    fuPerCapList[i].idx = 0;
+                    assert(fuPerCapList[i].size == fuPerCapList[i].funcUnitsIdx.size());
+                }
+            }
+        }
+    }
+}
+
+void
+FUPool::scaleUpFUs()
+{
+    for ( int i = 0; i < Num_OpClasses; i++)
+    {
+        fuPerCapList[i].funcUnitsIdx = fuPerCapList[i].org_funcUnitsIdx;
+        fuPerCapList[i].size = fuPerCapList[i].org_size;
+        fuPerCapList[i].idx = 0;
+    }
 }

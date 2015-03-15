@@ -1,0 +1,217 @@
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 compiled Mar 14 2015 23:08:42
+gem5 started Mar 14 2015 23:09:36
+gem5 executing on bigbird
+command line: ./build/ARM/gem5.opt --outdir=m5out_test_noscale --debug-flags=Drain configs/example/se.py --cmd=/research/ljindal/445.gobmk --options=--quiet --mode gtp --input=/research/ljindal/nicklas4.tst --output=445.gobmk.stdout.noscale --errout=445.gobmk.stderr.noscale --num-cpus=1 --caches -I 10000000000 --cpu-type=arm_detailed
+Global frequency set at 1000000000000 ticks per second
+BTBPRINT _numEntries:2048 _tagBits:18 _instShiftAmt:2 idxMask:2047 tagMask:262143 tagShiftAmt:13
+FUPool() param#0 number:2 _j#0 k:0 opClass:1
+ k:1 opClass:1
+ dup#0
+FUPool() param#1 number:1 _j#0 k:0 opClass:2
+ _j#1 k:0 opClass:3
+ _j#2 k:0 opClass:32
+FUPool() param#2 number:1 _j#0 k:0 opClass:30
+FUPool() param#3 number:1 _j#0 k:0 opClass:31
+FUPool() param#4 number:2 _j#0 k:0 opClass:10
+ k:1 opClass:10
+ _j#1 k:0 opClass:11
+ k:1 opClass:11
+ _j#2 k:0 opClass:12
+ k:1 opClass:12
+ _j#3 k:0 opClass:13
+ k:1 opClass:13
+ _j#4 k:0 opClass:14
+ k:1 opClass:14
+ _j#5 k:0 opClass:15
+ k:1 opClass:15
+ _j#6 k:0 opClass:16
+ k:1 opClass:16
+ _j#7 k:0 opClass:17
+ k:1 opClass:17
+ _j#8 k:0 opClass:18
+ k:1 opClass:18
+ _j#9 k:0 opClass:19
+ k:1 opClass:19
+ _j#10 k:0 opClass:20
+ k:1 opClass:20
+ _j#11 k:0 opClass:21
+ k:1 opClass:21
+ _j#12 k:0 opClass:22
+ k:1 opClass:22
+ _j#13 k:0 opClass:23
+ k:1 opClass:23
+ _j#14 k:0 opClass:24
+ k:1 opClass:24
+ _j#15 k:0 opClass:25
+ k:1 opClass:25
+ _j#16 k:0 opClass:26
+ k:1 opClass:26
+ _j#17 k:0 opClass:27
+ k:1 opClass:27
+ _j#18 k:0 opClass:28
+ k:1 opClass:28
+ _j#19 k:0 opClass:29
+ k:1 opClass:29
+ _j#20 k:0 opClass:4
+ k:1 opClass:4
+ _j#21 k:0 opClass:5
+ k:1 opClass:5
+ _j#22 k:0 opClass:6
+ k:1 opClass:6
+ _j#23 k:0 opClass:8
+ k:1 opClass:8
+ _j#24 k:0 opClass:9
+ k:1 opClass:9
+ _j#25 k:0 opClass:7
+ k:1 opClass:7
+ dup#0
+********************* START FUPool # of FUs ****************
+num_simplint:2
+num_cmplxint:1
+num_load:1
+num_store:1
+num_fp:2
+********************* END FUPool # of FUs ****************
+      0: system.cpu.isa: ISA system set to: 0 0x4a9a400
+*****TRANSFORM totalNumRegs = 128+192+640
+*********TRANSFORM REG_IDX after init is 960
+0: system.remote_gdb.listener: listening for remote gdb #0 on port 7006
+**** REAL SIMULATION ****
+info: Entering event queue @ 0.  Starting simulation...
+LOKESH I am being called from inside Cache!
+
+********** LOKESH I am being called from inside LRU **************
+
+Function Unit Pool (system.cpu.fuPool)
+======================================
+Free List:
+  [0] : system.cpu.fuPool.FUList0(0) 
+  [1] : system.cpu.fuPool.FUList0(1) 
+  [2] : system.cpu.fuPool.FUList1(0) 
+  [3] : system.cpu.fuPool.FUList2(0) 
+  [4] : system.cpu.fuPool.FUList3(0) 
+  [5] : system.cpu.fuPool.FUList4(0) 
+  [6] : system.cpu.fuPool.FUList4(1) 
+======================================
+Busy List:
+************** START FUPool::dump_fuPerCapList *************
+i=0 fuPerCapList[0].size:0
+i=1 fuPerCapList[1].size:2
+ funcUnitsIdx[0]=0
+ funcUnitsIdx[1]=1
+i=2 fuPerCapList[2].size:1
+ funcUnitsIdx[0]=2
+i=3 fuPerCapList[3].size:1
+ funcUnitsIdx[0]=2
+i=4 fuPerCapList[4].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=5 fuPerCapList[5].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=6 fuPerCapList[6].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=7 fuPerCapList[7].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=8 fuPerCapList[8].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=9 fuPerCapList[9].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=10 fuPerCapList[10].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=11 fuPerCapList[11].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=12 fuPerCapList[12].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=13 fuPerCapList[13].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=14 fuPerCapList[14].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=15 fuPerCapList[15].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=16 fuPerCapList[16].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=17 fuPerCapList[17].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=18 fuPerCapList[18].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=19 fuPerCapList[19].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=20 fuPerCapList[20].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=21 fuPerCapList[21].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=22 fuPerCapList[22].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=23 fuPerCapList[23].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=24 fuPerCapList[24].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=25 fuPerCapList[25].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=26 fuPerCapList[26].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=27 fuPerCapList[27].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=28 fuPerCapList[28].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=29 fuPerCapList[29].size:2
+ funcUnitsIdx[0]=5
+ funcUnitsIdx[1]=6
+i=30 fuPerCapList[30].size:1
+ funcUnitsIdx[0]=3
+i=31 fuPerCapList[31].size:1
+ funcUnitsIdx[0]=4
+i=32 fuPerCapList[32].size:1
+ funcUnitsIdx[0]=2
+i=33 fuPerCapList[33].size:0
+************** END FUPool::dump_fuPerCapList *************
+warn: CP14 unimplemented crn[0], opc1[6], crm[3], opc2[4]
+warn: CP14 unimplemented crn[8], opc1[2], crm[9], opc2[4]
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+info: Increasing stack size by one page.
+Exiting @ tick 74125912000 because target called exit()

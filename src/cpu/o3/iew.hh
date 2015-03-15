@@ -54,6 +54,8 @@
 #include "debug/IEW.hh"
 #include "sim/probe/probe.hh"
 
+#include "cpu/o3/fu_pool.hh"//lokeshjindal15 TODO FIXME
+
 struct DerivO3CPUParams;
 class FUPool;
 

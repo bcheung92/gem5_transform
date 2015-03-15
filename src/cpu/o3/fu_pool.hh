@@ -67,6 +67,23 @@ class FuncUnit;
  * model to either have identical issue and op latencies, or 1 cycle issue
  * latencies.
  */
+
+/* Note by lokeshjindal15
+ * Each fuPerCapList has a funcUnitsIdx list which points to FUs
+ * So scan through each fuPerCapList and its funcUnitsIdx to scan for your FU No.
+ * and remove it from the funcUnitsIdx and also resize the funcUnitsIdx
+ * set idx of each fuPerCapList to 0
+ *
+ * also need to create vars for params used in constructors:
+ * param0 => simpleint
+ * param1 => cmplxint
+ * param2 => Load
+ * param3 => Store 
+ * param4 => fp
+ *
+ * see configs/common/O3_ARM_v7a.py 
+ * and build/ARM/enums/OpClass.hh
+ */
 class FUPool : public SimObject
 {
   private:
@@ -106,14 +123,17 @@ class FUPool : public SimObject
         inline int getFU();
 
       private:
+      public: //lokeshjindal15 TODO FIXME was private originally
         /** Circular queue index. */
         int idx;
 
         /** Size of the queue. */
         int size;
+        int org_size;//lokeshjindal15
 
         /** Queue of FU indices. */
         std::vector<int> funcUnitsIdx;
+        std::vector<int> org_funcUnitsIdx;//lokeshjindal15
     };
 
     /** Per op class queues of FUs that provide that capability. */
@@ -158,6 +178,7 @@ class FUPool : public SimObject
 
     /** Debugging function used to dump FU information. */
     void dump();
+    void dump_fuPerCapList();//lokeshjindal15
 
     /** Returns the operation execution latency of the given capability. */
     Cycles getOpLatency(OpClass capability) {
@@ -174,6 +195,15 @@ class FUPool : public SimObject
 
     /** Takes over from another CPU's thread. */
     void takeOverFrom() {};
+    void scaleDownALUs(unsigned tfScaleFac);
+    void scaleDownFPUs(unsigned tfScaleFac);
+    void scaleUpFUs();//lokeshjindal15 TODO FIXME scaling up both ALUs/FPUs together
+
+    int num_simplint;
+    int num_cmplxint;
+    int num_load;
+    int num_store;
+    int num_fp;
 };
 
 #endif // __CPU_O3_FU_POOL_HH__

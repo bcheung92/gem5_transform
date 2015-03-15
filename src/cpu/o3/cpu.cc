@@ -558,13 +558,15 @@ FullO3CPU<Impl>::tick()
     DPRINTF(O3CPU, "\n\nFullO3CPU: Ticking main, FullO3CPU.\n");
 
     //TODO FIXME remove this hack
-    //static int print_once = 0;
+    static int print_once = 0;
 
-    //if (print_once == 0)
-    //{
-    //    print_once = 1;
-    //    do_something_with_dcache();
-    //}
+    if (print_once == 0)
+    {
+        print_once = 1;
+        do_something_with_dcache();
+        iew.fuPool->dump();
+        iew.fuPool->dump_fuPerCapList();
+    }
 
 
 
@@ -701,7 +703,55 @@ FullO3CPU<Impl>::tick()
 			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
 	}
-	
+
+
+    static int alu_down = 0;     
+    if (1 && curTick() > 15270000 && (alu_down == 0))
+	{
+		static int print_alu_down = 0;
+		if (!print_alu_down)
+		{
+		    print_alu_down = 1;
+            drain(drainManager);
+        }
+
+        if (isDrained())
+        {
+            std::cout << std::endl << "***** LOKESH print ALUs/FPUs BEFORE scaling DOWN! *****" << std:: endl;
+            iew.fuPool->dump_fuPerCapList();
+            iew.fuPool->scaleDownALUs(2);
+            iew.fuPool->scaleDownFPUs(2);
+            std::cout << std::endl << "***** LOKESH print ALUs/FPUs AFTER scaling DOWN! *****" << std:: endl;
+            iew.fuPool->dump_fuPerCapList();
+            alu_down = 1;
+            drainResume();
+		}
+		
+	}
+    static int alu_up = 0;     
+    if (1 && (curTick() > (4*15270000)) && (alu_up == 0))
+	{
+		static int print_alu_up = 0;
+		if (!print_alu_up)
+		{
+		    print_alu_up = 1;
+            drain(drainManager);
+        }
+
+        if (isDrained())
+        {
+            std::cout << std::endl << "***** LOKESH print ALUs/FPUs BEFORE scaling UP! *****" << std:: endl;
+            iew.fuPool->dump_fuPerCapList();
+            iew.fuPool->scaleUpFUs();
+            std::cout << std::endl << "***** LOKESH print ALUs/FPUs AFTER scaling UP! *****" << std:: endl;
+            iew.fuPool->dump_fuPerCapList();
+            alu_up = 1;
+            drainResume();
+		}
+		
+	}
+
+
     if (0 && curTick() > 15270000)
 	{
 		static int print_cache_down = 0;
