@@ -706,7 +706,7 @@ FullO3CPU<Impl>::tick()
 
 
     static int alu_down = 0;     
-    if (1 && curTick() > 15270000 && (alu_down == 0))
+    if (0 && curTick() > 15270000 && (alu_down == 0))
 	{
 		static int print_alu_down = 0;
 		if (!print_alu_down)
@@ -729,7 +729,7 @@ FullO3CPU<Impl>::tick()
 		
 	}
     static int alu_up = 0;     
-    if (1 && (curTick() > (4*15270000)) && (alu_up == 0))
+    if (0 && (curTick() > (4*15270000)) && (alu_up == 0))
 	{
 		static int print_alu_up = 0;
 		if (!print_alu_up)
@@ -2101,7 +2101,15 @@ FullO3CPU<Impl>::transform_down_self()
  	iew.scale_LSQ(2);
  	iew.LSQisScaled = true;
  	std::cout << "*****TRANSFORM DONE calling functions to scale LSQ" << endl;
- 	
+ 
+    //scaledown ALUs/FPUs
+    std::cout << std::endl << "***** LOKESH print ALUs/FPUs BEFORE scaling DOWN! *****" << std:: endl;
+    iew.fuPool->dump_fuPerCapList();
+    iew.fuPool->scaleDownALUs(2);
+    iew.fuPool->scaleDownFPUs(2);
+    std::cout << std::endl << "***** LOKESH print ALUs/FPUs AFTER scaling DOWN! *****" << std:: endl;
+    iew.fuPool->dump_fuPerCapList();
+
 	iew.takeOverFrom();//This is VERY IMP to do after all the updates to various data structures! yy
 
 	fetch.takeOverFrom();
@@ -2215,7 +2223,14 @@ FullO3CPU<Impl>::transform_up_self()
  	iew.scale_up_LSQ(2);
  	iew.LSQisScaled = true;
  	std::cout << "*****TRANSFORM_UP DONE calling functions to scale LSQ" << endl;
- 	
+ 
+    //scale up ALUs/FPUs
+    std::cout << std::endl << "***** LOKESH print ALUs/FPUs BEFORE scaling UP! *****" << std:: endl;
+    iew.fuPool->dump_fuPerCapList();
+    iew.fuPool->scaleUpFUs();
+    std::cout << std::endl << "***** LOKESH print ALUs/FPUs AFTER scaling UP! *****" << std:: endl;
+    iew.fuPool->dump_fuPerCapList();
+
 	iew.takeOverFrom();//This is VERY IMP to do after all the updates to various data structures! yy
 	
 	fetch.takeOverFrom();
