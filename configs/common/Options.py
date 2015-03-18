@@ -55,6 +55,37 @@ def _listMemTypes(option, opt, value, parser):
     sys.exit(0)
 
 def addCommonOptions(parser):
+    #lokeshjindal15 Addding cmd line option support for per-resource scaling
+    parser.add_option("--rob_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable ROB scaling")
+    parser.add_option("--btb_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable BTB scaling")
+    parser.add_option("--tlb_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable TLB ITB/DTB scaling")
+    parser.add_option("--iq_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable IQ scaling")
+    parser.add_option("--regfile_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable regFile scaling")
+    parser.add_option("--lsq_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable LSQ scaling")
+    parser.add_option("--alu_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable ALU scaling")
+    parser.add_option("--fpu_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable FPU scaling")
+    parser.add_option("--dcache_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable Dcache scaling")
+    parser.add_option("--icache_scale_enabled", action="store", type="int",
+                        default=0,
+                        help = "Enable/Disable Icache scaling")
     # system options
     parser.add_option("--list-cpu-types",
                       action="callback", callback=_listCpuTypes,
