@@ -50,17 +50,17 @@ class DerivO3CPU(BaseCPU):
     def support_take_over(cls):
         return True
 
-    #lokeshjindal15 Adding params to enable per resource scaling
-    rob_scale_enabled = Param.Unsigned(0, "Enable ROB scaling - disabled by default")
-    btb_scale_enabled = Param.Unsigned(0, "Enable BTB scaling - disabled by default")
-    tlb_scale_enabled = Param.Unsigned(0, "Enable TLB ITB/DTB scaling - disabled by default")
-    iq_scale_enabled = Param.Unsigned(0, "Enable IQ scaling - disabled by default")
-    regfile_scale_enabled = Param.Unsigned(0, "Enable regFile scaling - disabled by default")
-    lsq_scale_enabled = Param.Unsigned(0, "Enable LSQ scaling - disabled by default")
-    alu_scale_enabled = Param.Unsigned(0, "Enable ALU scaling - disabled by default")
-    fpu_scale_enabled = Param.Unsigned(0, "Enable FPU scaling - disabled by default")
-    dcache_scale_enabled = Param.Unsigned(0, "Enable Dcache scaling - disabled by default")
-    icache_scale_enabled = Param.Unsigned(0, "Enable Icache scaling - disabled by default")
+    # #lokeshjindal15 Adding params to enable per resource scaling
+    # rob_scale_enabled = Param.Unsigned(0, "Enable ROB scaling - disabled by default")
+    # btb_scale_enabled = Param.Unsigned(0, "Enable BTB scaling - disabled by default")
+    # tlb_scale_enabled = Param.Unsigned(0, "Enable TLB ITB/DTB scaling - disabled by default")
+    # iq_scale_enabled = Param.Unsigned(0, "Enable IQ scaling - disabled by default")
+    # regfile_scale_enabled = Param.Unsigned(0, "Enable regFile scaling - disabled by default")
+    # lsq_scale_enabled = Param.Unsigned(0, "Enable LSQ scaling - disabled by default")
+    # alu_scale_enabled = Param.Unsigned(0, "Enable ALU scaling - disabled by default")
+    # fpu_scale_enabled = Param.Unsigned(0, "Enable FPU scaling - disabled by default")
+    # dcache_scale_enabled = Param.Unsigned(0, "Enable Dcache scaling - disabled by default")
+    # icache_scale_enabled = Param.Unsigned(0, "Enable Icache scaling - disabled by default")
 
     activity = Param.Unsigned(0, "Initial count")
 

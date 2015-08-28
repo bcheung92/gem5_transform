@@ -773,16 +773,16 @@ public:
     Cache<LRU> * getDcachePtr();
     Cache<LRU> * getIcachePtr();
 
-    unsigned rob_scale_enabled;//lokeshjindal15 
-    unsigned btb_scale_enabled;//lokeshjindal15 
-    unsigned tlb_scale_enabled;//lokeshjindal15 
-    unsigned iq_scale_enabled;//lokeshjindal15 
-    unsigned regfile_scale_enabled;//lokeshjindal15 
-    unsigned lsq_scale_enabled;//lokeshjindal15 
-    unsigned alu_scale_enabled;//lokeshjindal15 
-    unsigned fpu_scale_enabled;//lokeshjindal15 
-    unsigned dcache_scale_enabled;//lokeshjindal15 
-    unsigned icache_scale_enabled;//lokeshjindal15 
+//     unsigned rob_scale_enabled;//lokeshjindal15 
+//     unsigned btb_scale_enabled;//lokeshjindal15 
+//     unsigned tlb_scale_enabled;//lokeshjindal15 
+//     unsigned iq_scale_enabled;//lokeshjindal15 
+//     unsigned regfile_scale_enabled;//lokeshjindal15 
+//     unsigned lsq_scale_enabled;//lokeshjindal15 
+//     unsigned alu_scale_enabled;//lokeshjindal15 
+//     unsigned fpu_scale_enabled;//lokeshjindal15 
+//     unsigned dcache_scale_enabled;//lokeshjindal15 
+//     unsigned icache_scale_enabled;//lokeshjindal15 
 
 };
 

@@ -100,6 +100,9 @@ def build_test_system(np):
     test_sys.clk_domain = SrcClockDomain(clock =  options.sys_clock,
             voltage_domain = test_sys.voltage_domain)
 
+    #lokeshjindal15 create a clk contantly running at 1.4GHz for L2
+    test_sys.clk_domain_const = SrcClockDomain(clock =  ["1.4GHz"],
+            voltage_domain = test_sys.voltage_domain)
     # Create a CPU voltage domain
     test_sys.cpu_voltage_domain = VoltageDomain()
 

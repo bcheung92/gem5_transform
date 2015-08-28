@@ -485,6 +485,19 @@ class BaseCPU : public MemObject
     Stats::Scalar numCycles;
     Stats::Scalar numWorkItemsStarted;
     Stats::Scalar numWorkItemsCompleted;
+
+    // public members that will be assigned in the O3 class or atomic class
+    unsigned rob_scale_enabled;//lokeshjindal15 
+    unsigned btb_scale_enabled;//lokeshjindal15 
+    unsigned tlb_scale_enabled;//lokeshjindal15 
+    unsigned iq_scale_enabled;//lokeshjindal15 
+    unsigned regfile_scale_enabled;//lokeshjindal15 
+    unsigned lsq_scale_enabled;//lokeshjindal15 
+    unsigned alu_scale_enabled;//lokeshjindal15 
+    unsigned fpu_scale_enabled;//lokeshjindal15 
+    unsigned dcache_scale_enabled;//lokeshjindal15 
+    unsigned icache_scale_enabled;//lokeshjindal15 
+
 };
 
 #endif // THE_ISA == NULL_ISA

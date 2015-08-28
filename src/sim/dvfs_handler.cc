@@ -59,6 +59,7 @@ DVFSHandler::DVFSHandler(const Params *p)
     : SimObject(p),
       sysClkDomain(p->sys_clk_domain),
       enableHandler(p->enable),
+      atomic_cpu(p->atomic_cpu),
       _transLatency(p->transition_latency)
 {
     // Check supplied list of domains for sanity and add them to the

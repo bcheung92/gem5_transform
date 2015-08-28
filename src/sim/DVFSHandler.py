@@ -66,3 +66,6 @@ class DVFSHandler(SimObject):
     # the hardware will take to migratate between any two perforamnce levels.
     transition_latency = Param.Latency('100us',
                              "fixed latency for perf level migration")
+    
+    # TODO FIXME add cpu type to avoid error from energy_ctrl.cc
+    atomic_cpu = Param.Bool(False, "Enable/Disable the handler")

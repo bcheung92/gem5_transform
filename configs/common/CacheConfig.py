@@ -67,11 +67,14 @@ def config_cache(options, system):
         # are not connected using addTwoLevelCacheHierarchy. Use the
         # same clock as the CPUs, and set the L1-to-L2 bus width to 32
         # bytes (256 bits).
-        system.l2 = l2_cache_class(clk_domain=system.cpu_clk_domain,
+        
+        #system.l2 = l2_cache_class(clk_domain=system.cpu_clk_domain,
+        system.l2 = l2_cache_class(clk_domain=system.clk_domain_const, #lokeshjindal15 changing L2 freq to a constant clk of 1.4GHz
                                    size=options.l2_size,
                                    assoc=options.l2_assoc)
 
-        system.tol2bus = CoherentXBar(clk_domain = system.cpu_clk_domain,
+        #system.tol2bus = CoherentXBar(clk_domain = system.cpu_clk_domain,
+        system.tol2bus = CoherentXBar(clk_domain = system.clk_domain_const,#lokeshjindal15 changing L2 freq to a constant clk of 1.4GHz
                                       width = 32)
         system.l2.cpu_side = system.tol2bus.master
         system.l2.mem_side = system.membus.slave

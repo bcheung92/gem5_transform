@@ -421,26 +421,26 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
 	transforming_up = 0;
 	done_transform_up = 1;
 
-    rob_scale_enabled = params->rob_scale_enabled;
-    std::cout << "rob_scale_enabled:" << rob_scale_enabled << std::endl;
-    btb_scale_enabled = params->btb_scale_enabled;
-    std::cout << "btb_scale_enabled:" << btb_scale_enabled << std::endl;
-    tlb_scale_enabled = params->tlb_scale_enabled;
-    std::cout << "tlb_scale_enabled:" << tlb_scale_enabled << std::endl;
-    iq_scale_enabled = params->iq_scale_enabled;
-    std::cout << "iq_scale_enabled:" << iq_scale_enabled << std::endl;
-    regfile_scale_enabled = params->regfile_scale_enabled;
-    std::cout << "regfile_scale_enabled:" << regfile_scale_enabled << std::endl;
-    lsq_scale_enabled = params->lsq_scale_enabled;
-    std::cout << "lsq_scale_enabled:" << lsq_scale_enabled << std::endl;
-    alu_scale_enabled = params->alu_scale_enabled;
-    std::cout << "alu_scale_enabled:" << alu_scale_enabled << std::endl;
-    fpu_scale_enabled = params->fpu_scale_enabled;
-    std::cout << "fpu_scale_enabled:" << fpu_scale_enabled << std::endl;
-    dcache_scale_enabled = params->dcache_scale_enabled;
-    std::cout << "dcache_scale_enabled:" << dcache_scale_enabled << std::endl;
-    icache_scale_enabled = params->icache_scale_enabled;
-    std::cout << "icache_scale_enabled:" << icache_scale_enabled << std::endl;
+    // rob_scale_enabled = params->rob_scale_enabled;
+    // std::cout << "rob_scale_enabled:" << rob_scale_enabled << std::endl;
+    // btb_scale_enabled = params->btb_scale_enabled;
+    // std::cout << "btb_scale_enabled:" << btb_scale_enabled << std::endl;
+    // tlb_scale_enabled = params->tlb_scale_enabled;
+    // std::cout << "tlb_scale_enabled:" << tlb_scale_enabled << std::endl;
+    // iq_scale_enabled = params->iq_scale_enabled;
+    // std::cout << "iq_scale_enabled:" << iq_scale_enabled << std::endl;
+    // regfile_scale_enabled = params->regfile_scale_enabled;
+    // std::cout << "regfile_scale_enabled:" << regfile_scale_enabled << std::endl;
+    // lsq_scale_enabled = params->lsq_scale_enabled;
+    // std::cout << "lsq_scale_enabled:" << lsq_scale_enabled << std::endl;
+    // alu_scale_enabled = params->alu_scale_enabled;
+    // std::cout << "alu_scale_enabled:" << alu_scale_enabled << std::endl;
+    // fpu_scale_enabled = params->fpu_scale_enabled;
+    // std::cout << "fpu_scale_enabled:" << fpu_scale_enabled << std::endl;
+    // dcache_scale_enabled = params->dcache_scale_enabled;
+    // std::cout << "dcache_scale_enabled:" << dcache_scale_enabled << std::endl;
+    // icache_scale_enabled = params->icache_scale_enabled;
+    // std::cout << "icache_scale_enabled:" << icache_scale_enabled << std::endl;
 }
 
 template <class Impl>

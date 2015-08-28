@@ -245,6 +245,27 @@ BaseCPU::BaseCPU(Params *p, bool is_checker)
         fatal("Number of ISAs (%i) assigned to the CPU does not equal number "
               "of threads (%i).\n", params()->isa.size(), numThreads);
     }
+    rob_scale_enabled = p->rob_scale_enabled;
+    std::cout << "rob_scale_enabled:" << rob_scale_enabled << std::endl;
+    btb_scale_enabled = p->btb_scale_enabled;
+    std::cout << "btb_scale_enabled:" << btb_scale_enabled << std::endl;
+    tlb_scale_enabled = p->tlb_scale_enabled;
+    std::cout << "tlb_scale_enabled:" << tlb_scale_enabled << std::endl;
+    iq_scale_enabled = p->iq_scale_enabled;
+    std::cout << "iq_scale_enabled:" << iq_scale_enabled << std::endl;
+    regfile_scale_enabled = p->regfile_scale_enabled;
+    std::cout << "regfile_scale_enabled:" << regfile_scale_enabled << std::endl;
+    lsq_scale_enabled = p->lsq_scale_enabled;
+    std::cout << "lsq_scale_enabled:" << lsq_scale_enabled << std::endl;
+    alu_scale_enabled = p->alu_scale_enabled;
+    std::cout << "alu_scale_enabled:" << alu_scale_enabled << std::endl;
+    fpu_scale_enabled = p->fpu_scale_enabled;
+    std::cout << "fpu_scale_enabled:" << fpu_scale_enabled << std::endl;
+    dcache_scale_enabled = p->dcache_scale_enabled;
+    std::cout << "dcache_scale_enabled:" << dcache_scale_enabled << std::endl;
+    icache_scale_enabled = p->icache_scale_enabled;
+    std::cout << "icache_scale_enabled:" << icache_scale_enabled << std::endl;
+
 }
 
 void

@@ -234,6 +234,9 @@ class DVFSHandler : public SimObject
      */
     bool enableHandler;
 
+  public:
+    bool atomic_cpu;
+  private:
 
     /**
      * This corresponds to the maximum transition latency associated with the
