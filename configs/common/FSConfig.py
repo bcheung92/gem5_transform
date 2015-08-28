@@ -183,7 +183,8 @@ def makeSparcSystem(mem_mode, mdesc = None):
     return self
 
 def makeArmSystem(mem_mode, machine_type, mdesc = None,
-                  dtb_filename = None, bare_metal=False):
+                  dtb_filename = None, bare_metal=False,
+                  sdcard_image = "sdcard-1g-mxplayer.img"):
     assert machine_type
 
     if bare_metal:
@@ -222,7 +223,7 @@ def makeArmSystem(mem_mode, machine_type, mdesc = None,
     self.cf0 = CowIdeDisk(driveID='master')
     self.cf2 = CowIdeDisk(driveID='master')
     self.cf0.childImage(mdesc.disk())
-    self.cf2.childImage(disk("sdcard-1g-mxplayer.img"))
+    self.cf2.childImage(disk(sdcard_image))
 
     # Attach any PCI devices this platform supports
     self.realview.attachPciDevices()

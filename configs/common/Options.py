@@ -56,6 +56,9 @@ def _listMemTypes(option, opt, value, parser):
 
 def addCommonOptions(parser):
     #lokeshjindal15 Addding cmd line option support for per-resource scaling
+    parser.add_option("--sdcard-image", action="store", type="string",
+                      default=" ",
+                      help="Specify the mxplayer image needed for asimbench")
     parser.add_option("--rob_scale_enabled", action="store", type="int",
                         default=0,
                         help = "Enable/Disable ROB scaling")

@@ -107,7 +107,8 @@ def build_test_system(np):
     elif buildEnv['TARGET_ISA'] == "arm":
         test_sys = makeArmSystem(test_mem_mode, options.machine_type, bm[0],
                                  options.dtb_filename,
-                                 bare_metal=options.bare_metal)
+                                 bare_metal=options.bare_metal,
+                                 sdcard_image=options.sdcard_image)
         if options.enable_context_switch_stats_dump:
             test_sys.enable_context_switch_stats_dump = True
     else:
@@ -359,6 +360,7 @@ np = options.num_cpus
 
 test_sys = build_test_system(np)
 
+print "cpu_type is: " + options.cpu_type
 if (options.cpu_type == "detailed" or options.cpu_type == "arm_detailed" or options.cpu_type == "DerivO3CPU" or options.cpu_type == "atomic"):
     print "########## Running initO3params for various scaling switches"
     initO3params(options, np, test_sys)
