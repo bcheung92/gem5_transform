@@ -1,0 +1,51 @@
+#!/system/bin/sh
+
+
+stop_m5() {
+    /sbin/m5 exit
+
+    return
+}
+
+wait_stop() {
+
+	busybox usleep 2000000
+	run_var=1  
+	run_related=1
+	while [ $run_var -eq 1 ] 
+	do
+		#counter=$(busybox ps -o user,stat,args -T | busybox grep '10061' | busybox grep -v 'S' | busybox wc -l)
+		if [$run_related -eq 1 ]
+		then 
+			counter=$(ps | busybox grep -v 'S' | busybox grep -v 'ps' | busybox grep -v 'busybox' | busybox wc -l)
+			counter2=$(busybox ps -o user,stat,args -T | busybox grep '10061' | busybox grep -v 'S' | busybox wc -l)
+			if [ $counter2 -ne 0 ]
+			then
+				run_related=2
+			fi
+		else
+			counter=$(busybox ps -o user,stat,args -T | busybox grep '10061' | busybox grep -v 'S' | busybox wc -l)
+		fi
+		if [ $counter -eq 0 ]
+		then
+			run_var=2
+		else
+			busybox usleep 5000
+		fi
+		
+	done
+}
+
+run_bench_test() {
+	#/sbin/m5 checkpoint
+	/sbin/m5 resetstats
+	am start -n com.adobe.reader/com.adobe.reader.AdobeReader file:///mnt/sdcard/app_data/IISWC-2011.pdf
+	#sleep 70
+	wait_stop
+	/sbin/m5 dumpstats
+	#stop_m5
+	
+	return
+}
+
+run_bench_test

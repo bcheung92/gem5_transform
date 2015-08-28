@@ -1,0 +1,23 @@
+#!/system/bin/sh
+
+
+stop_m5() {
+    /sbin/m5 exit
+
+    return
+}
+
+run_bench_test() {
+	#/sbin/m5 checkpoint
+	/sbin/m5 resetstats
+	sleep(1000)
+	echo "lokesh" > lokesh.txt
+	sleep(1000)
+	/sbin/m5 dumpstats
+	#stop_m5
+	
+	return
+}
+
+#sleep 10
+run_bench_test

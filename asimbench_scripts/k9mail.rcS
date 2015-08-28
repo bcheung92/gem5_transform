@@ -1,0 +1,21 @@
+#!/system/bin/sh
+
+
+stop_m5() {
+    /sbin/m5 exit
+
+    return
+}
+
+run_bench_test() {
+	#/sbin/m5 checkpoint
+	/sbin/m5 resetstats
+	am start -W com.fsck.k9/com.fsck.k9.activity.Accounts
+	/sbin/m5 dumpstats
+	#stop_m5
+	
+	return
+}
+
+#sleep 10
+run_bench_test

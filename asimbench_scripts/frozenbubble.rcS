@@ -1,0 +1,39 @@
+#!/system/bin/sh
+
+
+stop_m5() {
+    /sbin/m5 exit
+
+    return
+}
+
+wait_stop() {
+
+	run_var=1  
+	while [ $run_var -eq 1 ]
+	do
+		busybox ps -o user,stat,args -T | busybox grep '10050' | busybox grep -v 'S'
+		counter=$(busybox ps -o user,stat,args -T | busybox grep '10050' | busybox grep -v 'S' | busybox wc -l)
+		if [ $counter -eq 0 ]
+		then
+			run_var=2
+		else
+			busybox usleep 100000
+		fi
+		
+	done
+}
+
+run_bench_test() {
+	#/sbin/m5 checkpoint
+	/sbin/m5 resetstats
+	am start -n org.jfedor.frozenbubble/org.jfedor.frozenbubble.FrozenBubble
+	#sleep 65 
+	/sbin/m5 dumpstats
+	#stop_m5
+	
+	return
+}
+
+#sleep 10
+run_bench_test
