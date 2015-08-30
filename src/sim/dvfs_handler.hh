@@ -235,7 +235,7 @@ class DVFSHandler : public SimObject
     bool enableHandler;
 
   public:
-    bool atomic_cpu;
+    bool transform_enable;
   private:
 
     /**

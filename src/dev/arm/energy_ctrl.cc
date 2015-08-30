@@ -193,7 +193,7 @@ EnergyCtrl::write(PacketPtr pkt)
 
         //lokeshjindal15 TODO FIXME override with perf_level = 6 (800MHz) if asked for a lower frequency        
         assert( data >= 0);
-	if (dvfsHandler->atomic_cpu == false)
+	if (dvfsHandler->transform_enable == true)
 	{
 	    if (data > 6)
             {           

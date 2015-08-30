@@ -181,6 +181,7 @@ def build_test_system(np):
         test_sys.vm = KvmVM()
 
     test_sys.dvfs_handler.enable = True
+    test_sys.dvfs_handler.transform_enable = True # We do want O3 CPU to transform
     test_sys.dvfs_handler.domains = [test_sys.cpu_clk_domain, test_sys.cpu_clk_domain1, test_sys.cpu_clk_domain2, test_sys.cpu_clk_domain3]
     
     if options.ruby:
