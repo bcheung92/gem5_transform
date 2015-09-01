@@ -10,6 +10,7 @@
 
 Executable = /bin/bash
 GEM5_DIR = /research/ljindal/git_aug26
+Gem5Binary = $(GEM5_DIR)/build/ARM/gem5.opt
 OutFolder = $(GEM5_DIR)/aug26_runs/BMARK
 Script = $(GEM5_DIR)/asimbench_scripts/BMARK.rcS
 CkptDir = $(GEM5_DIR)/aug26_atomic_ckpt
@@ -20,7 +21,7 @@ SdcardImage = /research/ljindal/GLOBAL_DISKS/sdcard-1g-mxplayer.img
 
 
 #Arguments = " -c ' $(GEM5_DIR)/build/ARM/gem5.opt --outdir=$(OutFolder) configs/example/fs.py.asimbench -r 1 --checkpoint-dir=$(GEM5_DIR)/ckpt --machine-type=VExpress_EMM --kernel vmlinux.performance --dtb-filename vexpress-v2p-ca15-tc1-gem5_dvfs_1cpus.dtb --cpu-type=DerivO3CPU --caches --l1d_size=16kB --l1i_size=16kB --l2cache --disk-image=ARMv7a-ICS-Android.SMP.Asimbench-v3.img --script=$(GEM5_DIR)/asimbench/baidumap.rcS'"
-Arguments = " -c ' $(GEM5_DIR)/build/ARM/gem5.opt --outdir=$(OutFolder) $(ConfigFile) --machine-type VExpress_EMM --kernel vmlinux.ondemand95.new --cpu-type=arm_detailed --num-cpus=4 --dtb-filename vexpress-v2p-ca15-tc1-gem5_dvfs_per_core_4cpus.dtb --caches --l1d_size=32kB --l1i_size=32kB --l1i_assoc=2 --l1d_assoc=2 --l2cache --l2_size=1MB --l2_assoc=16 --disk-image=$(DiskImage) --sdcard-image=$(SdcardImage) --script=$(Script) --checkpoint-restore=1 --checkpoint-dir=$(CkptDir) --rob_scale_enabled=1 --btb_scale_enabled=1 --tlb_scale_enabled=1 --iq_scale_enabled=1 --regfile_scale_enabled=1 --lsq_scale_enabled=1 --alu_scale_enabled=1 --fpu_scale_enabled=1 --dcache_scale_enabled=1 --icache_scale_enabled=1  '" 
+Arguments = " -c ' $(Gem5Binary) --outdir=$(OutFolder) $(ConfigFile) --machine-type VExpress_EMM --kernel vmlinux.ondemand95.new --cpu-type=arm_detailed --num-cpus=4 --dtb-filename vexpress-v2p-ca15-tc1-gem5_dvfs_per_core_4cpus.dtb --caches --l1d_size=32kB --l1i_size=32kB --l1i_assoc=2 --l1d_assoc=2 --l2cache --l2_size=1MB --l2_assoc=16 --disk-image=$(DiskImage) --sdcard-image=$(SdcardImage) --script=$(Script) --checkpoint-restore=1 --checkpoint-dir=$(CkptDir) --rob_scale_enabled=1 --btb_scale_enabled=1 --tlb_scale_enabled=1 --iq_scale_enabled=1 --regfile_scale_enabled=1 --lsq_scale_enabled=1 --alu_scale_enabled=1 --fpu_scale_enabled=1 --dcache_scale_enabled=1 --icache_scale_enabled=1  '" 
 #initialdir = /research/aminf/gem5/
 initialdir = $(GEM5_DIR)
 #output = /research/aminf/gem5/$(OutFolder)/out
