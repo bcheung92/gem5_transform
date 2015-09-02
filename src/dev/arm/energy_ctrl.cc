@@ -196,10 +196,9 @@ EnergyCtrl::write(PacketPtr pkt)
 	if (dvfsHandler->transform_enable == true)
 	{
             std::cout << "dvfsHandler->transform_enable is true" << std::endl;
-	    if (data > 6)
+	    if ((data > 6) && ((dvfsHandler->perfLevel(domainID) - data) < 0)) // 6 == 0.8 GHz min freq of big core | we want to transform down only if we are decreasing frequency i.e. increasing perf level number
             {           
-            	std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " changing perf_level/data from " << data << " to " << 6 << std::endl;  
-                    data = 6;
+            	std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " changing perf_level/data to" << data << std::endl;  
 	    	//assert(esys->activeCpus.size() >= domainID);
 	    	
 	    	if (!(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_down))
@@ -213,9 +212,10 @@ EnergyCtrl::write(PacketPtr pkt)
 	    		}
 	    		else
 	    		{
-	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down) == 0);
-	    		((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down = 1;
-            		std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " setting start_transform_down to 1" << std::endl;  
+            		    std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " setting start_transform_down to 1 and setting data from " << data << " to " << 0 << std::endl;  
+                            data = 2; // 1.2 GHz max frequency of LITTLE core
+	    		    assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down) == 0);
+	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down = 1;
 	    		}
 	    	}
 	    	else
@@ -231,7 +231,7 @@ EnergyCtrl::write(PacketPtr pkt)
 	    	}
             } 
 
-	    else
+	    else if ((data < 2) && ((dvfsHandler->perfLevel(domainID) - data) > 0))
             {           
             	std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " changing perf_level/data to " << data << std::endl;  
 	    	//assert(esys->activeCpus.size() >= domainID);
@@ -247,9 +247,11 @@ EnergyCtrl::write(PacketPtr pkt)
 	    		}
 	    		else
 	    		{
-	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_up) == 0);
-	    		((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up = 1;
-            		std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting start_transform_up to 1" << std::endl;  
+            		    std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting start_transform_up to 1 and setting data from " << data << " to " << 6 << std::endl;  
+                            data = 6;
+	    		    assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_up) == 0);
+	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up = 1;
+            		    std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting start_transform_up to 1" << std::endl;  
 	    		}
 	    	}
 	    	else
