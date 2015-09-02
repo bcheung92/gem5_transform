@@ -136,6 +136,7 @@ def build_test_system(np):
     #                                         voltage_domain =
     #                                         test_sys.cpu_voltage_domain)
     #test_sys.cpu_clk_domain = SrcClockDomain(clock = ["3GHz","2GHz","1GHz"],
+                                                    #  0                                                            6                                                           12
     test_sys.cpu_clk_domain = SrcClockDomain(clock = ["1.4GHz", "1.3GHz", "1.2GHz", "1.1GHz", "1GHz", "0.9GHz", "0.8GHz", "0.7GHz", "0.6GHz", "0.5GHz", "0.4GHz", "0.3GHz", "0.2GHz"],
                                              voltage_domain =
                                              test_sys.cpu_voltage_domain,
@@ -181,7 +182,7 @@ def build_test_system(np):
         test_sys.vm = KvmVM()
 
     test_sys.dvfs_handler.enable = True
-    test_sys.dvfs_handler.transform_enable = False # We do not want atomic CPU to transform
+    test_sys.dvfs_handler.transform_enable = True # We do want O3 CPU to transform
     test_sys.dvfs_handler.domains = [test_sys.cpu_clk_domain, test_sys.cpu_clk_domain1, test_sys.cpu_clk_domain2, test_sys.cpu_clk_domain3]
     
     if options.ruby:

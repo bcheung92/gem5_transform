@@ -195,6 +195,7 @@ EnergyCtrl::write(PacketPtr pkt)
         assert( data >= 0);
 	if (dvfsHandler->transform_enable == true)
 	{
+            std::cout << "dvfsHandler->transform_enable is true" << std::endl;
 	    if (data > 6)
             {           
             	std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " changing perf_level/data from " << data << " to " << 6 << std::endl;  
@@ -264,6 +265,10 @@ EnergyCtrl::write(PacketPtr pkt)
 	    	}
             }
 	}
+        else
+        {
+            std::cout << "dvfsHandler->transform_enable is false" << std::endl;
+        }
         if (dvfsHandler->perfLevel(domainID, data)) {
             if (updateAckEvent.scheduled()) {
                 // The OS driver is trying to change the perf level while
