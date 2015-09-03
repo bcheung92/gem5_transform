@@ -1,4 +1,6 @@
-#!/system/bin/sh
+#!/bin/bash
+
+## select this depending on disk-image being used !/system/bin/sh
 
 #
 # This is a tricky script to understand. When run in M5, it creates
