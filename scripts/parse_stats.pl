@@ -506,6 +506,22 @@ while ($STATS_FILE_I < $num_stats_file)
 		print "***** CORE3 ERROR!!! phase = $phase and MAXPHASES = $MAXPHASES not equal\n";
 		exit;
 	}
+
+        # populate the missing frequencies with zeros
+        @freq_possible = (200.0, 300.0, 400.0, 500.0, 599.0, 699.0, 800.0, 900.0, 1000.0, 1100.0, 1200.0, 1300.0, 1400.0);
+
+        foreach my $f ( @freq_possible )
+        {
+            if (!(exists $core0_time_at_freq{$f}))
+            {   $core0_time_at_freq{$f} = 0; }
+            if (!(exists $core1_time_at_freq{$f}))
+            {   $core1_time_at_freq{$f} = 0; }
+            if (!(exists $core2_time_at_freq{$f}))
+            {   $core2_time_at_freq{$f} = 0; }
+            if (!(exists $core3_time_at_freq{$f}))
+            {   $core3_time_at_freq{$f} = 0; }
+        }
+
         # calculate % time spent in each frequency by each core
         foreach $f (keys %core0_time_at_freq)
         {
@@ -600,28 +616,28 @@ while ($STATS_FILE_I < $num_stats_file)
         # print the %age time in each frequency stat
 	open F37, ">$out_dir/core0PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
-        foreach my $f (keys %core0_PCtime_at_freq)
+        foreach my $f (sort { $a <=> $b} keys %core0_PCtime_at_freq)
         {
             print F37 "$f, $core0_PCtime_at_freq{$f}\n";
         }
         close F37;
 	open F37, ">$out_dir/core1PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
-        foreach my $f (keys %core1_PCtime_at_freq)
+        foreach my $f (sort { $a <=> $b} keys %core1_PCtime_at_freq)
         {
             print F37 "$f, $core1_PCtime_at_freq{$f}\n";
         }
         close F37;
 	open F37, ">$out_dir/core2PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
-        foreach my $f (keys %core2_PCtime_at_freq)
+        foreach my $f (sort { $a <=> $b} keys %core2_PCtime_at_freq)
         {
             print F37 "$f, $core2_PCtime_at_freq{$f}\n";
         }
         close F37;
 	open F37, ">$out_dir/core3PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
-        foreach my $f (keys %core3_PCtime_at_freq)
+        foreach my $f (sort { $a <=> $b} keys %core3_PCtime_at_freq)
         {
             print F37 "$f, $core3_PCtime_at_freq{$f}\n";
         }
