@@ -165,14 +165,6 @@ while ( $l < $num_stats_file)
 my %EXEC_TIME_LIST;
 my %ENERGY_LIST;
 my %EDP_LIST;
-my %core0_time_at_freq;
-my %core1_time_at_freq;
-my %core2_time_at_freq;
-my %core3_time_at_freq;
-my %core0_PCtime_at_freq;
-my %core1_PCtime_at_freq;
-my %core2_PCtime_at_freq;
-my %core3_PCtime_at_freq;
 my @BENCHMARKS;
 
 my $STATS_FILE_I = 0;
@@ -210,6 +202,19 @@ while ($STATS_FILE_I < $num_stats_file)
 	my @proc_float_util;
 	my $tmp_sim_seconds = 0;
 	my $captured = 1;
+
+
+        my %core0_time_at_freq;
+        my %core1_time_at_freq;
+        my %core2_time_at_freq;
+        my %core3_time_at_freq;
+        my %core0_PCtime_at_freq;
+        my %core1_PCtime_at_freq;
+        my %core2_PCtime_at_freq;
+        my %core3_PCtime_at_freq;
+
+
+
 	while ($line = <STATS_FILE>)
 	{
 		if ($line =~ /.*Begin Simulation Statistics.*/)
@@ -525,6 +530,7 @@ while ($STATS_FILE_I < $num_stats_file)
         # calculate % time spent in each frequency by each core
         foreach $f (keys %core0_time_at_freq)
         {
+            print "core0_time_at_freq for freq: $f is $core0_time_at_freq{$f} and proc_total_sim_seconds is: $proc_total_sim_seconds\n";
             $core0_PCtime_at_freq{$f} = ($core0_time_at_freq{$f} / $proc_total_sim_seconds) * 100;
         }
         foreach $f (keys %core1_time_at_freq)

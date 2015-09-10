@@ -192,13 +192,14 @@ EnergyCtrl::write(PacketPtr pkt)
       case PERF_LEVEL:
 
         //lokeshjindal15 TODO FIXME override with perf_level = 6 (800MHz) if asked for a lower frequency        
-        assert( data >= 0);
+        assert( static_cast<int>(data) >= 0);
+        std::cout << "DEBUG: domainID: " << domainID << " dvfsHandler->perfLevel(domainID): " << dvfsHandler->perfLevel(domainID) << " data: " << static_cast<int>(data) << " diff: " << (static_cast<int>(dvfsHandler->perfLevel(domainID)) - static_cast<int>(data)) << std::endl;
 	if (dvfsHandler->transform_enable == true)
 	{
             std::cout << "dvfsHandler->transform_enable is true" << std::endl;
-	    if ((data > 6) && ((dvfsHandler->perfLevel(domainID) - data) < 0)) // 6 == 0.8 GHz min freq of big core | we want to transform down only if we are decreasing frequency i.e. increasing perf level number
+	    if ((static_cast<int>(data) > 6) && ((static_cast<int>(dvfsHandler->perfLevel(domainID)) - static_cast<int>(data)) < 0)) // 6 == 0.8 GHz min freq of big core | we want to transform down only if we are decreasing frequency i.e. increasing perf level number
             {           
-            	std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " changing perf_level/data to" << data << std::endl;  
+            	std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " changing perf_level/data to" << static_cast<int>(data) << std::endl;  
 	    	//assert(esys->activeCpus.size() >= domainID);
 	    	
 	    	if (!(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_down))
@@ -212,7 +213,7 @@ EnergyCtrl::write(PacketPtr pkt)
 	    		}
 	    		else
 	    		{
-            		    std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " setting start_transform_down to 1 and setting data from " << data << " to " << 0 << std::endl;  
+            		    std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " setting start_transform_down to 1 and setting data from " << static_cast<int>(data) << " to " << 0 << std::endl;  
                             data = 2; // 1.2 GHz max frequency of LITTLE core
 	    		    assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down) == 0);
 	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down = 1;
@@ -231,9 +232,9 @@ EnergyCtrl::write(PacketPtr pkt)
 	    	}
             } 
 
-	    else if ((data < 2) && ((dvfsHandler->perfLevel(domainID) - data) > 0))
+	    else if ((static_cast<int>(data) < 2) && ((static_cast<int>(dvfsHandler->perfLevel(domainID)) - static_cast<int>(data)) > 0))
             {           
-            	std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " changing perf_level/data to " << data << std::endl;  
+            	std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " changing perf_level/data to " << static_cast<int>(data) << std::endl;  
 	    	//assert(esys->activeCpus.size() >= domainID);
 	    	
 	    	if (!(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_up))
@@ -247,7 +248,7 @@ EnergyCtrl::write(PacketPtr pkt)
 	    		}
 	    		else
 	    		{
-            		    std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting start_transform_up to 1 and setting data from " << data << " to " << 6 << std::endl;  
+            		    std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting start_transform_up to 1 and setting data from " << static_cast<int>(data) << " to " << 6 << std::endl;  
                             data = 6;
 	    		    assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_up) == 0);
 	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up = 1;
