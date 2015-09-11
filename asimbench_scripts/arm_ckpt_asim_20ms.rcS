@@ -34,7 +34,49 @@ fi
 
 #busybox sleep 600
 # Checkpoint the first execution
-echo "Checkpointing simulation..."
+
+# let's change the sampling period of ondemand governor it would be 40ms currently. Let's make it 20ms.
+cd /sys/devices/system/cpu/cpu0/cpufreq
+echo "cating cpuinfo_transition_latency ..."
+cat cpuinfo_transition_latency
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+echo "changing ondemand/sampling_rate ..."
+echo $(($(cat cpuinfo_transition_latency) * 500 / 1000)) > ondemand/sampling_rate
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+
+cd /sys/devices/system/cpu/cpu1/cpufreq
+echo "cating cpuinfo_transition_latency ..."
+cat cpuinfo_transition_latency
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+echo "changing ondemand/sampling_rate ..."
+echo $(($(cat cpuinfo_transition_latency) * 500 / 1000)) > ondemand/sampling_rate
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+
+cd /sys/devices/system/cpu/cpu2/cpufreq
+echo "cating cpuinfo_transition_latency ..."
+cat cpuinfo_transition_latency
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+echo "changing ondemand/sampling_rate ..."
+echo $(($(cat cpuinfo_transition_latency) * 500 / 1000)) > ondemand/sampling_rate
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+
+cd /sys/devices/system/cpu/cpu3/cpufreq
+echo "cating cpuinfo_transition_latency ..."
+cat cpuinfo_transition_latency
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+echo "changing ondemand/sampling_rate ..."
+echo $(($(cat cpuinfo_transition_latency) * 500 / 1000)) > ondemand/sampling_rate
+echo "cating ondemand/sampling_rate ..."
+cat ondemand/sampling_rate
+
+echo " ******* Checkpointing simulation... *******"
 /sbin/m5 checkpoint
 
 # Test if we previously okayed ourselves to run this script
