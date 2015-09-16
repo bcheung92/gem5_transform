@@ -73,13 +73,27 @@ def is_cpu_class(cls):
     except TypeError:
         return False
 
-def get(name):
+def get(name, options = None):
     """Get a CPU class from a user provided class name or alias."""
 
     real_name = _cpu_aliases.get(name, name)
 
     try:
         cpu_class = _cpu_classes[real_name]
+        # big little compare
+        if real_name == "arm_detailed" and options != None:
+            cpu_class.numROBEntries = options.rob_entries
+            cpu_class.numIQEntries = options.iq_entries
+            cpu_class.LQEntries = options.lq_entries
+            cpu_class.SQEntries = options.sq_entries
+            cpu_class.branchPred.BTBEntries = options.btb_entries
+            cpu_class.dtb.size = options.dtb_size
+            cpu_class.itb.size = options.itb_size
+            cpu_class.numPhysIntRegs = options.int_regs
+            cpu_class.numPhysFloatRegs = options.float_regs
+            cpu_class.numPhysCCRegs = options.cc_regs
+            cpu_class.fuPool.FUList[0].count = options.num_sintalus
+            cpu_class.fuPool.FUList[4].count = options.num_fpus
         return cpu_class
     except KeyError:
         print "%s is not a valid CPU model." % (name,)

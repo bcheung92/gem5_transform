@@ -89,6 +89,33 @@ def addCommonOptions(parser):
     parser.add_option("--icache_scale_enabled", action="store", type="int",
                         default=0,
                         help = "Enable/Disable Icache scaling")
+
+    # big little compare options
+    parser.add_option("--rob_entries", action="store", type="int",
+                        default=40)
+    parser.add_option("--iq_entries", action="store", type="int",
+                        default=32)
+    parser.add_option("--btb_entries", action="store", type="int",
+                        default=2048)
+    parser.add_option("--lq_entries", action="store", type="int",
+                        default=16)
+    parser.add_option("--sq_entries", action="store", type="int",
+                        default=16)
+    parser.add_option("--dtb_size", action="store", type="int",
+                        default=64)
+    parser.add_option("--itb_size", action="store", type="int",
+                        default=64)
+    parser.add_option("--int_regs", action="store", type="int",
+                        default=128)
+    parser.add_option("--float_regs", action="store", type="int",
+                        default=192)
+    parser.add_option("--cc_regs", action="store", type="int",
+                        default=640)
+    parser.add_option("--num_sintalus", action="store", type="int",
+                        default=2)
+    parser.add_option("--num_fpus", action="store", type="int",
+                        default=2)
+
     # system options
     parser.add_option("--list-cpu-types",
                       action="callback", callback=_listCpuTypes,

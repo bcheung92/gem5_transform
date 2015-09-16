@@ -71,7 +71,9 @@ class SimpleRenameMap
      * Pointer to the free list from which new physical registers
      * should be allocated in rename()
      */
+    public:
     SimpleFreeList *freeList;
+    private:
 
     /**
      * The architectural index of the zero register. This register is
@@ -256,6 +258,8 @@ class UnifiedRenameMap
      */
     RenameInfo renameCC(RegIndex rel_arch_reg)
     {
+        // std::cout << "rename_map.hh : renameCC called with rel_arch_reg: " << rel_arch_reg << std::endl;
+        // ccMap.freeList->printFreeList();
         RenameInfo info = ccMap.rename(rel_arch_reg);
         assert(regFile->isCCPhysReg(info.first));
         return info;

@@ -53,9 +53,9 @@ from m5.util import *
 
 addToPath('../common')
 
-def getCPUClass(cpu_type):
+def getCPUClass(cpu_type, options = None):
     """Returns the required cpu class and the mode of operation."""
-    cls = CpuConfig.get(cpu_type)
+    cls = CpuConfig.get(cpu_type, options)
     return cls, cls.memory_mode()
 
 def setCPUClass(options):
@@ -68,7 +68,7 @@ def setCPUClass(options):
        depending on the options provided.
     """
 
-    TmpClass, test_mem_mode = getCPUClass(options.cpu_type)
+    TmpClass, test_mem_mode = getCPUClass(options.cpu_type, options)
     CPUClass = None
     if TmpClass.require_caches() and \
             not options.caches and not options.ruby:

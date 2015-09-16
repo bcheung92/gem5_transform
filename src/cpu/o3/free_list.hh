@@ -79,9 +79,9 @@ class SimpleFreeList
 
 	//return a pointer to the freeRegs queue //lokeshjindal15
 	std::queue<PhysRegIndex> * getfreeRegs(){ return &freeRegs;}
-/*
     void printFreeList()
     {
+        std::cout << "##### FREE LIST START #####" << std::endl;
         int list_size = freeRegs.size();
         PhysRegIndex first_reg = -1;
         for ( int i = 0; i < list_size; i++)
@@ -95,10 +95,10 @@ class SimpleFreeList
             std::cout << ":" << reg << ":" << std::endl;
             freeRegs.push(reg);
         }
-       assert( list_size == freeRegs.size());
-      assert( freeRegs.front() == first_reg);
+        assert( list_size == freeRegs.size());
+        assert( freeRegs.front() == first_reg);
+        std::cout << "##### FREE LIST END #####" << std::endl;
     } 
-*/
 };
 
 
@@ -169,13 +169,13 @@ class UnifiedFreeList
     SimpleFreeList *getCCList() { return &ccList; }
 
     /** Gets a free integer register. */
-    PhysRegIndex getIntReg() { return intList.getReg(); }
+    PhysRegIndex getIntReg() { /*std::cout << "Asking for int reg" << std::endl*/; return intList.getReg(); }
 
     /** Gets a free fp register. */
-    PhysRegIndex getFloatReg() { return floatList.getReg(); }
+    PhysRegIndex getFloatReg() { /*std::cout << "Asking for float reg" << std::endl*/;  return floatList.getReg(); }
 
     /** Gets a free cc register. */
-    PhysRegIndex getCCReg() { return ccList.getReg(); }
+    PhysRegIndex getCCReg() { /*std::cout << "Asking for cc reg" << std::endl*/;  return ccList.getReg(); }
 
     /** Adds a register back to the free list. */
     void addReg(PhysRegIndex freed_reg);
@@ -212,9 +212,9 @@ class UnifiedFreeList
     {
 	    std::cout << std::endl;
 	    std::cout << "FREELIST ENTRIES: numFreeIntRegs:" << numFreeIntRegs() << " numFreeFloatRegs:" << numFreeFloatRegs() << " numFreeCCRegs:" << numFreeCCRegs() << std::endl;
-	    /*
         std::cout << "***** Printing INT FREELIST" << std::endl;
-	    intList.printFreeList();
+	    /*
+             * intList.printFreeList();
 	    std::cout << "***** Printing FLOAT FREELIST" << std::endl;
 	    floatList.printFreeList();
 	    std::cout << "***** Printing CC FREELIST" << std::endl;

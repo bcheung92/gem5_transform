@@ -1054,34 +1054,40 @@ DefaultRename<Impl>::renameDestRegs(DynInstPtr &inst, ThreadID tid)
     RenameMap *map = renameMap[tid];
     unsigned num_dest_regs = inst->numDestRegs();
 
+    DPRINTF(Rename, "******* rename_impl.hh: renameDestRegs: for inst->seqNum %d ", inst->seqNum);
     // Rename the destination registers.
     for (int dest_idx = 0; dest_idx < num_dest_regs; dest_idx++) {
         RegIndex dest_reg = inst->destRegIdx(dest_idx);
         RegIndex rel_dest_reg;
         RegIndex flat_rel_dest_reg;
         RegIndex flat_uni_dest_reg;
+        DPRINTF(Rename, "renaming dest_reg: %d which falls in category ", dest_reg);
         typename RenameMap::RenameInfo rename_result;
 
         switch (regIdxToClass(dest_reg, &rel_dest_reg)) {
           case IntRegClass:
+              DPRINTF(Rename, "IntRegClass\n");
             flat_rel_dest_reg = tc->flattenIntIndex(rel_dest_reg);
             rename_result = map->renameInt(flat_rel_dest_reg);
             flat_uni_dest_reg = flat_rel_dest_reg;  // 1:1 mapping
             break;
 
           case FloatRegClass:
+              DPRINTF(Rename, "FloatRegClass\n");
             flat_rel_dest_reg = tc->flattenFloatIndex(rel_dest_reg);
             rename_result = map->renameFloat(flat_rel_dest_reg);
             flat_uni_dest_reg = flat_rel_dest_reg + TheISA::FP_Reg_Base;
             break;
 
           case CCRegClass:
+              DPRINTF(Rename, "CCRegClass\n");
             flat_rel_dest_reg = tc->flattenCCIndex(rel_dest_reg);
             rename_result = map->renameCC(flat_rel_dest_reg);
             flat_uni_dest_reg = flat_rel_dest_reg + TheISA::CC_Reg_Base;
             break;
 
           case MiscRegClass:
+              DPRINTF(Rename, "MiscRegClass\n");
             // misc regs don't get flattened
             flat_rel_dest_reg = rel_dest_reg;
             rename_result = map->renameMisc(flat_rel_dest_reg);
@@ -1124,6 +1130,7 @@ DefaultRename<Impl>::renameDestRegs(DynInstPtr &inst, ThreadID tid)
 
         ++renameRenamedOperands;
     }
+        DPRINTF(Rename, "***** DONE for rename_impl.hh: renameDestRegs: for inst->seqNum %d\n", inst->seqNum);
 }
 
 template <class Impl>

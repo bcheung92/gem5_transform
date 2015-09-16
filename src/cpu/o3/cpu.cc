@@ -283,6 +283,11 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
     assert(params->numPhysFloatRegs >= numThreads * TheISA::NumFloatRegs);
     assert(params->numPhysCCRegs >= numThreads * TheISA::NumCCRegs);
 
+    std::cout << "Printing the number of arch regs:" << std::endl;
+    std::cout << "TheISA::NumIntRegs - " << TheISA::NumIntRegs << std::endl;
+    std::cout << "TheISA::NumFloatRegs - " << TheISA::NumFloatRegs << std::endl;
+    std::cout << "TheISA::NumCCRegs - " << TheISA::NumCCRegs << std::endl;
+
     rename.setScoreboard(&scoreboard);
     iew.setScoreboard(&scoreboard);
 
@@ -331,6 +336,11 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
     rename.setRenameMap(renameMap);
     commit.setRenameMap(commitRenameMap);
     rename.setFreeList(&freeList);
+
+    // print free list at the time of construction
+    // std::cout << "Printing free list at the time of construction" << std::endl;
+    // freeList.print_entries();
+    // (freeList.getCCList())->printFreeList();
 
     // Setup the ROB for whichever stages need it.
     commit.setROB(&rob);
