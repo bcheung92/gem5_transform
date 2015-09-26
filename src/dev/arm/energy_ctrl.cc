@@ -61,6 +61,7 @@ EnergyCtrl::EnergyCtrl(const Params *p)
     fatal_if(!p->dvfs_handler, "EnergyCtrl: Needs a DVFSHandler for a "
              "functioning system.\n");
 	esys = p->system;
+    dvfsHandler->set_esys_pointer(esys);
 std::cout << "ENERGY_CTRL TRANSFORM energy_ctrl.cc EnergyCtrl::EnergyCtrl system size of activeCpus is:" << esys->activeCpus.size() << std::endl;
 }
 
@@ -196,7 +197,8 @@ EnergyCtrl::write(PacketPtr pkt)
         std::cout << "DEBUG: domainID: " << domainID << " dvfsHandler->perfLevel(domainID): " << dvfsHandler->perfLevel(domainID) << " data: " << static_cast<int>(data) << " diff: " << (static_cast<int>(dvfsHandler->perfLevel(domainID)) - static_cast<int>(data)) << std::endl;
 	if (dvfsHandler->transform_enable == true)
 	{
-            std::cout << "dvfsHandler->transform_enable is true" << std::endl;
+	    // ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->old_cpu_big0_LITTLE1 = ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->cur_cpu_big0_LITTLE1;
+            // std::cout << "dvfsHandler->transform_enable is true" << std::endl;
 	    if ((static_cast<int>(data) > 6) && ((static_cast<int>(dvfsHandler->perfLevel(domainID)) - static_cast<int>(data)) < 0)) // 6 == 0.8 GHz min freq of big core | we want to transform down only if we are decreasing frequency i.e. increasing perf level number
             {           
             	std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " changing perf_level/data to" << static_cast<int>(data) << std::endl;  
@@ -204,30 +206,37 @@ EnergyCtrl::write(PacketPtr pkt)
 	    	
 	    	if (!(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_down))
 	    	{
-	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down) == 0);
-	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up) == 0);
+	    		// assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down) == 0);
+	    		// assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up) == 0);
 	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_up) == 1);
 	    		if((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down) == 1)
 	    		{
-            		std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " SKIPPING setting start_transform_down to 1 as CPU already transforming down" << std::endl;  
+            		std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " SKIPPING setting transforming_down to 1 as CPU already transforming down" << std::endl;  
 	    		}
 	    		else
 	    		{
-            		    std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " setting start_transform_down to 1 and setting data from " << static_cast<int>(data) << " to " << 0 << std::endl;  
+            		    std::cout << "at tick: " << curTick() << " ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " setting transforming_down to 1 and setting data from " << static_cast<int>(data) << " to " << 0 << std::endl;  
                             data = 2; // 1.2 GHz max frequency of LITTLE core
 	    		    assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down) == 0);
-	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down = 1;
+	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down = 1;
+	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->drain(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->drainManager);
+                            std::cout << "ENERGY_CTRL TRANSFORM_DOWN: for CPU:" << domainID << " DONE calling with drain()" <<std::endl;
+                            // ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down = 1;
+	    		    // ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->old_cpu_big0_LITTLE1 = 0;
+	    		    // ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->cur_cpu_big0_LITTLE1 = 1;
 	    		}
 	    	}
 	    	else
 	    	{
 	    		if((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_up) == 1)
             		{
-	    			std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " SKIPPING setting start_transform_down to 1 - already little CPU BUT is transforming UP TODO FIXME" << std::endl;  
+	    			std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " SKIPPING setting transforming_down to 1 - already little CPU BUT is transforming UP TODO FIXME" << std::endl; 
+                                std::cout << "ENERGY_CTRL TRANSFORM_DOWN: ERROR!!!! This should not have happened! Exiting ..." << std::endl;
+                               exit(1); 
             		}
 	    		else
 	    		{
-	    		std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " SKIPPING setting start_transform_down to 1 as already little CPU" << std::endl;  
+	    		std::cout << "ENERGY_CTRL TRANSFORM_DOWN : for CPU:" << domainID << " SKIPPING setting transforming_down to 1 as already little CPU" << std::endl;  
 	    		}
 	    	}
             } 
@@ -239,31 +248,38 @@ EnergyCtrl::write(PacketPtr pkt)
 	    	
 	    	if (!(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_up))
 	    	{
-	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down) == 0);
+	    		// assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_down) == 0);
 	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->done_transform_down) == 1);
-	    		assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up) == 0);
+	    		// assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up) == 0);
 	    		if((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_up) == 1)
 	    		{
-            		std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " SKIPPING setting start_transform_up to 1 as CPU already transforming up" << std::endl;  
+            		std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " SKIPPING setting transforming_up to 1 as CPU already transforming up" << std::endl;  
 	    		}
 	    		else
 	    		{
-            		    std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting start_transform_up to 1 and setting data from " << static_cast<int>(data) << " to " << 6 << std::endl;  
+            		    std::cout << "at tick: " << curTick() << " ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting transforming_up to 1 and setting data from " << static_cast<int>(data) << " to " << 6 << std::endl;  
                             data = 6;
 	    		    assert((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_up) == 0);
-	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up = 1;
-            		    std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting start_transform_up to 1" << std::endl;  
+	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_up = 1;
+	    		    ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->drain(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->drainManager);
+                            std::cout << "ENERGY_CTRL TRANSFORM_UP: for CPU:" << domainID << " DONE calling with drain()" << std::endl;
+	    		    // ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->start_transform_up = 1;
+	    		    // ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->old_cpu_big0_LITTLE1 = 1;
+	    		    // ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->cur_cpu_big0_LITTLE1 = 0;
+            		    std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " setting transforming_up to 1" << std::endl;  
 	    		}
 	    	}
 	    	else
 	    	{
 	    		if((((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[domainID]))->cpu->transforming_down) == 1)
             		{
-	    			std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " SKIPPING setting start_transform_up to 1 - already big CPU BUT is transforming DOWN TODO FIXME" << std::endl;  
+	    			std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " SKIPPING setting transforming_up to 1 - already big CPU BUT is transforming DOWN TODO FIXME" << std::endl;  
+                                std::cout << "ENERGY_CTRL TRANSFORM_DOWN: ERROR!!!! This should not have happened! Exiting ..." << std::endl;
+                               exit(1); 
             		}
 	    		else
 	    		{
-	    		std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " SKIPPING setting start_transform_up to 1 as already big CPU" << std::endl;  
+	    		std::cout << "ENERGY_CTRL TRANSFORM_UP : for CPU:" << domainID << " SKIPPING setting transforming_up to 1 as already big CPU" << std::endl;  
 	    		}
 	    	}
             }

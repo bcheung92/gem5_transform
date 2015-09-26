@@ -50,6 +50,8 @@
 #include "sim/stat_control.hh"
 #include "sim/voltage_domain.hh"
 
+#include "cpu/o3/thread_context.hh" // lokeshjindal15 
+#include "sim/system.hh"
 //
 //
 // DVFSHandler methods implementation
@@ -150,6 +152,7 @@ DVFSHandler::perfLevel(DomainID domain_id, PerfLevel perf_level)
     // At this point, a new transition will certainly take place -> schedule
     Tick when = curTick() + _transLatency;
     DPRINTF(DVFS, "DVFS: Update for perf event scheduled for %ld\n", when);
+    // std::cout << "DVFS_HANDLER: Update to perf_level: " << perf_level << " for domain: " << domain_id << std::endl;
 
     schedule(update_event, when);
     return true;
@@ -160,9 +163,31 @@ DVFSHandler::UpdateEvent::updatePerfLevel()
 {
     // Perform explicit stats dump for power estimation before performance
     // level migration
+    
+    // save the CPU mode big/LITTLE
+    double cur_cpu_big1_LITTLE2[4];
+    // check that we have only 4 domains for a quad-core config TODO FIXME
+    if (dvfsHandler->numDomains() != 4)
+    {
+        std::cout << "DVFS_HANDLER: ERROR! dvfsHandler->numDomains is: " << dvfsHandler->numDomains() << " which is not 4" << std::endl;
+        std::cout << "DVFS_HANDLER: This was checked while changing perflevel of domain: " << domainIDToSet << " to: " << perfLevelToSet << std::endl;
+        assert(dvfsHandler->numDomains() == 4);
+    }
+    for (uint32_t i = 0; i < dvfsHandler->numDomains(); i++)
+    {
+        cur_cpu_big1_LITTLE2[i] = ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->cur_cpu_big1_LITTLE2.value();
+    }
+    for (uint32_t i = 0; i < dvfsHandler->numDomains(); i++)
+    {
+        // std::cout << "DVFS_HANDLER: for CPU: " << i << " cur_cpu_big1_LITTLE2 captured value is: " << cur_cpu_big1_LITTLE2[i] << " while changing perflevel of domain: " << domainIDToSet << " to: " << perfLevelToSet << std::endl;
+    }
+
     Stats::dump();
     Stats::reset();
-
+    for (uint32_t i = 0; i < dvfsHandler->numDomains(); i++)
+    {
+        ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->cur_cpu_big1_LITTLE2 = cur_cpu_big1_LITTLE2[i];
+    }
     // Update the performance level in the clock domain
     auto d = dvfsHandler->findDomain(domainIDToSet);
     assert(d->perfLevel() != perfLevelToSet);

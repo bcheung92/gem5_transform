@@ -61,6 +61,8 @@
 #include "sim/sim_object.hh"
 #include "sim/voltage_domain.hh"
 
+#include "sim/system.hh"
+
 /**
  * DVFS Handler class, maintains a list of all the domains it can handle.
  * Each entry of that list is an object of the DomainConfig class, and the
@@ -286,6 +288,17 @@ class DVFSHandler : public SimObject
      * requests per domain ID.
      */
     UpdatePerfLevelEvents updatePerfLevelEvents;
+
+  public:
+    // add a function so that energy controller can set the system pointer
+    void set_esys_pointer(System * esys)
+    {   
+        this->esys = esys;  
+        UpdateEvent::dvfsHandler->esys = esys;
+    }
+  private:
+    // lokeshjindal15 add system pointer so that dvfs handler can access CPU attribute cur_cpu_big1_LITTLE2
+    System * esys;
 };
 
 #endif // __SIM_DVFS_HANDLER_HH__

@@ -423,11 +423,11 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
         this->thread[tid]->setFuncExeInst(0);
 
 	//lokeshjindal15 init transform flags
-	start_transform_down = 0;
+	// start_transform_down = 0;
 	transforming_down = 0;
 	done_transform_down = 0;
 	
-	start_transform_up = 0;
+	// start_transform_up = 0;
 	transforming_up = 0;
 	done_transform_up = 1;
 
@@ -580,6 +580,11 @@ FullO3CPU<Impl>::regStats()
         .name(name() + ".misc_regfile_writes")
         .desc("number of misc regfile writes")
         .prereq(miscRegfileWrites);
+    
+    cur_cpu_big1_LITTLE2
+        .name(name() + ".cur_cpu_big1_LITTLE2")
+        .desc("whether the cpu is big(1) or LITTLE(2)")
+        .prereq(cur_cpu_big1_LITTLE2);
 }
 
 template <class Impl>
@@ -605,6 +610,19 @@ FullO3CPU<Impl>::tick()
     assert(getDrainState() != Drainable::Drained);
 
     ++numCycles;
+
+    assert ((done_transform_up || done_transform_down) == 1);
+
+    if (done_transform_up)
+    {
+        assert(done_transform_down == 0);
+        cur_cpu_big1_LITTLE2 = 1;
+    }
+    if (done_transform_down)
+    {
+        assert(done_transform_up == 0);
+        cur_cpu_big1_LITTLE2 = 2;
+    }
 
 //    activity = false;
 
@@ -828,7 +846,7 @@ FullO3CPU<Impl>::tick()
 		if (!start_drain_down_1)
 		{
 		start_drain_down_1 = 1;
-		start_transform_down = 1;
+		// start_transform_down = 1;
 		}
 		
 	}
@@ -838,7 +856,7 @@ FullO3CPU<Impl>::tick()
 		if (!start_drain_up_1)
 		{
 		start_drain_up_1 = 1;
-		start_transform_up = 1;
+		// start_transform_up = 1;
 		}
 		
 	}
@@ -848,7 +866,7 @@ FullO3CPU<Impl>::tick()
 		if (!start_drain_down_2)
 		{
 		start_drain_down_2 = 1;
-		start_transform_down = 1;
+		// start_transform_down = 1;
 		}
 		
 	}
@@ -858,34 +876,36 @@ FullO3CPU<Impl>::tick()
 		if (!start_drain_up_2)
 		{
 		start_drain_up_2 = 1;
-		start_transform_up = 1;
+		// start_transform_up = 1;
 		}
 		
 	}
 	if (1)
 	{
-		if (start_transform_down)
-		{
-		assert(done_transform_down == 0);
-		assert(transforming_down == 0);
-		assert(done_transform_up == 1);
-		assert(transforming_up == 0);
-		assert(start_transform_up == 0);
-		transforming_down = 1;
-		start_transform_down = 0;
-		std::cout << "*****TRANSFORM going to call drain()" << endl;
-		Stats::dump();
-		Stats::reset();
-		drain(drainManager);
-		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
-		}
+		// if (start_transform_down)
+		// {
+		// // assert(!static_cast<bool>(cur_cpu_big1_LITTLE2));
+		// assert(done_transform_down == 0);
+		// assert(transforming_down == 0);
+		// assert(done_transform_up == 1);
+		// assert(transforming_up == 0);
+		// assert(start_transform_up == 0);
+		// transforming_down = 1;
+		// start_transform_down = 0;
+		// std::cout << "*****at tick: " << curTick() << " TRANSFORM_DOWN going to call drain()" << endl;
+		// // Stats::dump();
+		// // Stats::reset();
+		// drain(drainManager);
+		// std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
+		// }
 		
 		if (transforming_down && isDrained())
 		{
+			// assert(!static_cast<bool>(cur_cpu_big1_LITTLE2));
 			assert(done_transform_down == 0);
 			assert(done_transform_up == 1);
-			assert(start_transform_down == 0);
-			assert(start_transform_up == 0);
+			// assert(start_transform_down == 0);
+			// assert(start_transform_up == 0);
 			assert(transforming_up == 0);
 			transform_down_self();
 			
@@ -895,35 +915,41 @@ FullO3CPU<Impl>::tick()
 	
 			std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
 			drainResume();
-			Stats::dump();
+                        cur_cpu_big1_LITTLE2 = 1;
+                        // std::cout << "BEFORE transforming_down cur_cpu_big1_LITTLE2 is: " << cur_cpu_big1_LITTLE2 << std::endl;
+                        Stats::dump();
 			Stats::reset();
+                        cur_cpu_big1_LITTLE2 = 2;
+                        // std::cout << "AFTER transforming_down cur_cpu_big1_LITTLE2 is: " << cur_cpu_big1_LITTLE2 << std::endl;
 			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
 	} 
 	if (1)
 	{
-		if (start_transform_up)
-		{
-		assert(done_transform_down == 1);
-		assert(transforming_down == 0);
-		assert(done_transform_up == 0);
-		assert(transforming_up == 0);
-		assert(start_transform_down == 0);
-		transforming_up = 1;
-		start_transform_up = 0;
-		std::cout << "*****TRANSFORM going to call drain()" << endl;
-		Stats::dump();
-		Stats::reset();
-		drain(drainManager);
-		std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
-		}
+		// if (start_transform_up)
+		// {
+		// // assert(static_cast<bool>(cur_cpu_big1_LITTLE2));
+		// assert(done_transform_down == 1);
+		// assert(transforming_down == 0);
+		// assert(done_transform_up == 0);
+		// assert(transforming_up == 0);
+		// // assert(start_transform_down == 0);
+		// transforming_up = 1;
+		// start_transform_up = 0;
+		// std::cout << "*****at tick: " << curTick() << " TRANSFORM_UP going to call drain()" << endl;
+		// // Stats::dump();
+		// // Stats::reset();
+		// drain(drainManager);
+		// std::cout << "*****TRANSFORM DONE calling with drain()" << endl;
+		// }
 		
 		if (transforming_up && isDrained())
 		{
+			// assert(static_cast<bool>(cur_cpu_big1_LITTLE2));
 			assert(done_transform_up == 0);
 			assert(done_transform_down == 1);
-			assert(start_transform_down == 0);
-			assert(start_transform_up == 0);
+			// assert(start_transform_down == 0);
+			// assert(start_transform_up == 0);
 			assert(transforming_down == 0);
 			transform_up_self();
 			
@@ -933,8 +959,12 @@ FullO3CPU<Impl>::tick()
 	
 			std::cout << "****TRANSFORM DRAINRESUME going to call drainResume" << endl;
 			drainResume();
+                        cur_cpu_big1_LITTLE2 = 2;
+                        // std::cout << "BEFORE transforming_up cur_cpu_big1_LITTLE2 is: " << cur_cpu_big1_LITTLE2 << std::endl;
 			Stats::dump();
 			Stats::reset();
+                        cur_cpu_big1_LITTLE2 = 1;
+                        // std::cout << "AFTER transforming_up cur_cpu_big1_LITTLE2 is: " << cur_cpu_big1_LITTLE2 << std::endl;
 			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
 	}
@@ -947,6 +977,7 @@ FullO3CPU<Impl>::tick()
             lastRunningCycle = curCycle();
         } else if (!activityRec.active() || _status == Idle) {
             DPRINTF(O3CPU, "Idle!\n");
+            // std::cout << "O3CPU is Idle!\n" << std::endl;
             lastRunningCycle = curCycle();
             timesIdled++;
         } else {

@@ -747,14 +747,17 @@ class FullO3CPU : public BaseO3CPU
     //number of misc
     Stats::Scalar miscRegfileReads;
     Stats::Scalar miscRegfileWrites;
+    
+    // Stats::Scalar old_cpu_big0_LITTLE1;
+    Stats::Scalar cur_cpu_big1_LITTLE2;
 
 public:
 	//lokeshjindal15 per cpu flags to be used for transformation
-	bool start_transform_down;
+	// bool start_transform_down;
 	bool transforming_down;
 	bool done_transform_down;
 
-	bool start_transform_up;
+	// bool start_transform_up;
 	bool transforming_up;
 	bool done_transform_up;
 	
