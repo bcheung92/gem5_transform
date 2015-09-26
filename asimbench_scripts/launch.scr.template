@@ -29,6 +29,7 @@ output = $(OutFolder)/out
 error = $(OutFolder)/err
 log = $(OutFolder)/log
 #Requirements = (Machine!="opteron-5.ece.wisc.edu") && (Machine!="bert.ece.wisc.edu")
+request_memory = 10G
 universe = vanilla
 Getenv = true
 Queue

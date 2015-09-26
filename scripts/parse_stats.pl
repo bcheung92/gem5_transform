@@ -174,8 +174,8 @@ while ($STATS_FILE_I < $num_stats_file)
 	$out_dir = dirname($stats_file);
 	$BENCHMARKS[$STATS_FILE_I] = basename ($out_dir);
 	print "Stats file beng used is $stats_file and outdir is $out_dir\n";
-	print "********DANGER******** Removing existing part-wise files: rm $out_dir/stats.txt.*\n";
-	`rm $out_dir/stats.txt.`; 	
+        # print "********DANGER******** Removing existing part-wise files: rm $out_dir/stats.txt.*\n";
+        # `rm $out_dir/stats.txt.`; 	
 	
 	my $MAXPHASES = 0;
 	$MAXPHASES = `grep "Begin Simulation Statistics" $stats_file | wc -l`;
@@ -184,12 +184,13 @@ while ($STATS_FILE_I < $num_stats_file)
 	
 	open STATS_FILE, $stats_file or die $!;
 	my $line="";
-	my $part = 0;
+	my $part = 1; # TODO FIXME careful with this
 	my @proc_sim_seconds;
 	my @sim_ticks;
 	my $proc_total_sim_seconds=0;
 	my @proc_clk;
 	my @proc_freq;
+	my @proc_big1ORLittle2;
 	my @proc_int_busy_cycles;
 	my @proc_num_cycles;
 	my @proc_int_max_cycles;
@@ -205,26 +206,45 @@ while ($STATS_FILE_I < $num_stats_file)
 
 
         my %core0_time_at_freq;
+        my %big_core0_time_at_freq;
+        my %LITTLE_core0_time_at_freq;
         my %core1_time_at_freq;
+        my %big_core1_time_at_freq;
+        my %LITTLE_core1_time_at_freq;
         my %core2_time_at_freq;
+        my %big_core2_time_at_freq;
+        my %LITTLE_core2_time_at_freq;
         my %core3_time_at_freq;
+        my %big_core3_time_at_freq;
+        my %LITTLE_core3_time_at_freq;
+        
         my %core0_PCtime_at_freq;
+        my %big_core0_PCtime_at_freq;
+        my %LITTLE_core0_PCtime_at_freq;
         my %core1_PCtime_at_freq;
+        my %big_core1_PCtime_at_freq;
+        my %LITTLE_core1_PCtime_at_freq;
         my %core2_PCtime_at_freq;
+        my %big_core2_PCtime_at_freq;
+        my %LITTLE_core2_PCtime_at_freq;
         my %core3_PCtime_at_freq;
+        my %big_core3_PCtime_at_freq;
+        my %LITTLE_core3_PCtime_at_freq;
 
 
 
-	while ($line = <STATS_FILE>)
+	while (($line = <STATS_FILE>) and ($part < $MAXPHASES)) # we want to ignore the last stat dump
 	{
-		if ($line =~ /.*Begin Simulation Statistics.*/)
+		
+                if ($line =~ /.*Begin Simulation Statistics.*/)
 		{
 			#print "Detected Begin\n";	
-			if ($part)
-			{
+                        # if ($part)
+                        # {
 			# close OUTFILE;
-			}
-			$part++;
+                        # }
+			
+                        # $part++;
 
 			#initialize all values to be grepped to -1
 			my $num = 0;
@@ -253,16 +273,18 @@ while ($STATS_FILE_I < $num_stats_file)
 					exit;
 				}
 				$tmp_sim_seconds = $1;
-				#print "0 tmp_sim_seconds is $tmp_sim_seconds and part is $part\n";
 				$captured = 0;
-				#$proc_sim_seconds{$part} = $1;
-				#print "proc_sim_seconds $proc_sim_seconds{$part}\n";
-				#$proc_total_sim_seconds += $proc_sim_seconds{$part};
 			}
 			if ($line =~ /.*sim_ticks\s+(\d+)/)
 			{
 				$sim_ticks[$part -1] = $1; # 1 sim_tick is 10^(-12)s
-			}
+			
+                        }
+                        if ($line =~ /system.switch_cpus(\d).cur_cpu_big1_LITTLE2\s+(\d)\s+/)
+			{
+			        $proc_big1ORLittle2[$1][$part-1] = $2;
+                                print "proc_big1ORLittle2 for phase: $part and core: $1 is: $2\n";
+                        }
 			if ($line =~ /.*cpu_clk_domain.clock\s+(\d+)/)
 			{
 				# calculate no. of cycles simulated for this processor
@@ -270,12 +292,10 @@ while ($STATS_FILE_I < $num_stats_file)
 				print "proc_num_cycles cpu0: $proc_num_cycles[0][$part - 1]\n";
 
 				$proc_clk[0][$part - 1] = $1;
-				#print "proc_clk $proc_clk[$part - 1]\n";
 				$proc_freq[0][$part -1] = 1000/$proc_clk[0][$part -1];#in GHz
 				$proc_freq[0][$part -1] = int($proc_freq[0][$part -1] * 1000);#in MHz
-				#print "1 tmp_sim_seconds is $tmp_sim_seconds and part is $part\n";
-				#$proc_sim_seconds[$part -1] = $tmp_sim_seconds;
-				#$proc_total_sim_seconds += $proc_sim_seconds[$part -1];
+                                if ($proc_freq[0][$part -1] == -1)
+                                {   print "ERROR!!!! proc_freq[0][$part -1] is: $proc_freq[0][$part -1]\n";   exit; }
 			}
 			if ($line =~ /.*cpu_clk_domain1.clock\s+(\d+)/)
 			{
@@ -283,12 +303,8 @@ while ($STATS_FILE_I < $num_stats_file)
 				print "proc_num_cycles cpu1: $proc_num_cycles[1][$part - 1]\n";
 
 				$proc_clk[1][$part - 1] = $1;
-				#print "proc_clk $proc_clk[$part - 1]\n";
 				$proc_freq[1][$part -1] = 1000/$proc_clk[1][$part -1];#in GHz
 				$proc_freq[1][$part -1] = int($proc_freq[1][$part -1] * 1000);#in MHz
-				#print "1 tmp_sim_seconds is $tmp_sim_seconds and part is $part\n";
-				#$proc_sim_seconds[$part -1] = $tmp_sim_seconds;
-				#$proc_total_sim_seconds += $proc_sim_seconds[$part -1];
 			}
 			if ($line =~ /.*cpu_clk_domain2.clock\s+(\d+)/)
 			{
@@ -296,12 +312,8 @@ while ($STATS_FILE_I < $num_stats_file)
 				print "proc_num_cycles cpu2: $proc_num_cycles[2][$part - 1]\n";
 
 				$proc_clk[2][$part - 1] = $1;
-				#print "proc_clk $proc_clk[$part - 1]\n";
 				$proc_freq[2][$part -1] = 1000/$proc_clk[2][$part -1];#in GHz
 				$proc_freq[2][$part -1] = int($proc_freq[2][$part -1] * 1000);#in MHz
-				#print "1 tmp_sim_seconds is $tmp_sim_seconds and part is $part\n";
-				#$proc_sim_seconds[$part -1] = $tmp_sim_seconds;
-				#$proc_total_sim_seconds += $proc_sim_seconds[$part -1];
 			}
 			if ($line =~ /.*cpu_clk_domain3.clock\s+(\d+)/)
 			{
@@ -309,10 +321,8 @@ while ($STATS_FILE_I < $num_stats_file)
 				print "proc_num_cycles cpu3: $proc_num_cycles[3][$part - 1]\n";
 
 				$proc_clk[3][$part - 1] = $1;
-				#print "proc_clk $proc_clk[$part - 1]\n";
 				$proc_freq[3][$part -1] = 1000/$proc_clk[3][$part -1];#in GHz
 				$proc_freq[3][$part -1] = int($proc_freq[3][$part -1] * 1000);#in MHz
-				#print "1 tmp_sim_seconds is $tmp_sim_seconds and part is $part\n";
 			}
 			if ($line =~ /.*system.switch_cpus(\d).iq.FU_type_0::IntAlu\s+(\d+)/)
 			{
@@ -415,6 +425,8 @@ while ($STATS_FILE_I < $num_stats_file)
 				$proc_sim_seconds[$part -1] = $tmp_sim_seconds;
 				$proc_total_sim_seconds += $proc_sim_seconds[$part -1];
 
+                                $part++;
+
 			}
 			
 			# print OUTFILE $line;
@@ -424,7 +436,7 @@ while ($STATS_FILE_I < $num_stats_file)
 	# close OUTFILE;
 	
 	#Do not want to count the last part of stats.txt
-	$proc_total_sim_seconds -= $proc_sim_seconds[$part -1];
+        # $proc_total_sim_seconds -= $proc_sim_seconds[$part -1];
 	
 	if ($part != $MAXPHASES)
 	{
@@ -434,10 +446,33 @@ while ($STATS_FILE_I < $num_stats_file)
 	print "Done splitting $stats_file into $part files!!!!\n\n";
 	print "*******************************************************************************************\n";
         
-        # calculate cumulative time for each frequency  
+        # calculate cumulative time for each frequency 
+       
+        my $big_proc0_total_sim_seconds = 0;
+        my $LITTLE_proc0_total_sim_seconds = 0;
+        my $big_proc1_total_sim_seconds = 0;
+        my $LITTLE_proc1_total_sim_seconds = 0;
+        my $big_proc2_total_sim_seconds = 0;
+        my $LITTLE_proc2_total_sim_seconds = 0;
+        my $big_proc3_total_sim_seconds = 0;
+        my $LITTLE_proc3_total_sim_seconds = 0;
+        
+        # how much time each core was big or LITTLE
+        my $big_proc0_PC_sim_seconds = 0;
+        my $LITTLE_proc0_PC_sim_seconds = 0;
+        my $big_proc1_PC_sim_seconds = 0;
+        my $LITTLE_proc1_PC_sim_seconds = 0;
+        my $big_proc2_PC_sim_seconds = 0;
+        my $LITTLE_proc2_PC_sim_seconds = 0;
+        my $big_proc3_PC_sim_seconds = 0;
+        my $LITTLE_proc3_PC_sim_seconds = 0;
+       
+
         $phase = 0 ; 
         foreach my $f (@{ $proc_freq[0] })
         {
+            if ($f == -1)
+            {   print "ERROR!!! f of $f detected here\n";   }
             if (exists $core0_time_at_freq{$f})
             {
                 $core0_time_at_freq{$f} += $proc_sim_seconds[$phase];
@@ -446,15 +481,44 @@ while ($STATS_FILE_I < $num_stats_file)
             {
                 $core0_time_at_freq{$f} = $proc_sim_seconds[$phase];
             }
+            if ($proc_big1ORLittle2[0][$phase] == 1) # this is a big core
+            {
+                $big_proc0_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $big_core0_time_at_freq{$f})
+                {   $big_core0_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $big_core0_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
+            # if ($proc_big1ORLittle2[$phase] == 2) # this is a LITTLE core
+            else
+            {
+                $LITTLE_proc0_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $LITTLE_core0_time_at_freq{$f})
+                {   $LITTLE_core0_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $LITTLE_core0_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
 
             $phase++;
         }
-	if ($phase != $MAXPHASES)
+	if ($phase != ($MAXPHASES -1)) # we captured all but last stat dump
 	{
-		print "***** CORE0 ERROR!!! phase = $phase and MAXPHASES = $MAXPHASES not equal\n";
+		print "***** CORE0 ERROR!!! phase = $phase and MAXPHASES = ", $MAXPHASES -1, " not equal\n";
 		exit;
 	}
-        $phase = 0 ; 
+        # calculate PC times core0 was big or LITTLE
+        print "CORE0: (big_proc0_total_sim_seconds + LITTLE_proc0_total_sim_seconds):", $big_proc0_total_sim_seconds + $LITTLE_proc0_total_sim_seconds, " and proc_total_sim_seconds: $proc_total_sim_seconds\n";
+        $big_proc0_PC_sim_seconds = 100 * ($big_proc0_total_sim_seconds) / ($big_proc0_total_sim_seconds + $LITTLE_proc0_total_sim_seconds);
+        $LITTLE_proc0_PC_sim_seconds = 100 * ($LITTLE_proc0_total_sim_seconds) / ($big_proc0_total_sim_seconds + $LITTLE_proc0_total_sim_seconds);
+        print "CORE0: core was big for $big_proc0_PC_sim_seconds % of time and LITTLE for $LITTLE_proc0_PC_sim_seconds % \n";
+
+        $phase = 0 ;
+        $alpha = 0;
+        while ($alpha < $MAXPHASES)
+            {
+              print "proc_big1ORLittle2[1][$alpha] is: $proc_big1ORLittle2[1][$alpha] \n";
+              $alpha++;
+          }
         foreach my $f (@{ $proc_freq[1] })
         {
             if (exists $core1_time_at_freq{$f})
@@ -465,14 +529,37 @@ while ($STATS_FILE_I < $num_stats_file)
             {
                 $core1_time_at_freq{$f} = $proc_sim_seconds[$phase];
             }
+            if ($proc_big1ORLittle2[1][$phase] == 1) # this is a big core
+            {
+                $big_proc1_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $big_core1_time_at_freq{$f})
+                {   $big_core1_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $big_core1_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
+            # if ($proc_big1ORLittle2[$phase] == 2) # this is a LITTLE core
+            else
+            {
+                print "CORE1: proc_big1ORLittle2[1][$phase] is $proc_big1ORLittle2[1][$phase]\n";
+                $LITTLE_proc1_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $LITTLE_core1_time_at_freq{$f})
+                {   $LITTLE_core1_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $LITTLE_core1_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
 
             $phase++;
         }
-	if ($phase != $MAXPHASES)
+	if ($phase != ($MAXPHASES -1)) # we captured all but last stat dump
 	{
-		print "***** CORE1 ERROR!!! phase = $phase and MAXPHASES = $MAXPHASES not equal\n";
+		print "***** CORE1 ERROR!!! phase = $phase and MAXPHASES = ", $MAXPHASES -1, " not equal\n";
 		exit;
 	}
+
+        # calculate PC times core1 was big or LITTLE
+        print "CORE1: (big_proc1_total_sim_seconds + LITTLE_proc1_total_sim_seconds):", $big_proc1_total_sim_seconds + $LITTLE_proc1_total_sim_seconds, " and proc_total_sim_seconds: $proc_total_sim_seconds\n";
+        $big_proc1_PC_sim_seconds = 100 * ($big_proc1_total_sim_seconds) / ($big_proc1_total_sim_seconds + $LITTLE_proc1_total_sim_seconds);
+        $LITTLE_proc1_PC_sim_seconds = 100 * ($LITTLE_proc1_total_sim_seconds) / ($big_proc1_total_sim_seconds + $LITTLE_proc1_total_sim_seconds);
         $phase = 0 ; 
         foreach my $f (@{ $proc_freq[2] })
         {
@@ -484,14 +571,36 @@ while ($STATS_FILE_I < $num_stats_file)
             {
                 $core2_time_at_freq{$f} = $proc_sim_seconds[$phase];
             }
+            if ($proc_big1ORLittle2[2][$phase] == 1) # this is a big core
+            {
+                $big_proc2_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $big_core2_time_at_freq{$f})
+                {   $big_core2_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $big_core2_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
+            # if ($proc_big1ORLittle2[$phase] == 2) # this is a LITTLE core
+            else
+            {
+                $LITTLE_proc2_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $LITTLE_core2_time_at_freq{$f})
+                {   $LITTLE_core2_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $LITTLE_core2_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
 
             $phase++;
         }
-	if ($phase != $MAXPHASES)
+	if ($phase != ($MAXPHASES -1) )
 	{
-		print "***** CORE2 ERROR!!! phase = $phase and MAXPHASES = $MAXPHASES not equal\n";
+		print "***** CORE2 ERROR!!! phase = $phase and MAXPHASES = ", $MAXPHASES -1, " not equal\n";
 		exit;
 	}
+
+        # calculate PC times core2 was big or LITTLE
+        print "CORE2: (big_proc2_total_sim_seconds + LITTLE_proc2_total_sim_seconds):", $big_proc2_total_sim_seconds + $LITTLE_proc2_total_sim_seconds, " and proc_total_sim_seconds: $proc_total_sim_seconds\n";
+        $big_proc2_PC_sim_seconds = 100 * ($big_proc2_total_sim_seconds) / ($big_proc2_total_sim_seconds + $LITTLE_proc2_total_sim_seconds);
+        $LITTLE_proc2_PC_sim_seconds = 100 * ($LITTLE_proc2_total_sim_seconds) / ($big_proc2_total_sim_seconds + $LITTLE_proc2_total_sim_seconds);
         $phase = 0 ; 
         foreach my $f (@{ $proc_freq[3] })
         {
@@ -503,28 +612,67 @@ while ($STATS_FILE_I < $num_stats_file)
             {
                 $core3_time_at_freq{$f} = $proc_sim_seconds[$phase];
             }
+            if ($proc_big1ORLittle2[3][$phase] == 1) # this is a big core
+            {
+                $big_proc3_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $big_core3_time_at_freq{$f})
+                {   $big_core3_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $big_core3_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
+            # if ($proc_big1ORLittle2[$phase] == 2) # this is a LITTLE core
+            else
+            {
+                $LITTLE_proc3_total_sim_seconds += $proc_sim_seconds[$phase];
+                if ( exists $LITTLE_core3_time_at_freq{$f})
+                {   $LITTLE_core3_time_at_freq{$f} += $proc_sim_seconds[$phase];   }
+                else
+                {   $LITTLE_core3_time_at_freq{$f} = $proc_sim_seconds[$phase];   }
+            }
 
             $phase++;
         }
-	if ($phase != $MAXPHASES)
+	if ($phase != ($MAXPHASES -1) )
 	{
-		print "***** CORE3 ERROR!!! phase = $phase and MAXPHASES = $MAXPHASES not equal\n";
+		print "***** CORE3 ERROR!!! phase = $phase and MAXPHASES = ", $MAXPHASES -1, " not equal\n";
 		exit;
 	}
 
+        # calculate PC times core3 was big or LITTLE
+        print "CORE3: (big_proc3_total_sim_seconds + LITTLE_proc3_total_sim_seconds):", $big_proc3_total_sim_seconds + $LITTLE_proc3_total_sim_seconds, " and proc_total_sim_seconds: $proc_total_sim_seconds\n";
+        $big_proc3_PC_sim_seconds = 100 * ($big_proc3_total_sim_seconds) / ($big_proc3_total_sim_seconds + $LITTLE_proc3_total_sim_seconds);
+        $LITTLE_proc3_PC_sim_seconds = 100 * ($LITTLE_proc3_total_sim_seconds) / ($big_proc3_total_sim_seconds + $LITTLE_proc3_total_sim_seconds);
         # populate the missing frequencies with zeros
         @freq_possible = (200.0, 300.0, 400.0, 500.0, 599.0, 699.0, 800.0, 900.0, 1000.0, 1100.0, 1200.0, 1300.0, 1400.0);
 
         foreach my $f ( @freq_possible )
         {
+            if ($f == -1)
+            { print "ERROR!! f of -1 detected\n"; exit; }
             if (!(exists $core0_time_at_freq{$f}))
             {   $core0_time_at_freq{$f} = 0; }
+            if (!(exists $big_core0_time_at_freq{$f}))
+            {   $big_core0_time_at_freq{$f} = 0;    }
+            if (!(exists $LITTLE_core0_time_at_freq{$f}))
+            {   $LITTLE_core0_time_at_freq{$f} = 0;    }
             if (!(exists $core1_time_at_freq{$f}))
             {   $core1_time_at_freq{$f} = 0; }
+            if (!(exists $big_core1_time_at_freq{$f}))
+            {   $big_core1_time_at_freq{$f} = 0;    }
+            if (!(exists $LITTLE_core1_time_at_freq{$f}))
+            {   $LITTLE_core1_time_at_freq{$f} = 0;    }
             if (!(exists $core2_time_at_freq{$f}))
             {   $core2_time_at_freq{$f} = 0; }
+            if (!(exists $big_core2_time_at_freq{$f}))
+            {   $big_core2_time_at_freq{$f} = 0;    }
+            if (!(exists $LITTLE_core2_time_at_freq{$f}))
+            {   $LITTLE_core2_time_at_freq{$f} = 0;    }
             if (!(exists $core3_time_at_freq{$f}))
             {   $core3_time_at_freq{$f} = 0; }
+            if (!(exists $big_core3_time_at_freq{$f}))
+            {   $big_core3_time_at_freq{$f} = 0;    }
+            if (!(exists $LITTLE_core3_time_at_freq{$f}))
+            {   $LITTLE_core3_time_at_freq{$f} = 0;    }
         }
 
         # calculate % time spent in each frequency by each core
@@ -532,18 +680,65 @@ while ($STATS_FILE_I < $num_stats_file)
         {
             print "core0_time_at_freq for freq: $f is $core0_time_at_freq{$f} and proc_total_sim_seconds is: $proc_total_sim_seconds\n";
             $core0_PCtime_at_freq{$f} = ($core0_time_at_freq{$f} / $proc_total_sim_seconds) * 100;
+            print "core0_PCtime_at_freq for f: $f is $core0_PCtime_at_freq{$f}\n";
         }
+        foreach $f (keys %big_core0_time_at_freq)
+        {
+            print "big_core0_time_at_freq for freq: $f is $big_core0_time_at_freq{$f} and big_proc0_total_sim_seconds is: $big_proc0_total_sim_seconds\n";
+            $big_core0_PCtime_at_freq{$f} = ($big_core0_time_at_freq{$f} / $big_proc0_total_sim_seconds) * 100;
+        }
+        foreach $f (keys %LITTLE_core0_time_at_freq)
+        {
+            print "LITTLE_core0_time_at_freq for freq: $f is $LITTLE_core0_time_at_freq{$f} and LITTLE_proc0_total_sim_seconds is: $LITTLE_proc0_total_sim_seconds\n";
+            $LITTLE_core0_PCtime_at_freq{$f} = ($LITTLE_core0_time_at_freq{$f} / ($LITTLE_proc0_total_sim_seconds + 0.000001)) * 100; # hack to avoid divide by ZERO errors!
+        }
+
+        # core 1
         foreach $f (keys %core1_time_at_freq)
         {
             $core1_PCtime_at_freq{$f} = ($core1_time_at_freq{$f} / $proc_total_sim_seconds) * 100;
         }
+        foreach $f (keys %big_core1_time_at_freq)
+        {
+            print "big_core1_time_at_freq for freq: $f is $big_core1_time_at_freq{$f} and big_proc1_total_sim_seconds is: $big_proc1_total_sim_seconds\n";
+            $big_core1_PCtime_at_freq{$f} = ($big_core1_time_at_freq{$f} / $big_proc1_total_sim_seconds) * 100;
+        }
+        foreach $f (keys %LITTLE_core1_time_at_freq)
+        {
+            print "LITTLE_core1_time_at_freq for freq: $f is $LITTLE_core1_time_at_freq{$f} and LITTLE_proc1_total_sim_seconds is: $LITTLE_proc1_total_sim_seconds\n";
+            $LITTLE_core1_PCtime_at_freq{$f} = ($LITTLE_core1_time_at_freq{$f} / ($LITTLE_proc1_total_sim_seconds + 0.000001)) * 100;
+        }
+
+        # core 2
         foreach $f (keys %core2_time_at_freq)
         {
             $core2_PCtime_at_freq{$f} = ($core2_time_at_freq{$f} / $proc_total_sim_seconds) * 100;
         }
+        foreach $f (keys %big_core2_time_at_freq)
+        {
+            print "big_core2_time_at_freq for freq: $f is $big_core2_time_at_freq{$f} and big_proc2_total_sim_seconds is: $big_proc2_total_sim_seconds\n";
+            $big_core2_PCtime_at_freq{$f} = ($big_core2_time_at_freq{$f} / $big_proc2_total_sim_seconds) * 100;
+        }
+        foreach $f (keys %LITTLE_core2_time_at_freq)
+        {
+            print "LITTLE_core2_time_at_freq for freq: $f is $LITTLE_core2_time_at_freq{$f} and LITTLE_proc2_total_sim_seconds is: $LITTLE_proc2_total_sim_seconds\n";
+            $LITTLE_core2_PCtime_at_freq{$f} = ($LITTLE_core2_time_at_freq{$f} / ($LITTLE_proc2_total_sim_seconds + 0.000001)) * 100;
+        }
+
+        # core 3 
         foreach $f (keys %core3_time_at_freq)
         {
             $core3_PCtime_at_freq{$f} = ($core3_time_at_freq{$f} / $proc_total_sim_seconds) * 100;
+        }
+        foreach $f (keys %big_core3_time_at_freq)
+        {
+            print "big_core3_time_at_freq for freq: $f is $big_core3_time_at_freq{$f} and big_proc3_total_sim_seconds is: $big_proc3_total_sim_seconds\n";
+            $big_core3_PCtime_at_freq{$f} = ($big_core3_time_at_freq{$f} / $big_proc3_total_sim_seconds) * 100;
+        }
+        foreach $f (keys %LITTLE_core3_time_at_freq)
+        {
+            print "LITTLE_core3_time_at_freq for freq: $f is $LITTLE_core3_time_at_freq{$f} and LITTLE_proc3_total_sim_seconds is: $LITTLE_proc3_total_sim_seconds\n";
+            $LITTLE_core3_PCtime_at_freq{$f} = ($LITTLE_core3_time_at_freq{$f} / ($LITTLE_proc3_total_sim_seconds + 0.000001)) * 100;
         }
 
 	############################################
@@ -620,6 +815,7 @@ while ($STATS_FILE_I < $num_stats_file)
 	}
 
         # print the %age time in each frequency stat
+        # core 0
 	open F37, ">$out_dir/core0PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
         foreach my $f (sort { $a <=> $b} keys %core0_PCtime_at_freq)
@@ -627,13 +823,48 @@ while ($STATS_FILE_I < $num_stats_file)
             print F37 "$f, $core0_PCtime_at_freq{$f}\n";
         }
         close F37;
-	open F37, ">$out_dir/core1PCtimefreq.csv" or die $!;
+	open F37, ">$out_dir/bigcore0PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %big_core0_PCtime_at_freq)
+        {
+            print F37 "$f, $big_core0_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+	open F37, ">$out_dir/LITTLEcore0PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %LITTLE_core0_PCtime_at_freq)
+        {
+            print F37 "$f, $LITTLE_core0_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+
+        # print how much time core was big/LITTLE
+
+        # core 1
+        open F37, ">$out_dir/core1PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
         foreach my $f (sort { $a <=> $b} keys %core1_PCtime_at_freq)
         {
             print F37 "$f, $core1_PCtime_at_freq{$f}\n";
         }
         close F37;
+	open F37, ">$out_dir/bigcore1PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %big_core1_PCtime_at_freq)
+        {
+            print F37 "$f, $big_core1_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+	open F37, ">$out_dir/LITTLEcore1PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %LITTLE_core1_PCtime_at_freq)
+        {
+            print F37 "$f, $LITTLE_core1_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+
+
+        # core 2
 	open F37, ">$out_dir/core2PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
         foreach my $f (sort { $a <=> $b} keys %core2_PCtime_at_freq)
@@ -641,6 +872,23 @@ while ($STATS_FILE_I < $num_stats_file)
             print F37 "$f, $core2_PCtime_at_freq{$f}\n";
         }
         close F37;
+	open F37, ">$out_dir/bigcore2PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %big_core2_PCtime_at_freq)
+        {
+            print F37 "$f, $big_core2_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+	open F37, ">$out_dir/LITTLEcore2PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %LITTLE_core2_PCtime_at_freq)
+        {
+            print F37 "$f, $LITTLE_core2_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+
+
+        # core 3
 	open F37, ">$out_dir/core3PCtimefreq.csv" or die $!;
 	print F37 "Freq - % time\n";
         foreach my $f (sort { $a <=> $b} keys %core3_PCtime_at_freq)
@@ -648,6 +896,45 @@ while ($STATS_FILE_I < $num_stats_file)
             print F37 "$f, $core3_PCtime_at_freq{$f}\n";
         }
         close F37;
+	open F37, ">$out_dir/bigcore3PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %big_core3_PCtime_at_freq)
+        {
+            print F37 "$f, $big_core3_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+	open F37, ">$out_dir/LITTLEcore3PCtimefreq.csv" or die $!;
+	print F37 "Freq - % time\n";
+        foreach my $f (sort { $a <=> $b} keys %LITTLE_core3_PCtime_at_freq)
+        {
+            print F37 "$f, $LITTLE_core3_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+
+        # print the table to be plotted for big/LITTLE core frequency distributions
+        open F37, ">$out_dir/bigcorePCtimefreq.csv" or die $!;
+        print F37 "core0, core1, core2, core3\n";
+        foreach my $f (sort { $a <=> $b} keys %big_core0_PCtime_at_freq)
+        {
+            print F37 "$big_core0_PCtime_at_freq{$f}, $big_core1_PCtime_at_freq{$f}, $big_core2_PCtime_at_freq{$f}, $big_core3_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+
+        open F37, ">$out_dir/LITTLEcorePCtimefreq.csv" or die $!;
+        print F37 "core0, core1, core2, core3\n";
+        foreach my $f (sort { $a <=> $b} keys %LITTLE_core0_PCtime_at_freq)
+        {
+            print F37 "$LITTLE_core0_PCtime_at_freq{$f}, $LITTLE_core1_PCtime_at_freq{$f}, $LITTLE_core2_PCtime_at_freq{$f}, $LITTLE_core3_PCtime_at_freq{$f}\n";
+        }
+        close F37;
+
+        # print what %age of time each core was big/LITTLE
+        open F37, ">$out_dir/PCbigLITTLE.csv" or die $!;
+        print F37 "core0, core1, core2, core3\n";
+        print F37 "$LITTLE_proc0_PC_sim_seconds, $LITTLE_proc1_PC_sim_seconds, $LITTLE_proc2_PC_sim_seconds, $LITTLE_proc3_PC_sim_seconds\n";
+        print F37 "$big_proc0_PC_sim_seconds, $big_proc1_PC_sim_seconds, $big_proc2_PC_sim_seconds, $big_proc3_PC_sim_seconds\n";
+        close F37;
+
 
 
 $STATS_FILE_I++;

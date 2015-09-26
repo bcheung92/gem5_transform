@@ -14,8 +14,12 @@ function launch_bmark {
 }
 
 # declare -a BmarkList=('360buy'); 
-declare -a BmarkList=('360buy' 'adobe' 'baidumap' 'bbench' 'frozenbubble' 'k9mail' 'kingsoftoffice' 'mxplayer' 'netease' 'sinaweibo' 'ttpod');
+declare -a CoreBmarkList=('360buy' 'baidumap' 'bbench' 'kingsoftoffice' 'mxplayer' 'ttpod');
+declare -a BmarkList=('adobe' 'frozenbubble' 'k9mail' 'netease' 'sinaweibo');
 
+for i in ${CoreBmarkList[@]}; do
+    launch_bmark $i
+done
 for i in ${BmarkList[@]}; do
     launch_bmark $i
 done
