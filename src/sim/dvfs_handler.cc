@@ -166,6 +166,11 @@ DVFSHandler::UpdateEvent::updatePerfLevel()
     
     // save the CPU mode big/LITTLE
     double cur_cpu_big1_LITTLE2[4];
+    // save the CPU is in c1 state or not
+    double in_c1state[4];
+    double _entertick_c1state[4];
+    double _exittick_c1state[4];
+
     // check that we have only 4 domains for a quad-core config TODO FIXME
     if (dvfsHandler->numDomains() != 4)
     {
@@ -176,6 +181,9 @@ DVFSHandler::UpdateEvent::updatePerfLevel()
     for (uint32_t i = 0; i < dvfsHandler->numDomains(); i++)
     {
         cur_cpu_big1_LITTLE2[i] = ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->cur_cpu_big1_LITTLE2.value();
+        in_c1state[i] = ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->in_c1state.value();
+        _entertick_c1state[i] = ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->c1state_entertick.value();
+        _exittick_c1state[i] = ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->c1state_exittick.value();
     }
     for (uint32_t i = 0; i < dvfsHandler->numDomains(); i++)
     {
@@ -187,6 +195,9 @@ DVFSHandler::UpdateEvent::updatePerfLevel()
     for (uint32_t i = 0; i < dvfsHandler->numDomains(); i++)
     {
         ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->cur_cpu_big1_LITTLE2 = cur_cpu_big1_LITTLE2[i];
+        ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->in_c1state = in_c1state[i];
+        ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->c1state_entertick = _entertick_c1state[i];
+        ((O3ThreadContext<O3CPUImpl> *)(dvfsHandler->esys->threadContexts[i]))->cpu->c1state_exittick = _exittick_c1state[i];
     }
     // Update the performance level in the clock domain
     auto d = dvfsHandler->findDomain(domainIDToSet);

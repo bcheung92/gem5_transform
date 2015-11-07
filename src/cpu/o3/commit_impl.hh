@@ -846,7 +846,53 @@ DefaultCommit<Impl>::commit()
     if (FullSystem) {
         // Check if we have a interrupt and get read to handle it
         if (cpu->checkInterrupts(cpu->tcBase(0)))
+        {
+            // lokeshjindal15: this is where the interrupt is detected
+            if (cpu->ENTERING_C1 == 1)
+            {
+                // this should not happen...
+                std::cout << "ERROR! THIS SHOULD NOT HAPPEN... GOT AN INTERRUPT WHILE ENTERING C1" << endl;
+                cpu->drainResume();
+            }
+            if (cpu->IN_C1STATE == 1)
+            {
+                // assert (cpu->ENTERING_C1 == 0);
+                // we want to wake up now
+                std::cout << "GOT AN INTERRUPT - WAKING UP FROM C1 state" << endl;
+                // save the CPU is in c1 state or not
+                        double _in_c1state[4];
+                        double _entertick_c1state[4];
+                        double _exittick_c1state[4];
+                        // HACK TODO FIXME num cpus = 4 hardcoded
+                        for (uint32_t i = 0; i < 4; i++)
+                        {
+                            _in_c1state[i] = cpu->in_c1state.value();
+                            _entertick_c1state[i] = cpu->c1state_entertick.value();
+                            _exittick_c1state[i] =cpu->c1state_exittick.value();
+                        }
+                        cpu->IN_C1STATE = 1;   
+                        cpu->in_c1state = 1;
+                        Stats::dump();
+                        Stats::reset();
+
+                        for (uint32_t i = 0; i < 4; i++)
+                        {
+                            cpu->in_c1state = _in_c1state[i];
+                            cpu->c1state_entertick = _entertick_c1state[i];
+                            cpu->c1state_exittick = _exittick_c1state[i];
+                        }
+
+
+                        // this cpu will exit C1
+                        cpu->c1state_exittick = curTick(); 
+                        cpu->IN_C1STATE = 0;
+                        cpu->in_c1state = 2;
+
+
+                cpu->drainResume();
+            }
             propagateInterrupt();
+        }
     }
 
     ////////////////////////////////////

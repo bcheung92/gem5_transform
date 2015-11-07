@@ -192,6 +192,15 @@ EnergyCtrl::write(PacketPtr pkt)
         break;
       case PERF_LEVEL:
 
+        if (data == 37 || data == 38 || data == 39 || data == 40) // TODO FIXME to check if the cpuidle state has to be entered
+        {
+            int core_num = data % 37;            
+            std::cout << "PDGEM5 C1 STATE ENTER saw a write of " << data  << " for core " << core_num << std::endl;
+            ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drain(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drainManager);
+            ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->ENTERING_C1 = 1;
+            break;
+        }
+
         //lokeshjindal15 TODO FIXME override with perf_level = 6 (800MHz) if asked for a lower frequency        
         assert( static_cast<int>(data) >= 0);
         std::cout << "DEBUG: domainID: " << domainID << " dvfsHandler->perfLevel(domainID): " << dvfsHandler->perfLevel(domainID) << " data: " << static_cast<int>(data) << " diff: " << (static_cast<int>(dvfsHandler->perfLevel(domainID)) - static_cast<int>(data)) << std::endl;

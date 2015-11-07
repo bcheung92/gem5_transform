@@ -750,6 +750,10 @@ class FullO3CPU : public BaseO3CPU
     
     // Stats::Scalar old_cpu_big0_LITTLE1;
     Stats::Scalar cur_cpu_big1_LITTLE2;
+    Stats::Scalar in_c1state;
+    /** Stat for total number of cycles the CPU spends descheduled. */
+    Stats::Scalar c1state_entertick;
+    Stats::Scalar c1state_exittick;
 
 public:
 	//lokeshjindal15 per cpu flags to be used for transformation
@@ -760,6 +764,9 @@ public:
 	// bool start_transform_up;
 	bool transforming_up;
 	bool done_transform_up;
+
+        bool IN_C1STATE;
+        bool ENTERING_C1;
 	
 	void transform_down_self();
 	void transform_up_self();

@@ -425,6 +425,9 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
 	//lokeshjindal15 init transform flags
 	// start_transform_down = 0;
 	transforming_down = 0;
+        IN_C1STATE = 0;
+        in_c1state = 2;
+        ENTERING_C1 = 0;
 	done_transform_down = 0;
 	
 	// start_transform_up = 0;
@@ -487,6 +490,17 @@ FullO3CPU<Impl>::regStats()
         .desc("Total number of cycles that the CPU has spent unscheduled due "
               "to idling")
         .prereq(idleCycles);
+    
+    c1state_entertick
+        .name(name() + ".c1state_entertick")
+        .desc("Tick value when entered into c1state ")
+        .prereq(c1state_entertick);
+
+    c1state_exittick
+        .name(name() + ".c1state_exittick")
+        .desc("Tick value when exited c1state ")
+        .prereq(c1state_exittick);
+
 
     quiesceCycles
         .name(name() + ".quiesceCycles")
@@ -585,6 +599,12 @@ FullO3CPU<Impl>::regStats()
         .name(name() + ".cur_cpu_big1_LITTLE2")
         .desc("whether the cpu is big(1) or LITTLE(2)")
         .prereq(cur_cpu_big1_LITTLE2);
+
+    in_c1state
+        .name(name() + ".in_c1state")
+        .desc("whether the cpu is in c1 state or not")
+        .prereq(in_c1state);
+
 }
 
 template <class Impl>
@@ -968,7 +988,45 @@ FullO3CPU<Impl>::tick()
 			std::cout << "****TRANSFORM DONE Core should resume now!" << endl;
 		}
 	}
- 	
+    	if (1)
+	{
+		if (ENTERING_C1 && isDrained())
+		{
+			// assert(!static_cast<bool>(cur_cpu_big1_LITTLE2));
+			assert(IN_C1STATE == 0);
+			// assert(start_transform_down == 0);
+			// assert(start_transform_up == 0);
+		        ENTERING_C1 = 0;
+                        // save the CPU is in c1 state or not
+                        double _in_c1state[4];
+                        double _entertick_c1state[4];
+                        double _exittick_c1state[4];
+                        // HACK TODO FIXME num cpus = 4 hardcoded
+                        for (uint32_t i = 0; i < 4; i++)
+                        {
+                            _in_c1state[i] = ((O3ThreadContext<O3CPUImpl> *)(system->threadContexts[i]))->cpu->in_c1state.value();
+                            _entertick_c1state[i] = ((O3ThreadContext<O3CPUImpl> *)(system->threadContexts[i]))->cpu->c1state_entertick.value();
+                            _exittick_c1state[i] = ((O3ThreadContext<O3CPUImpl> *)(system->threadContexts[i]))->cpu->c1state_exittick.value();
+                        }
+                        IN_C1STATE = 0;   
+                        in_c1state = 2;
+                        Stats::dump();
+                        Stats::reset();
+
+                        for (uint32_t i = 0; i < 4; i++)
+                        {
+                            ((O3ThreadContext<O3CPUImpl> *)(system->threadContexts[i]))->cpu->in_c1state = _in_c1state[i];
+                            ((O3ThreadContext<O3CPUImpl> *)(system->threadContexts[i]))->cpu->c1state_entertick = _entertick_c1state[i];
+                            ((O3ThreadContext<O3CPUImpl> *)(system->threadContexts[i]))->cpu->c1state_exittick = _exittick_c1state[i];
+                        }
+
+                        // this cpu is in C1
+                        c1state_entertick = curTick(); 
+                        IN_C1STATE = 1;
+                        in_c1state = 1;
+			std::cout << "****CORE DRAINED. C1 ENTERED!" << endl;
+		}
+	}
 
     if (!tickEvent.scheduled()) {
         if (_status == SwitchedOut) {
