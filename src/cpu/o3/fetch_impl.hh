@@ -494,6 +494,20 @@ DefaultFetch<Impl>::drainStall(ThreadID tid)
 
 template <class Impl>
 void
+DefaultFetch<Impl>::c1_drainStall()
+{
+    // assert(cpu->isDraining());
+    // assert(!stalls[tid].drain);
+    // DPRINTF(Drain, "%i: Thread drained.\n", tid);
+    std::cout << "C1 c1_drainstall Keeping the fetch stalled!" << endl;
+    for (ThreadID tid = 0; tid < numThreads; ++tid)
+    {
+        stalls[tid].drain = true;
+    }
+}
+
+template <class Impl>
+void
 DefaultFetch<Impl>::wakeFromQuiesce()
 {
     DPRINTF(Fetch, "Waking up from quiesce\n");
@@ -813,7 +827,12 @@ DefaultFetch<Impl>::checkStall(ThreadID tid) const
     bool ret_val = false;
 
     if (stalls[tid].drain) {
-        assert(cpu->isDraining());
+        // TODO FIXME to support C1 state
+        // Core will be stalled and not draining while in C1
+        if (cpu->IN_C1STATE == 0)
+        {
+            assert(cpu->isDraining());
+        }
         DPRINTF(Fetch,"[tid:%i]: Drain stall detected.\n",tid);
         ret_val = true;
     }

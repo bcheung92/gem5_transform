@@ -689,6 +689,17 @@ DefaultCommit<Impl>::tick()
     wroteToTimeBuffer = false;
     _nextStatus = Inactive;
 
+    if (cpu->IN_C1STATE == 1)
+    {
+        if (activeThreads->empty())
+        {
+            // std::cout << "C1 Core IS in C1 and activeThreads is empty. Commit will return now without checking for interrupts inside commit() function" << std::endl;
+        }
+        else
+        {
+            std::cout << "C1 Core IS in C1 and activeThreads is NOT EMPTY. Hopefully commit will check for interrupts inside commit() function" << std::endl;
+        }
+    }
     if (activeThreads->empty())
         return;
 
@@ -847,6 +858,7 @@ DefaultCommit<Impl>::commit()
         // Check if we have a interrupt and get read to handle it
         if (cpu->checkInterrupts(cpu->tcBase(0)))
         {
+            std::cout << "C1 commit_impl.hh Interrupt detected!" << std::endl;
             // lokeshjindal15: this is where the interrupt is detected
             if (cpu->ENTERING_C1 == 1)
             {

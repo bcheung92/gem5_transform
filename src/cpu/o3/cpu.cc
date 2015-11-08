@@ -426,6 +426,7 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
 	// start_transform_down = 0;
 	transforming_down = 0;
         IN_C1STATE = 0;
+        DEBUG_TICK = 0;
         in_c1state = 2;
         ENTERING_C1 = 0;
 	done_transform_down = 0;
@@ -612,6 +613,10 @@ void
 FullO3CPU<Impl>::tick()
 {
     DPRINTF(O3CPU, "\n\nFullO3CPU: Ticking main, FullO3CPU.\n");
+    if (DEBUG_TICK == 1)
+    {
+        // std::cout << "CPU is in C1 STATE and still ticking" << std::endl;
+    }
 
     //TODO FIXME remove this hack
     static int print_once = 0;
@@ -900,6 +905,14 @@ FullO3CPU<Impl>::tick()
 		}
 		
 	}
+        // static int try_cpuidle = 0;
+	// if ( 0 && !try_cpuidle && curTick() > (7182463312535 + 15270000))
+	// {
+	// 	try_cpuidle = 1;
+	// 	drain(drainManager);
+        //         ENTERING_C1 = 1;
+        //         std::cout << "C1 Calling enterance to C1 state forcefully!" << std::endl;
+	// }
 	if (1)
 	{
 		// if (start_transform_down)
@@ -1023,8 +1036,12 @@ FullO3CPU<Impl>::tick()
                         // this cpu is in C1
                         c1state_entertick = curTick(); 
                         IN_C1STATE = 1;
+                        DEBUG_TICK = 1;
                         in_c1state = 1;
 			std::cout << "****CORE DRAINED. C1 ENTERED!" << endl;
+			// keeping the sim object alive but stalling the fetch
+                        drainResume();
+                        drain_only_stallfetch();
 		}
 	}
 
@@ -1033,8 +1050,12 @@ FullO3CPU<Impl>::tick()
             DPRINTF(O3CPU, "Switched out!\n");
             // increment stat
             lastRunningCycle = curCycle();
-        } else if (!activityRec.active() || _status == Idle) {
+        } else if ((!activityRec.active() || _status == Idle) && !(IN_C1STATE == 1)) {
             DPRINTF(O3CPU, "Idle!\n");
+            if (DEBUG_TICK == 1)
+            {
+                // std::cout << "CPU is in C1 STATE and NOT scheduling itself here3" << std::endl;
+            }
             // std::cout << "O3CPU is Idle!\n" << std::endl;
             lastRunningCycle = curCycle();
             timesIdled++;
@@ -1205,7 +1226,10 @@ FullO3CPU<Impl>::suspendContext(ThreadID tid)
 
     // If this was the last thread then unschedule the tick event.
     if (activeThreads.size() == 0)
+    {
+        std::cout << "CPU descheduling itself here2" << std::endl;
         unscheduleTickEvent();
+    }
 
     DPRINTF(Quiesce, "Suspending Context\n");
     lastRunningCycle = curCycle();
@@ -1495,7 +1519,10 @@ FullO3CPU<Impl>::drain(DrainManager *drain_manager)
         setDrainState(Drainable::Drained);
         DPRINTF(Drain, "CPU is already drained\n");
         if (tickEvent.scheduled())
+        {
+            std::cout << "CPU descheduling itself here1" << std::endl;
             deschedule(tickEvent);
+        }
 
         // Flush out any old data from the time buffers.  In
         // particular, there might be some data in flight from the
@@ -1515,14 +1542,32 @@ FullO3CPU<Impl>::drain(DrainManager *drain_manager)
 }
 
 template <class Impl>
+void
+FullO3CPU<Impl>::drain_only_stallfetch()
+{
+    fetch.c1_drainStall();
+}
+
+template <class Impl>
 bool
 FullO3CPU<Impl>::tryDrain()
 {
     if (!drainManager || !isDrained())
         return false;
 
+
     if (tickEvent.scheduled())
-        deschedule(tickEvent);
+    {
+        if (IN_C1STATE == 1)
+        {
+            std::cout << "DESCHEDULE: Here I would have descheduled the CPU in tryDrain(). But now I won't cause I am C1 STATE sensitive" << std::endl;
+        }
+        else
+        {
+            std::cout << "DESCHEDULE: Descheduling myself inside tryDrain() as I am not in C1 STATE" << std::endl;
+            deschedule(tickEvent);
+        }
+    }
 
     DPRINTF(Drain, "CPU done draining, processing drain event\n");
     drainManager->signalDrainDone();

@@ -358,6 +358,7 @@ class FullO3CPU : public BaseO3CPU
     /** Starts draining the CPU's pipeline of all instructions in
      * order to stop all memory accesses. */
     unsigned int drain(DrainManager *drain_manager);
+    void drain_only_stallfetch();
 
     /** Resumes execution after a drain. */
     void drainResume();
@@ -766,6 +767,7 @@ public:
 	bool done_transform_up;
 
         bool IN_C1STATE;
+        bool DEBUG_TICK;
         bool ENTERING_C1;
 	
 	void transform_down_self();

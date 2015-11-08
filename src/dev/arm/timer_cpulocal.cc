@@ -297,6 +297,7 @@ CpuLocalTimer::Timer::timerAtZero()
     if (pendingIntTimer && !old_pending) {
         DPRINTF(Timer, "-- Causing interrupt\n");
         parent->gic->sendPPInt(intNumTimer, cpuNum);
+        std::cout << "gic->sendPPInt for CORE:" << cpuNum << " and int# " << intNumTimer << std::endl;
     }
 
     if (!timerControl.autoReload)

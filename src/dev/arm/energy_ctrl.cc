@@ -201,6 +201,19 @@ EnergyCtrl::write(PacketPtr pkt)
             break;
         }
 
+        // HACK TODO FIXME for debugging lets force core0 to go into idle state
+        static int try_cpuidle = 0;
+        try_cpuidle++;
+	if ( 1 && (try_cpuidle == 4))
+	{
+            int core_num = domainID % 2; 
+            std::cout << "FAKE PDGEM5 C1 STATE ENTER saw a write of " << data  << " for core " << core_num << std::endl;
+            ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drain(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drainManager);
+            ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->ENTERING_C1 = 1;
+		// try_cpuidle = 1;
+                std::cout << "FAKE C1 Calling enterance to C1 state forcefully!" << std::endl;
+	}
+
         //lokeshjindal15 TODO FIXME override with perf_level = 6 (800MHz) if asked for a lower frequency        
         assert( static_cast<int>(data) >= 0);
         std::cout << "DEBUG: domainID: " << domainID << " dvfsHandler->perfLevel(domainID): " << dvfsHandler->perfLevel(domainID) << " data: " << static_cast<int>(data) << " diff: " << (static_cast<int>(dvfsHandler->perfLevel(domainID)) - static_cast<int>(data)) << std::endl;

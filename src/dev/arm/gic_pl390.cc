@@ -717,6 +717,7 @@ Pl390::updateIntState(int hint)
 
             DPRINTF(Interrupt, "Posting interrupt %d to cpu%d\n", highest_int,
                     cpu);
+            std::cout << "GIC Posting interrupt " << highest_int << " to cpu " << cpu << std::endl;
             postInt(cpu, curTick() + intLatency);
         }
     }
@@ -766,6 +767,7 @@ Pl390::sendPPInt(uint32_t num, uint32_t cpu)
 {
     DPRINTF(Interrupt, "Received PPI %d, cpuTarget %#x: \n",
             num, cpu);
+    std::cout << "GIC Sending PPI " << num << " for  cpuTarget " << cpu << std::endl;
     cpuPpiPending[cpu] |= 1 << (num - SGI_MAX);
     updateIntState(intNumToWord(num));
 }

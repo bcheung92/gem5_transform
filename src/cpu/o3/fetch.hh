@@ -251,6 +251,7 @@ class DefaultFetch
      * has reached a safe point to drain from.
      */
     void drainStall(ThreadID tid);
+    void c1_drainStall();
 
     /** Tells fetch to wake up from a quiesce instruction. */
     void wakeFromQuiesce();
