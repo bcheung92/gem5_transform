@@ -427,7 +427,7 @@ FullO3CPU<Impl>::FullO3CPU(DerivO3CPUParams *params)
 	transforming_down = 0;
         IN_C1STATE = 0;
         DEBUG_TICK = 0;
-        in_c1state = 2;
+        in_c1state = 0;
         ENTERING_C1 = 0;
 	done_transform_down = 0;
 	
@@ -613,10 +613,15 @@ void
 FullO3CPU<Impl>::tick()
 {
     DPRINTF(O3CPU, "\n\nFullO3CPU: Ticking main, FullO3CPU.\n");
-    if (DEBUG_TICK == 1)
-    {
-        // std::cout << "CPU is in C1 STATE and still ticking" << std::endl;
-    }
+    // if (DEBUG_TICK == 1)
+    // {
+    //     // std::cout << "CPU is in C1 STATE and still ticking" << std::endl;
+    // }
+
+    if (IN_C1STATE == 1)
+    {   in_c1state = 1; }
+    else
+    {   in_c1state = 2; }
 
     //TODO FIXME remove this hack
     static int print_once = 0;
@@ -1052,10 +1057,10 @@ FullO3CPU<Impl>::tick()
             lastRunningCycle = curCycle();
         } else if ((!activityRec.active() || _status == Idle) && !(IN_C1STATE == 1)) {
             DPRINTF(O3CPU, "Idle!\n");
-            if (DEBUG_TICK == 1)
-            {
-                // std::cout << "CPU is in C1 STATE and NOT scheduling itself here3" << std::endl;
-            }
+            // if (DEBUG_TICK == 1)
+            // {
+            //     // std::cout << "CPU is in C1 STATE and NOT scheduling itself here3" << std::endl;
+            // }
             // std::cout << "O3CPU is Idle!\n" << std::endl;
             lastRunningCycle = curCycle();
             timesIdled++;
@@ -1227,7 +1232,7 @@ FullO3CPU<Impl>::suspendContext(ThreadID tid)
     // If this was the last thread then unschedule the tick event.
     if (activeThreads.size() == 0)
     {
-        std::cout << "CPU descheduling itself here2" << std::endl;
+        // std::cout << "CPU descheduling itself here2" << std::endl;
         unscheduleTickEvent();
     }
 
@@ -1520,7 +1525,7 @@ FullO3CPU<Impl>::drain(DrainManager *drain_manager)
         DPRINTF(Drain, "CPU is already drained\n");
         if (tickEvent.scheduled())
         {
-            std::cout << "CPU descheduling itself here1" << std::endl;
+            // std::cout << "CPU descheduling itself here1" << std::endl;
             deschedule(tickEvent);
         }
 

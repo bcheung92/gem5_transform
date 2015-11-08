@@ -858,7 +858,7 @@ DefaultCommit<Impl>::commit()
         // Check if we have a interrupt and get read to handle it
         if (cpu->checkInterrupts(cpu->tcBase(0)))
         {
-            std::cout << "C1 commit_impl.hh Interrupt detected!" << std::endl;
+            // std::cout << "C1 commit_impl.hh Interrupt detected!" << std::endl;
             // lokeshjindal15: this is where the interrupt is detected
             if (cpu->ENTERING_C1 == 1)
             {
@@ -884,6 +884,7 @@ DefaultCommit<Impl>::commit()
                         }
                         cpu->IN_C1STATE = 1;   
                         cpu->in_c1state = 1;
+                        cpu->c1state_exittick = curTick(); 
                         Stats::dump();
                         Stats::reset();
 
@@ -896,7 +897,8 @@ DefaultCommit<Impl>::commit()
 
 
                         // this cpu will exit C1
-                        cpu->c1state_exittick = curTick(); 
+                        cpu->c1state_exittick = 0; 
+                        cpu->c1state_entertick = 0; 
                         cpu->IN_C1STATE = 0;
                         cpu->in_c1state = 2;
 
