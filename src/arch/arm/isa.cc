@@ -413,7 +413,33 @@ ISA::readMiscRegNoEffect(int misc_reg) const
     return val;
 }
 
+void ISA::print3MiscRegs(void)
+{
+    bool cpsr_mask_bit, scr_routing_bit, scr_fwaw_bit, hcr_mask_override_bit;
+    CPSR cpsr = readMiscRegNoEffect(MISCREG_CPSR);
+    HCR hcr;
+    SCR scr;
+    hcr = readMiscRegNoEffect(MISCREG_HCR);
+    scr = readMiscRegNoEffect(MISCREG_SCR);
+    cpsr_mask_bit = cpsr.i;
+    scr_routing_bit = scr.irq;
+    scr_fwaw_bit = 1;
+    hcr_mask_override_bit = hcr.imo;
 
+    std::cout << "ISA::print3MiscRegs HCR: 0x" << std::hex << hcr << " SCR: 0x" << std::hex << scr << " CPSR: 0x" << std::hex << cpsr << std::dec << std::endl;
+    std::cout << "cpsr_mask_bit:" << cpsr_mask_bit << " " 
+              << "scr_routing_bit:" << scr_routing_bit << " " 
+              << "scr_fwaw_bit:" << scr_fwaw_bit << " " 
+              << "hcr_mask_override_bit:" << hcr_mask_override_bit << " ";
+ 
+}
+
+void ISA::write3MiscRegs(HCR hcr, SCR scr, CPSR cpsr)
+{
+    setMiscRegNoEffect(MISCREG_HCR, hcr);    
+    setMiscRegNoEffect(MISCREG_SCR, scr);    
+    setMiscRegNoEffect(MISCREG_CPSR, cpsr);    
+}
 MiscReg
 ISA::readMiscReg(int misc_reg, ThreadContext *tc)
 {

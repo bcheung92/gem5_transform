@@ -204,6 +204,7 @@ class BaseCPU : public MemObject
     postInterrupt(int int_num, int index)
     {
         interrupts->post(int_num, index);
+        // std::cout << "base.hh Posting interrupt for int_num " << int_num << " and index " << index << std::endl;
         if (FullSystem)
             wakeup();
     }
@@ -497,6 +498,18 @@ class BaseCPU : public MemObject
     unsigned fpu_scale_enabled;//lokeshjindal15 
     unsigned dcache_scale_enabled;//lokeshjindal15 
     unsigned icache_scale_enabled;//lokeshjindal15 
+
+
+
+    virtual bool getC1State()
+    {
+        std::cout << "***** getC1State of base CPU" << std::endl;
+        return -1;
+    }
+    
+    bool IN_C1STATE;
+    bool DEBUG_TICK;
+    bool ENTERING_C1;
 
 };
 

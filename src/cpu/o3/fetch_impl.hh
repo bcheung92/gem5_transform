@@ -499,7 +499,7 @@ DefaultFetch<Impl>::c1_drainStall()
     // assert(cpu->isDraining());
     // assert(!stalls[tid].drain);
     // DPRINTF(Drain, "%i: Thread drained.\n", tid);
-    std::cout << "C1 c1_drainstall Keeping the fetch stalled!" << endl;
+    std::cout << "PDEGEM5_CPUIDLE CORE:" << cpu->cpuId() << " c1_drainstall Keeping the fetch stalled!" << endl;
     for (ThreadID tid = 0; tid < numThreads; ++tid)
     {
         stalls[tid].drain = true;

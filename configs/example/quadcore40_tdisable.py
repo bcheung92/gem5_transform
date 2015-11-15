@@ -183,6 +183,7 @@ def build_test_system(np):
     test_sys.dvfs_handler.transition_latency = '40us'
     test_sys.dvfs_handler.enable = True
     test_sys.dvfs_handler.transform_enable = False # We do not want atomic CPU to transform
+    test_sys.dvfs_handler.cpuidle_enable = False # We do not want atomic CPU to transform
     test_sys.dvfs_handler.domains = [test_sys.cpu_clk_domain, test_sys.cpu_clk_domain1, test_sys.cpu_clk_domain2, test_sys.cpu_clk_domain3]
     
     if options.ruby:

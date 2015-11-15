@@ -237,6 +237,35 @@ class FullO3CPU : public BaseO3CPU
             tickEvent.squash();
     }
 
+//     class C1exit_event : public Event
+//     {
+//       private:
+//         /** Pointer to the CPU. */
+//         FullO3CPU<Impl> *cpu;
+// 
+//       public:
+//         /** Constructs a tick event. */
+//         C1exit_event(FullO3CPU<Impl> *c);
+// 
+//         /** Processes a tick event, calling tick() on the CPU. */
+//         void process();
+//         /** Returns the description of the tick event. */
+//         const char *description() const;
+//     };
+// 
+//     C1exit_event c1exitevent
+// 
+//     /** Schedule tick event, regardless of its current state. */
+//     void schedule_C1exit_event(Tick latency)
+//     {
+//         if (c1exitevent.squashed())
+//             reschedule(c1exitevent, curTick() + latency);
+//         else if (!c1exitevent.scheduled())
+//             schedule(c1exitevent, curTick() + latency);
+//     }
+// 
+
+
     /**
      * Check if the pipeline has drained and signal the DrainManager.
      *
@@ -416,6 +445,10 @@ class FullO3CPU : public BaseO3CPU
      * might have as defined by the architecture.
      */
     TheISA::MiscReg readMiscReg(int misc_reg, ThreadID tid);
+    
+    // lokeshjindal15
+    void print3MiscRegs(void);
+    void write3MiscRegs(unsigned hcr, unsigned scr, unsigned cpsr);
 
     /** Sets a miscellaneous register. */
     void setMiscRegNoEffect(int misc_reg, const TheISA::MiscReg &val,
@@ -766,9 +799,6 @@ public:
 	bool transforming_up;
 	bool done_transform_up;
 
-        bool IN_C1STATE;
-        bool DEBUG_TICK;
-        bool ENTERING_C1;
 	
 	void transform_down_self();
 	void transform_up_self();
@@ -784,6 +814,11 @@ public:
     void scaleL1Ddown();
     Cache<LRU> * getDcachePtr();
     Cache<LRU> * getIcachePtr();
+
+    virtual bool getC1State()
+    {
+        return IN_C1STATE;
+    }
 
 //     unsigned rob_scale_enabled;//lokeshjindal15 
 //     unsigned btb_scale_enabled;//lokeshjindal15 

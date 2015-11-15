@@ -229,6 +229,8 @@ namespace ArmISA
 
         MiscReg readMiscRegNoEffect(int misc_reg) const;
         MiscReg readMiscReg(int misc_reg, ThreadContext *tc);
+        void print3MiscRegs(void);
+        void write3MiscRegs(HCR, SCR, CPSR);
         void setMiscRegNoEffect(int misc_reg, const MiscReg &val);
         void setMiscReg(int misc_reg, const MiscReg &val, ThreadContext *tc);
 

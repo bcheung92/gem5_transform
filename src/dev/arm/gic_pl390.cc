@@ -717,7 +717,7 @@ Pl390::updateIntState(int hint)
 
             DPRINTF(Interrupt, "Posting interrupt %d to cpu%d\n", highest_int,
                     cpu);
-            std::cout << "GIC Posting interrupt " << highest_int << " to cpu " << cpu << std::endl;
+            std::cout << "GIC Posting interrupt " << highest_int << " to CORE:" << cpu << " at tick:" << curTick() << ": for when :" << curTick() + intLatency << ":" << std::endl;
             postInt(cpu, curTick() + intLatency);
         }
     }

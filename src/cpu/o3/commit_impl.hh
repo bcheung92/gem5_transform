@@ -693,11 +693,11 @@ DefaultCommit<Impl>::tick()
     {
         if (activeThreads->empty())
         {
-            // std::cout << "C1 Core IS in C1 and activeThreads is empty. Commit will return now without checking for interrupts inside commit() function" << std::endl;
+            std::cout << "*****ERROR***** PDGEM5_CPUIDLE CORE:" << cpu->cpuId() << " C1 Core IS in C1 and activeThreads is empty. Commit will return now without checking for interrupts inside commit() function" << " at tick:" << curTick() << ":" << std::endl;
         }
         else
         {
-            std::cout << "C1 Core IS in C1 and activeThreads is NOT EMPTY. Hopefully commit will check for interrupts inside commit() function" << std::endl;
+            // std::cout << "CPU:" << cpu->cpuId() << "C1 Core IS in C1 and activeThreads is NOT EMPTY. Hopefully commit will check for interrupts inside commit() function at tick :" << curTick() << ":" << std::endl;
         }
     }
     if (activeThreads->empty())
@@ -855,6 +855,10 @@ void
 DefaultCommit<Impl>::commit()
 {
     if (FullSystem) {
+        if (cpu->IN_C1STATE == true)
+        {
+            // std::cout << "CPU:" << cpu->cpuId() << "commit() checking for interrupt in Fullsystem" << std::endl;
+        }
         // Check if we have a interrupt and get read to handle it
         if (cpu->checkInterrupts(cpu->tcBase(0)))
         {
@@ -863,14 +867,15 @@ DefaultCommit<Impl>::commit()
             if (cpu->ENTERING_C1 == 1)
             {
                 // this should not happen...
-                std::cout << "ERROR! THIS SHOULD NOT HAPPEN... GOT AN INTERRUPT WHILE ENTERING C1" << endl;
+                std::cout << "*****ERROR***** PDGEM5_CPUIDLE CORE:" << cpu->cpuId() << " THIS SHOULD NOT HAPPEN... GOT AN INTERRUPT WHILE ENTERING C1 at tick:" << curTick() << ":" << endl;
+                cpu->ENTERING_C1 = 0;
                 cpu->drainResume();
             }
             if (cpu->IN_C1STATE == 1)
             {
                 // assert (cpu->ENTERING_C1 == 0);
                 // we want to wake up now
-                std::cout << "GOT AN INTERRUPT - WAKING UP FROM C1 state" << endl;
+                std::cout << "PDGEM5_CPUIDLE CORE:" << cpu->cpuId() << " GOT AN INTERRUPT - WAKING UP FROM C1 state at tick :" << curTick() << ":" << endl;
                 // save the CPU is in c1 state or not
                         double _in_c1state[4];
                         double _entertick_c1state[4];
@@ -906,6 +911,13 @@ DefaultCommit<Impl>::commit()
                 cpu->drainResume();
             }
             propagateInterrupt();
+        }
+        else
+        {
+            if (cpu->IN_C1STATE == 1)
+            {
+                // std::cout << "CPU:" << cpu->cpuId() << "No interrupt detected for cpu at tick :" << curTick() << ":" << endl;
+            }
         }
     }
 

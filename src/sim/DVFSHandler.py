@@ -69,4 +69,5 @@ class DVFSHandler(SimObject):
     
     # TODO FIXME add protection for cpu type to avoid error from energy_ctrl.cc for atomic cpu
     transform_enable = Param.Bool(False, "Enable/Disable the transformation capability")
+    cpuidle_enable = Param.Bool(False, "Enable/Disable the cpuidle capability")
 

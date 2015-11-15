@@ -701,6 +701,7 @@ let {{
         fault = new SecureMonitorTrap(machInst, 0x1E00000, EC_TRAPPED_WFI_WFE);
     } else {
         PseudoInst::quiesce(tc);
+        std::cout << "C1 Executing WFI instruction and doing PseudoInst::quiesce" << std::endl;
     }
     tc->getCpuPtr()->clearInterrupt(INT_ABT, 0);
     '''

@@ -62,6 +62,7 @@ DVFSHandler::DVFSHandler(const Params *p)
       sysClkDomain(p->sys_clk_domain),
       enableHandler(p->enable),
       transform_enable(p->transform_enable),
+      cpuidle_enable(p->cpuidle_enable),
       _transLatency(p->transition_latency)
 {
     // Check supplied list of domains for sanity and add them to the

@@ -48,6 +48,7 @@
 
 #include "sim/system.hh"//lokeshjindal15
 #include "cpu/o3/thread_context.hh"//lokeshjindal15
+#include "arch/arm/miscregs.hh"
 
 EnergyCtrl::EnergyCtrl(const Params *p)
     : BasicPioDevice(p, PIO_NUM_FIELDS * 4),        // each field is 32 bit
@@ -192,22 +193,45 @@ EnergyCtrl::write(PacketPtr pkt)
         break;
       case PERF_LEVEL:
 
-        if (data == 37 || data == 38 || data == 39 || data == 40) // TODO FIXME to check if the cpuidle state has to be entered
+	if (dvfsHandler->cpuidle_enable == true) // disable for atomic cpu
         {
-            int core_num = data % 37;            
-            std::cout << "PDGEM5 C1 STATE ENTER saw a write of " << data  << " for core " << core_num << std::endl;
-            ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drain(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drainManager);
-            ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->ENTERING_C1 = 1;
-            break;
+            if (data == 37 || data == 38 || data == 39 || data == 40) // TODO FIXME to check if the cpuidle state has to be entered
+            {
+                int core_num = data % 37;            
+                std::cout << "PDGEM5_CPUIDLE CORE:" << core_num << " C1 STATE ENTER saw a write of " << data  << " in EnergyCtrl at tick:" << curTick() << ":" << std::endl;
+                std::cout << "PRINTING the 3 misc regs" << std::endl;
+                ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->print3MiscRegs();
+                unsigned hcr = ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->readMiscRegNoEffect(MISCREG_HCR, 0);
+                unsigned scr = ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->readMiscRegNoEffect(MISCREG_SCR, 0);
+                unsigned cpsr = ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->readMiscRegNoEffect(MISCREG_CPSR, 0);
+                std::cout << "UPDATING THE 3 MISCREGS" << std::endl;
+                // ISA::print3MiscRegs HCR: 0x0 SCR: 0x1 CPSR: 0x10
+                // cpsr_mask_bit:0 scr_routing_bit:0 scr_fwaw_bit:0 hcr_mask_override_bit:0 FAKE C1 Calling enterance to C1 state forcefully!  
+                //     cpsr_mask_bit = cpsr.i;i // bit 7
+                // scr_routing_bit = scr.irq; // bit 1
+                // scr_fwaw_bit = 1;
+                // hcr_mask_override_bit = hcr.imo; // bit 4
+                 
+        
+                ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->write3MiscRegs(hcr &(~(1 << 4)) , scr & (~(1 << 1)), cpsr &(~(1 << 7)));
+                std::cout << "PRINTING the 3 misc regs after UPDATING" << std::endl;
+                ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->print3MiscRegs();
+
+                ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drain(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drainManager);
+                ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->ENTERING_C1 = 1;
+                break;
+            }
         }
 
         // HACK TODO FIXME for debugging lets force core0 to go into idle state
         static int try_cpuidle = 0;
         try_cpuidle++;
-	if ( 1 && (try_cpuidle == 4))
+	if ( 0 && (try_cpuidle == 4))
 	{
             int core_num = domainID % 2; 
+            // ::print3MiscRegs
             std::cout << "FAKE PDGEM5 C1 STATE ENTER saw a write of " << data  << " for core " << core_num << std::endl;
+            ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->print3MiscRegs();
             ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drain(((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->drainManager);
             ((O3ThreadContext<O3CPUImpl> *)(esys->threadContexts[core_num]))->cpu->ENTERING_C1 = 1;
 		// try_cpuidle = 1;

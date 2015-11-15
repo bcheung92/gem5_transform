@@ -51,6 +51,7 @@ IntrControl::post(int cpu_id, int int_num, int index)
     DPRINTF(IntrControl, "post  %d:%d (cpu %d)\n", int_num, index, cpu_id);
     std::vector<ThreadContext *> &tcvec = sys->threadContexts;
     BaseCPU *cpu = tcvec[cpu_id]->getCpuPtr();
+    std::cout << "IntrControl: Post interrupt " << int_num << " for  CORE:" << cpu_id << " at tick:" << curTick() << ":" << std::endl;
     cpu->postInterrupt(int_num, index);
 }
 

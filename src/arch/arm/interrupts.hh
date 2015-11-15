@@ -52,10 +52,12 @@
 #include "debug/Interrupt.hh"
 #include "params/ArmInterrupts.hh"
 #include "sim/sim_object.hh"
+// #include "cpu/base.hh"
+
+// class BaseCPU;
 
 namespace ArmISA
 {
-
 class Interrupts : public SimObject
 {
   private:
@@ -90,6 +92,7 @@ class Interrupts : public SimObject
     post(int int_num, int index)
     {
         DPRINTF(Interrupt, "Interrupt %d:%d posted\n", int_num, index);
+        // std::cout << "arch arm interrupts.hh Posting interrupt for int_num " << int_num << " and index " << index /*<< " and I belong to cpu whose IN_C1STATE is :" << cpu->IN_C1STATE << ":" */<< std::endl;
 
         if (int_num < 0 || int_num >= NumInterruptTypes)
             panic("int_num out of bounds\n");
@@ -138,7 +141,15 @@ class Interrupts : public SimObject
         HCR  hcr  = tc->readMiscReg(MISCREG_HCR);
 
         if (!(intStatus || hcr.va || hcr.vi || hcr.vf))
+        {
+            /*
+            if (cpu->IN_C1STATE == true)
+            {
+                std::cout << "checkInterrupts is returning false" << std::endl;
+            }
+            */
             return false;
+        }
 
         CPSR cpsr = tc->readMiscReg(MISCREG_CPSR);
         SCR  scr  = tc->readMiscReg(MISCREG_SCR);
@@ -153,7 +164,7 @@ class Interrupts : public SimObject
         bool take_fiq = takeInt(tc, INT_FIQ);
         bool take_ea =  takeInt(tc, INT_ABT);
 
-        return ((interrupts[INT_IRQ] && take_irq)                   ||
+        bool retval = ((interrupts[INT_IRQ] && take_irq)                   ||
                 (interrupts[INT_FIQ] && take_fiq)                   ||
                 (interrupts[INT_ABT] && take_ea)                    ||
                 ((interrupts[INT_VIRT_IRQ] || hcr.vi) && allowVIrq) ||
@@ -162,6 +173,13 @@ class Interrupts : public SimObject
                 (interrupts[INT_RST])                               ||
                 (interrupts[INT_SEV])
                );
+        /*
+        if (cpu->IN_C1STATE == true)
+        {
+            std::cout << "checkInterrupts is returning retval:" << retval << ":" << std::endl;
+        }
+        */
+        return retval;
     }
 
     /**
@@ -218,6 +236,7 @@ class Interrupts : public SimObject
         return interrupts[interrupt];
     }
 
+    // lokeshjindal15 look and debug here more
     Fault
     getInterrupt(ThreadContext *tc)
     {

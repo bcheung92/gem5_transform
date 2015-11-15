@@ -238,6 +238,7 @@ class DVFSHandler : public SimObject
 
   public:
     bool transform_enable;
+    bool cpuidle_enable;
   private:
 
     /**

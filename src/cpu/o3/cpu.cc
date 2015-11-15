@@ -614,9 +614,10 @@ FullO3CPU<Impl>::tick()
 {
     DPRINTF(O3CPU, "\n\nFullO3CPU: Ticking main, FullO3CPU.\n");
     // if (DEBUG_TICK == 1)
-    // {
-    //     // std::cout << "CPU is in C1 STATE and still ticking" << std::endl;
-    // }
+    if (IN_C1STATE == 1)
+    {
+        // std::cout << "CPU is in C1 STATE and still ticking" << std::endl;
+    }
 
     if (IN_C1STATE == 1)
     {   in_c1state = 1; }
@@ -1043,7 +1044,7 @@ FullO3CPU<Impl>::tick()
                         IN_C1STATE = 1;
                         DEBUG_TICK = 1;
                         in_c1state = 1;
-			std::cout << "****CORE DRAINED. C1 ENTERED!" << endl;
+			std::cout << "PDGEM5_CPUIDLE CORE:" << cpuId() << " CORE DRAINED. C1 ENTERED! at tick :" << curTick() << ":" << endl;
 			// keeping the sim object alive but stalling the fetch
                         drainResume();
                         drain_only_stallfetch();
@@ -1057,10 +1058,10 @@ FullO3CPU<Impl>::tick()
             lastRunningCycle = curCycle();
         } else if ((!activityRec.active() || _status == Idle) && !(IN_C1STATE == 1)) {
             DPRINTF(O3CPU, "Idle!\n");
-            // if (DEBUG_TICK == 1)
-            // {
-            //     // std::cout << "CPU is in C1 STATE and NOT scheduling itself here3" << std::endl;
-            // }
+            if (IN_C1STATE == 1)
+            {
+                std::cout << "***** ERROR***** PDGEM5_CPUIDLE CORE:" << cpuId() << " is in C1 STATE and NOT scheduling itself here3" << std::endl;
+            }
             // std::cout << "O3CPU is Idle!\n" << std::endl;
             lastRunningCycle = curCycle();
             timesIdled++;
@@ -1232,13 +1233,16 @@ FullO3CPU<Impl>::suspendContext(ThreadID tid)
     // If this was the last thread then unschedule the tick event.
     if (activeThreads.size() == 0)
     {
-        // std::cout << "CPU descheduling itself here2" << std::endl;
+        if (IN_C1STATE == 1)
+        {
+            std::cout << "*****ERROR***** PDGEM5_CPUIDLE CORE:" << cpuId() << " is in C1 STATE and descheduling itself here2" << std::endl;
+        }
         unscheduleTickEvent();
-    }
 
-    DPRINTF(Quiesce, "Suspending Context\n");
-    lastRunningCycle = curCycle();
-    _status = Idle;
+        DPRINTF(Quiesce, "Suspending Context\n");
+        lastRunningCycle = curCycle();
+        _status = Idle;
+    }
 }
 
 template <class Impl>
@@ -1525,7 +1529,10 @@ FullO3CPU<Impl>::drain(DrainManager *drain_manager)
         DPRINTF(Drain, "CPU is already drained\n");
         if (tickEvent.scheduled())
         {
-            // std::cout << "CPU descheduling itself here1" << std::endl;
+            if (IN_C1STATE == 1)
+            {
+                std::cout << "*****ERROR***** PDGEM5_CPUIDLE CORE:" << cpuId() << " is in C1 STATE and descheduling itself here1" << std::endl;
+            }
             deschedule(tickEvent);
         }
 
@@ -1565,11 +1572,11 @@ FullO3CPU<Impl>::tryDrain()
     {
         if (IN_C1STATE == 1)
         {
-            std::cout << "DESCHEDULE: Here I would have descheduled the CPU in tryDrain(). But now I won't cause I am C1 STATE sensitive" << std::endl;
+            std::cout << "*****ERROR***** PDGEM5_CPUIDLE CORE:" << cpuId() << " DESCHEDULE: Here I would have descheduled the CPU in tryDrain(). But now I won't cause I am C1 STATE sensitive" << std::endl;
         }
         else
         {
-            std::cout << "DESCHEDULE: Descheduling myself inside tryDrain() as I am not in C1 STATE" << std::endl;
+            std::cout << "DESCHEDULE: Descheduling myself inside tryDrain() as I CORE:" << cpuId() << " am not in C1 STATE" << std::endl;
             deschedule(tickEvent);
         }
     }
@@ -1722,6 +1729,18 @@ TheISA::MiscReg
 FullO3CPU<Impl>::readMiscRegNoEffect(int misc_reg, ThreadID tid)
 {
     return this->isa[tid]->readMiscRegNoEffect(misc_reg);
+}
+template <class Impl>
+void
+FullO3CPU<Impl>::print3MiscRegs(void)
+{
+    return this->isa[0]->print3MiscRegs();
+}
+template <class Impl>
+void
+FullO3CPU<Impl>::write3MiscRegs(unsigned hcr, unsigned scr, unsigned cpsr)
+{
+    return this->isa[0]->write3MiscRegs(hcr, scr, cpsr);
 }
 
 template <class Impl>
